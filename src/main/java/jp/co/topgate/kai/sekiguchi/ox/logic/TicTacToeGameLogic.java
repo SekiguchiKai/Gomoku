@@ -1,5 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
+import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
@@ -10,6 +12,7 @@ import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 import jp.co.topgate.kai.sekiguchi.ox.player.User;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 
 /**
@@ -24,7 +27,7 @@ public class TicTacToeGameLogic implements GameLogic {
      */
     @Override
     public void playGame() {
-        TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
+        Board ticTacToeBoard = new TicTacToeBoard();
         TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
         MinMaxCalculator minMaxCalculator = new MinMaxCalculator();
         Player user = new User(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
@@ -36,17 +39,17 @@ public class TicTacToeGameLogic implements GameLogic {
         int depthCount = 2;
 
 
-        while (this.judgeResult(ticTacToeBoard.getGameBoardState()) == Result.PENDING) {
+        while (this.judgeResult(ticTacToeBoard) == Result.PENDING) {
 
             user.doMove(depthCount);
 
 
-            if (this.judgeResult(ticTacToeBoard.getGameBoardState()) == Result.PENDING) {
+            if (this.judgeResult(ticTacToeBoard) == Result.PENDING) {
                 cpu.doMove(depthCount);
             }
 
         }
-        ticTacToeCommandLineIO.drawResult(this.judgeResult(ticTacToeBoard.getGameBoardState()));
+        ticTacToeCommandLineIO.drawResult(this.judgeResult(ticTacToeBoard));
     }
 
 
@@ -56,7 +59,9 @@ public class TicTacToeGameLogic implements GameLogic {
      * @param gameBoard ゲーム盤
      * @return 勝敗の結果
      */
-    Result judgeResult(Moves[] gameBoard) {
+    Result judgeResult(Board board) {
+
+        Moves[][] gameBoard = board.getGameBoardState();
 
         if (this.judgeLose(gameBoard)) {
             return Result.LOSE;
@@ -64,10 +69,12 @@ public class TicTacToeGameLogic implements GameLogic {
             return Result.WIN;
         }
 
-        List<Moves> gameBoardList = Arrays.asList(gameBoard);
-
-        if (!gameBoardList.contains(Moves.NO_MOVE)) {
-            return Result.DRAW;
+        for (int y = 0; y < board.getYLength(); y++) {
+            for (int x = 0; x < board.getYLength(); x++) {
+                if (gameBoard[y][x] != Moves.NO_MOVE) {
+                    return Result.DRAW;
+                }
+            }
         }
 
         return Result.PENDING;
@@ -81,16 +88,16 @@ public class TicTacToeGameLogic implements GameLogic {
      * @return ユーザーが敗北しているかの真偽値
      */
 
-    private boolean judgeLose(Moves[] gameBoard) {
+    private boolean judgeLose(Moves[][] gameBoard) {
 
-        return (gameBoard[0] == Moves.CPU_MOVE && gameBoard[1] == Moves.CPU_MOVE && gameBoard[2] == Moves.CPU_MOVE ||
-                gameBoard[3] == Moves.CPU_MOVE && gameBoard[4] == Moves.CPU_MOVE && gameBoard[5] == Moves.CPU_MOVE ||
-                gameBoard[6] == Moves.CPU_MOVE && gameBoard[7] == Moves.CPU_MOVE && gameBoard[8] == Moves.CPU_MOVE ||
-                gameBoard[0] == Moves.CPU_MOVE && gameBoard[3] == Moves.CPU_MOVE && gameBoard[6] == Moves.CPU_MOVE ||
-                gameBoard[1] == Moves.CPU_MOVE && gameBoard[4] == Moves.CPU_MOVE && gameBoard[7] == Moves.CPU_MOVE ||
-                gameBoard[2] == Moves.CPU_MOVE && gameBoard[5] == Moves.CPU_MOVE && gameBoard[8] == Moves.CPU_MOVE ||
-                gameBoard[0] == Moves.CPU_MOVE && gameBoard[4] == Moves.CPU_MOVE && gameBoard[8] == Moves.CPU_MOVE ||
-                gameBoard[2] == Moves.CPU_MOVE && gameBoard[4] == Moves.CPU_MOVE && gameBoard[6] == Moves.CPU_MOVE
+        return (gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[0][2] == Moves.CPU_MOVE ||
+                gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE ||
+                gameBoard[2][0] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
+                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE ||
+                gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE ||
+                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
+                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
+                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE
         );
     }
 
@@ -101,16 +108,16 @@ public class TicTacToeGameLogic implements GameLogic {
      * @return ユーザーが勝利しているかの真偽値
      */
 
-    private boolean judgeWin(Moves[] gameBoard) {
+    private boolean judgeWin(Moves[][] gameBoard) {
 
-        return (gameBoard[0] == Moves.USER_MOVE && gameBoard[1] == Moves.USER_MOVE && gameBoard[2] == Moves.USER_MOVE ||
-                gameBoard[3] == Moves.USER_MOVE && gameBoard[4] == Moves.USER_MOVE && gameBoard[5] == Moves.USER_MOVE ||
-                gameBoard[6] == Moves.USER_MOVE && gameBoard[7] == Moves.USER_MOVE && gameBoard[8] == Moves.USER_MOVE ||
-                gameBoard[0] == Moves.USER_MOVE && gameBoard[3] == Moves.USER_MOVE && gameBoard[6] == Moves.USER_MOVE ||
-                gameBoard[1] == Moves.USER_MOVE && gameBoard[4] == Moves.USER_MOVE && gameBoard[7] == Moves.USER_MOVE ||
-                gameBoard[2] == Moves.USER_MOVE && gameBoard[5] == Moves.USER_MOVE && gameBoard[8] == Moves.USER_MOVE ||
-                gameBoard[0] == Moves.USER_MOVE && gameBoard[4] == Moves.USER_MOVE && gameBoard[8] == Moves.USER_MOVE ||
-                gameBoard[2] == Moves.USER_MOVE && gameBoard[4] == Moves.USER_MOVE && gameBoard[6] == Moves.USER_MOVE
+        return (gameBoard[0][0] == Moves.USER_MOVE && gameBoard[0][1] == Moves.USER_MOVE && gameBoard[0][2] == Moves.USER_MOVE ||
+                gameBoard[1][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE ||
+                gameBoard[2][0] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
+                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][0] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE ||
+                gameBoard[0][1] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE ||
+                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
+                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
+                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE
         );
 
     }

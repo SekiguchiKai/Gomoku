@@ -17,50 +17,20 @@ public class TicTacToeBoardTest {
 
 
     /**
-     * initGameBoardメソッドをテストするためのメソッド
-     */
-    @Test
-    public void initGameBoard() {
-        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
-        IntStream.range(0, 9).forEach(i -> assertThat(gameBoard[i], is(Moves.NO_MOVE)));
-    }
-
-    /**
      * putMovesメソッドをテストするためのメソッド
      */
     @Test
     public void putMoves() {
-
-        IntStream.range(0, 5).forEach(i -> ticTacToeBoard.putMoves(i, Moves.CPU_MOVE));
-        IntStream.range(5, 9).forEach(i -> ticTacToeBoard.putMoves(i, Moves.USER_MOVE));
-
-        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
-
-        IntStream.range(0, 5).forEach(t -> assertThat(gameBoard[t], is(Moves.CPU_MOVE)));
-        IntStream.range(5, 9).forEach(t -> assertThat(gameBoard[t], is(Moves.USER_MOVE)));
-
+        this.putMovesHelper(Moves.CPU_MOVE);
+        this.putMovesHelper(Moves.USER_MOVE);
+        this.putMovesHelper(Moves.NO_MOVE);
     }
 
-    /**
-     * getGameBoardStateメソッドをテストするためのメソッド
-     */
-    @Test
-    public void getGameBoardState() {
-        this.helper(Moves.USER_MOVE);
-        this.helper(Moves.CPU_MOVE);
+
+    void putMovesHelper(Moves moves) {
+        IntStream.range(0, 9).forEach(y -> IntStream.range(0, 9).forEach(x -> ticTacToeBoard.putMoves(y, x, moves)));
+        IntStream.range(0, 9).forEach(y -> IntStream.range(0, 9).forEach(x -> assertThat(ticTacToeBoard.getCellState(y, x), is(moves))));
     }
 
-    /**
-     * getGameBoardStateメソッドをテストするためのメソッドの補助メソッド
-     *
-     * @param moves 列挙型MOVESの要素
-     */
-    private void helper(Moves moves) {
-        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> ticTacToeBoard.putMoves(i, moves));
-
-        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
-
-        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(t -> assertThat(gameBoard[t], is(moves)));
-    }
 
 }

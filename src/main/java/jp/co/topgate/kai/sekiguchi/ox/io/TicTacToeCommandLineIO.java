@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.io;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
+import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
@@ -21,15 +22,15 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
      *
      * @param ticTacToeBoard Boardクラスのインスタンス
      */
-    public void drawUI(TicTacToeBoard ticTacToeBoard) {
+    public void drawUI(Board ticTacToeBoard) {
 
 
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0), 1) + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1), 2) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2), 3) + " |");
+        System.out.print("| " + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0, 1), 2) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0, 2), 3) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");
@@ -37,9 +38,9 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(3), 4) + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(4), 5) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(5), 6) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 0), 4) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 1), 5) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 2), 6) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");
@@ -47,9 +48,9 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(6), 7) + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(7), 8) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(8), 9) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 0), 7) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 1), 8) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 2), 9) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");
@@ -91,19 +92,22 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
      * @return 盤の場所（ユーザーからの入力がすでに石が置いてある場合場所だった場合:MAX_VALUE、ユーザーからの入力が不適切な数字だった場合 : MIN_VALUEを返す)
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
-    public int receiveCommand(Moves[] gameBoard) throws IOException {
+    public Cell receiveCommand(Moves[][] gameBoard) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        String userInputString = scanner.next();
+        String userInputY = scanner.next();
+        String userInputX = scanner.next();
 
 
-        if (!(Pattern.matches("^[.1-9]$", userInputString))) {
-            return Integer.MIN_VALUE;
-        } else if (!(gameBoard[Integer.parseInt(userInputString) - 1] == Moves.NO_MOVE)) {
-            return Integer.MAX_VALUE;
+        if (!(Pattern.matches("^[.0-2]$", userInputY)) || !(Pattern.matches("^[.0-2]$", userInputX))) {
+            return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
+
+        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+            return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
-        return Integer.parseInt(userInputString) - 1;
+
+        return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
     }
 
 

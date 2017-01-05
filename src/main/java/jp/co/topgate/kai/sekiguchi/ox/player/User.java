@@ -1,8 +1,11 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
+import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
 
 import java.io.IOException;
@@ -19,8 +22,8 @@ public class User extends Player {
      *
      * @param ticTacToeBoard ゲーム盤
      */
-    public User(TicTacToeBoard ticTacToeBoard, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
-        super(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
+    public User(Board board, MinMaxCalculator minMaxCalculator, CommandLineIO commandLineIO) {
+        super(board, minMaxCalculator, commandLineIO);
     }
 
     /**
@@ -31,11 +34,11 @@ public class User extends Player {
     @Override
     public void doMove(int depth) {
         try {
-            int userInput = ticTacToeCommandLineIO.receiveCommand(ticTacToeBoard.getGameBoardState());
+            Cell userInput = commandLineIO.receiveCommand(board.getGameBoardState());
             this.choiceDO(userInput);
 
-            while (userInput == Integer.MAX_VALUE || userInput == Integer.MIN_VALUE) {
-                userInput = ticTacToeCommandLineIO.receiveCommand(ticTacToeBoard.getGameBoardState());
+            while (userInput.getCellY() == Integer.MAX_VALUE && userInput.getCellX() == Integer.MAX_VALUE || userInput.getCellY() == Integer.MIN_VALUE && userInput.getCellX() == Integer.MIN_VALUE) {
+                userInput = commandLineIO.receiveCommand(board.getGameBoardState());
                 this.choiceDO(userInput);
             }
 
@@ -43,7 +46,7 @@ public class User extends Player {
             System.err.println("エラー:" + e.getMessage());
             e.printStackTrace();
         }
-        ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
+        commandLineIO.drawUI(board);
 
     }
 
@@ -52,13 +55,13 @@ public class User extends Player {
      *
      * @param userInput ユーザの入力の値
      */
-    private void choiceDO(int userInput) {
-        if (userInput == Integer.MAX_VALUE) {
-            ticTacToeCommandLineIO.drawExistingCaution();
-        } else if (userInput == Integer.MIN_VALUE) {
-            ticTacToeCommandLineIO.drawInappropriateCaution();
+    private void choiceDO(Cell userInput) {
+        if (userInput.getCellY() == Integer.MAX_VALUE && userInput.getCellX() == Integer.MAX_VALUE) {
+            commandLineIO.drawExistingCaution();
+        } else if (userInput.getCellY() == Integer.MIN_VALUE && userInput.getCellX() == Integer.MIN_VALUE) {
+            commandLineIO.drawInappropriateCaution();
         } else {
-            ticTacToeBoard.putMoves(userInput, Moves.USER_MOVE);
+            board.putMoves(userInput.getCellY(), userInput.getCellX(), Moves.USER_MOVE);
         }
     }
 }

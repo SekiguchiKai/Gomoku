@@ -1,11 +1,10 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
+import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 /**
  * ミニマックスアルゴリズムを表したクラス
@@ -13,40 +12,6 @@ import java.util.stream.IntStream;
  */
 public class MinMaxCalculator {
 
-    /**
-     * 打ち手にとって、最適なゲーム盤上の場所とそこに打ち手を打った時の得点を格納するためのクラス
-     */
-    public static class Best {
-        /**
-         * 打ち手を打つのに最適なゲーム盤上の場所
-         */
-        private int bestScore;
-        /**
-         * 最適なゲーム盤上の場所に打ち手を打った際に取得する得点
-         */
-        private int bestSpot;
-
-
-        /**
-         * コンストラクタ
-         *
-         * @param bestScore 　打ち手を打つのに最適なゲーム盤上の場所
-         * @param bestSpot  最適なゲーム盤上の場所に打ち手を打った際に取得する得点
-         */
-        Best(int bestScore, int bestSpot) {
-            this.bestScore = bestScore;
-            this.bestSpot = bestSpot;
-        }
-
-        /**
-         * bestSpotを返すためのメソッド
-         *
-         * @return bestSpot
-         */
-        public int getBestSpot() {
-            return this.bestSpot;
-        }
-    }
 
     /**
      * ミニマックスアルゴリズムαβ法を用い、引数で渡された打ち手のプレイヤーに取って最適な点数とゲーム盤の場所を返すメソッド
@@ -62,51 +27,64 @@ public class MinMaxCalculator {
      * その取得した点数が現在保持している一番低い点数（ベストスコア）よりも低い場合は、その点数が保持されるベストスコアとなる
      *
      * @param depth      探索の深さ
-     * @param gameBoard  ゲーム盤
+     * @param board      Boardクラスのインスタンス
      * @param playerMove player名
      * @param alpha      α
      * @param beta       β
      * @return 打ち手を打つのに最適な場所とそこに打ち手を打った場合の点数を格納したBestクラスのインスタンス
      */
-    public Best calcMinMax(int depth, TicTacToeBoard gameBoard, Moves playerMove, int alpha, int beta) {
+    public Cell calcMinMax(int depth, Board board, Moves playerMove, int alpha, int beta) {
 
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
-        List<Integer> capableMove = this.makeCapableMOveList(gameBoard);
+        List<Cell> capableMove = this.makeCapableMOveList(board);
         int score;
-        int spot = -1;
+        int y = -1;
+        int x = -1;
 
         ScoreCalculator scoreCalculator = new ScoreCalculator();
 
         // 試合が終了か、深さが0の場合は、スコアを
         if (capableMove.isEmpty() || depth == 0) {
-            score = scoreCalculator.calcScore(gameBoard.getGameBoardState());
-            return new Best(score, spot);
+            score = scoreCalculator.calcScore(board.getGameBoardState());
+
+
+            Cell cell = new Cell(y, x);
+            cell.setBestScore(score);
+
+            return cell;
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
-            for (int moveSpot : capableMove) {
+            for (Cell cell : capableMove) {
 
-                gameBoard.getGameBoardState()[moveSpot] = playerMove;
+                int cellY = cell.getCellY();
+                int cellX = cell.getCellX();
+
+                board.putMoves(cellY, cellX, playerMove);
 
                 if (playerMove == Moves.CPU_MOVE) {
-                    score = calcMinMax(depth - 1, gameBoard, Moves.USER_MOVE, alpha, beta).bestScore;
+                    score = calcMinMax(depth - 1, board, Moves.USER_MOVE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
-                        spot = moveSpot;
+                        x = cellX;
                     }
                 } else if (playerMove == Moves.USER_MOVE) {
-                    score = calcMinMax(depth - 1, gameBoard, Moves.CPU_MOVE, alpha, beta).bestScore;
+                    score = calcMinMax(depth - 1, board, Moves.CPU_MOVE, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
-                        spot = moveSpot;
+                        y = cellY;
                     }
                 }
 
-                gameBoard.getGameBoardState()[moveSpot] = Moves.NO_MOVE;
+                board.putMoves(cellY, cellX, Moves.NO_MOVE);
+
                 if (alpha >= beta) break;
             }
-            return new Best((playerMove == Moves.CPU_MOVE) ? alpha : beta, spot);
+            Cell cell = new Cell(y, x);
+            cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+            return cell;
         }
     }
+
 
     /**
      * 現在こと打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
@@ -114,15 +92,17 @@ public class MinMaxCalculator {
      * @param gameBoard ゲームの盤
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-    List<Integer> makeCapableMOveList(TicTacToeBoard gameBoard) {
+    private List<Cell> makeCapableMOveList(Board board) {
 
-        List<Integer> capableMoveList = new ArrayList<>();
-        IntStream.range(0, gameBoard.getGameBoardState().length).forEach(i -> {
-            if (gameBoard.getGameBoardState()[i] == Moves.NO_MOVE) {
-                capableMoveList.add(i);
+        List<Cell> capableMoveList = new ArrayList<>();
+
+        for (int y = 0; y < board.getYLength(); y++) {
+            for (int x = 0; x < board.getXLength(); x++) {
+                if (board.getCellState(y, x) == Moves.NO_MOVE) {
+                    capableMoveList.add(new Cell(y, x));
+                }
             }
-        });
-
+        }
         return capableMoveList;
     }
 
