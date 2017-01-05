@@ -1,6 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
@@ -17,10 +17,10 @@ public class User extends Player {
      * コンストラクタ
      * gameBoardを初期化する
      *
-     * @param board ゲーム盤
+     * @param ticTacToeBoard ゲーム盤
      */
-    public User(Board board, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
-        super(board, minMaxCalculator, ticTacToeCommandLineIO);
+    public User(TicTacToeBoard ticTacToeBoard, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
+        super(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
     }
 
     /**
@@ -31,11 +31,11 @@ public class User extends Player {
     @Override
     public void doMove(int depth) {
         try {
-            int userInput = ticTacToeCommandLineIO.receiveCommand(board.getGameBoardState());
+            int userInput = ticTacToeCommandLineIO.receiveCommand(ticTacToeBoard.getGameBoardState());
             this.choiceDO(userInput);
 
             while (userInput == Integer.MAX_VALUE || userInput == Integer.MIN_VALUE) {
-                userInput = ticTacToeCommandLineIO.receiveCommand(board.getGameBoardState());
+                userInput = ticTacToeCommandLineIO.receiveCommand(ticTacToeBoard.getGameBoardState());
                 this.choiceDO(userInput);
             }
 
@@ -43,7 +43,7 @@ public class User extends Player {
             System.err.println("エラー:" + e.getMessage());
             e.printStackTrace();
         }
-        ticTacToeCommandLineIO.drawBoard(board);
+        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
 
     }
 
@@ -58,7 +58,7 @@ public class User extends Player {
         } else if (userInput == Integer.MIN_VALUE) {
             ticTacToeCommandLineIO.drawInappropriateCaution();
         } else {
-            board.putMoves(userInput, Moves.USER_MOVE);
+            ticTacToeBoard.putMoves(userInput, Moves.USER_MOVE);
         }
     }
 }

@@ -1,6 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.io;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
@@ -19,17 +19,17 @@ public class TicTacToeCommandLineIO implements CommandLineIO {
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
-     * @param board Boardクラスのインスタンス
+     * @param ticTacToeBoard Boardクラスのインスタンス
      */
-    public void drawBoard(Board board) {
+    public void drawBoard(TicTacToeBoard ticTacToeBoard) {
 
 
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(0), 1) + " |");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(1), 2) + " |");
-        System.out.println("| " + this.changeMovesToSignal(board.getCellState(2), 3) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0), 1) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1), 2) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2), 3) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");
@@ -37,9 +37,9 @@ public class TicTacToeCommandLineIO implements CommandLineIO {
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(3), 4) + " |");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(4), 5) + " |");
-        System.out.println("| " + this.changeMovesToSignal(board.getCellState(5), 6) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(3), 4) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(4), 5) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(5), 6) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");
@@ -47,9 +47,9 @@ public class TicTacToeCommandLineIO implements CommandLineIO {
         System.out.print(" ___");
         System.out.print("  ___");
         System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(6), 7) + " |");
-        System.out.print("| " + this.changeMovesToSignal(board.getCellState(7), 8) + " |");
-        System.out.println("| " + this.changeMovesToSignal(board.getCellState(8), 9) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(6), 7) + " |");
+        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(7), 8) + " |");
+        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(8), 9) + " |");
         System.out.print(" ---");
         System.out.print("  ---");
         System.out.println("  ---");

@@ -1,6 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
@@ -15,10 +15,10 @@ public class Cpu extends Player {
      * コンストラクタ
      * gameBoardを初期化する
      *
-     * @param board ゲーム盤
+     * @param ticTacToeBoard ゲーム盤
      */
-    public Cpu(Board board, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
-        super(board, minMaxCalculator, ticTacToeCommandLineIO);
+    public Cpu(TicTacToeBoard ticTacToeBoard, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
+        super(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
     }
 
 
@@ -29,10 +29,10 @@ public class Cpu extends Player {
      */
     @Override
     public void doMove(int depth) {
-        int spot = super.minMaxCalculator.calcMinMax(depth, board.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getBestSpot();
+        int spot = super.minMaxCalculator.calcMinMax(depth, ticTacToeBoard.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getBestSpot();
         System.out.println("CPUの打ち手は、" + spot);
-        board.putMoves(spot, Moves.CPU_MOVE);
+        ticTacToeBoard.putMoves(spot, Moves.CPU_MOVE);
 
-        ticTacToeCommandLineIO.drawBoard(board);
+        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
     }
 }
