@@ -1,6 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
@@ -16,7 +16,7 @@ import java.util.*;
  * ノーマルモードのゲームを表すクラス
  * Created by sekiguchikai on 2016/12/20.
  */
-public class NormalGameLogic implements GameLogic {
+public class TicTacToeGameLogic implements GameLogic {
     // とりあえず user= ○, cpu= ×
 
     /**
@@ -24,29 +24,29 @@ public class NormalGameLogic implements GameLogic {
      */
     @Override
     public void playGame() {
-        Board board = new Board();
+        TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
         TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
         MinMaxCalculator minMaxCalculator = new MinMaxCalculator();
-        Player user = new User(board, minMaxCalculator, ticTacToeCommandLineIO);
-        Player cpu = new Cpu(board, minMaxCalculator, ticTacToeCommandLineIO);
+        Player user = new User(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
+        Player cpu = new Cpu(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
 
 
-        ticTacToeCommandLineIO.drawBoard(board);
+        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
 
         int depthCount = 2;
 
 
-        while (this.judgeResult(board.getGameBoardState()) == Result.PENDING) {
+        while (this.judgeResult(ticTacToeBoard.getGameBoardState()) == Result.PENDING) {
 
             user.doMove(depthCount);
 
 
-            if (this.judgeResult(board.getGameBoardState()) == Result.PENDING) {
+            if (this.judgeResult(ticTacToeBoard.getGameBoardState()) == Result.PENDING) {
                 cpu.doMove(depthCount);
             }
 
         }
-        ticTacToeCommandLineIO.drawResult(this.judgeResult(board.getGameBoardState()));
+        ticTacToeCommandLineIO.drawResult(this.judgeResult(ticTacToeBoard.getGameBoardState()));
     }
 
 

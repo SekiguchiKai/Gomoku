@@ -1,5 +1,5 @@
 import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
-import jp.co.topgate.kai.sekiguchi.ox.logic.NormalGameLogic;
+import jp.co.topgate.kai.sekiguchi.ox.logic.TicTacToeGameLogic;
 
 /**
  * Mainのクラス、このアプリケーションのエントリーポイント
@@ -11,7 +11,7 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        GameLogic normalGameLogic = new NormalGameLogic();
+        GameLogic normalGameLogic = new TicTacToeGameLogic();
         normalGameLogic.playGame();
     }
 }

@@ -1,6 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 import java.util.*;
@@ -115,7 +115,7 @@ public class MinMaxCalculator {
     List<Integer> makeCapableMOveList(Moves[] gameBoard) {
 
         List<Integer> capableMoveList = new ArrayList<>();
-        IntStream.range(0, Board.gameBoardLength).forEach(i -> {
+        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> {
             if (gameBoard[i] == Moves.NO_MOVE) {
                 capableMoveList.add(i);
             }

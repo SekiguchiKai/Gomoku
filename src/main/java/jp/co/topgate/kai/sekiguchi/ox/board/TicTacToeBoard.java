@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
  * ゲーム盤を表すクラス
  * Created by sekiguchikai on 2016/12/20.
  */
-public class Board {
+public class TicTacToeBoard {
     /**
      * 打ち手を格納するための配列
      */
@@ -20,7 +20,7 @@ public class Board {
      * コンストラクタ
      * gameBoardを初期化する
      */
-    public Board() {
+    public TicTacToeBoard() {
         IntStream.range(0, gameBoardLength).forEach(i -> gameBoard[i] = Moves.NO_MOVE);
     }
 
@@ -53,7 +53,7 @@ public class Board {
      */
     public Moves[] getGameBoardState() {
         Moves[] copyArray = new Moves[9];
-        IntStream.range(0, Board.gameBoardLength).forEach(i -> copyArray[i] = this.gameBoard[i]);
+        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> copyArray[i] = this.gameBoard[i]);
         return copyArray;
     }
 

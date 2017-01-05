@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
  * GameBoardクラスをテストするためのクラス
  * Created by sekiguchikai on 2016/12/27.
  */
-public class BoardTest {
-    private Board board = new Board();
+public class TicTacToeBoardTest {
+    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
 
 
     /**
@@ -21,7 +21,7 @@ public class BoardTest {
      */
     @Test
     public void initGameBoard() {
-        Moves[] gameBoard = board.getGameBoardState();
+        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
         IntStream.range(0, 9).forEach(i -> assertThat(gameBoard[i], is(Moves.NO_MOVE)));
     }
 
@@ -31,10 +31,10 @@ public class BoardTest {
     @Test
     public void putMoves() {
 
-        IntStream.range(0, 5).forEach(i -> board.putMoves(i, Moves.CPU_MOVE));
-        IntStream.range(5, 9).forEach(i -> board.putMoves(i, Moves.USER_MOVE));
+        IntStream.range(0, 5).forEach(i -> ticTacToeBoard.putMoves(i, Moves.CPU_MOVE));
+        IntStream.range(5, 9).forEach(i -> ticTacToeBoard.putMoves(i, Moves.USER_MOVE));
 
-        Moves[] gameBoard = board.getGameBoardState();
+        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
 
         IntStream.range(0, 5).forEach(t -> assertThat(gameBoard[t], is(Moves.CPU_MOVE)));
         IntStream.range(5, 9).forEach(t -> assertThat(gameBoard[t], is(Moves.USER_MOVE)));
@@ -56,11 +56,11 @@ public class BoardTest {
      * @param moves 列挙型MOVESの要素
      */
     private void helper(Moves moves) {
-        IntStream.range(0, Board.gameBoardLength).forEach(i -> board.putMoves(i, moves));
+        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> ticTacToeBoard.putMoves(i, moves));
 
-        Moves[] gameBoard = board.getGameBoardState();
+        Moves[] gameBoard = ticTacToeBoard.getGameBoardState();
 
-        IntStream.range(0, Board.gameBoardLength).forEach(t -> assertThat(gameBoard[t], is(moves)));
+        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(t -> assertThat(gameBoard[t], is(moves)));
     }
 
 }
