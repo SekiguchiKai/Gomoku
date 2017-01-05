@@ -8,20 +8,33 @@ import java.util.stream.IntStream;
  * ゲーム盤を表すクラス
  * Created by sekiguchikai on 2016/12/20.
  */
-public class TicTacToeBoard {
+public class TicTacToeBoard extends Board{
     /**
      * 打ち手を格納するための配列
      */
-    private Moves[] gameBoard = new Moves[9];
+    private Moves[] gameBoard = new Moves[GAME_BOARD_LENGTH];
 
-    public static int gameBoardLength = 9;
+    /**
+     * ゲーム盤の配列の長さ
+     */
+    private static final int GAME_BOARD_LENGTH = 9;
 
     /**
      * コンストラクタ
      * gameBoardを初期化する
      */
     public TicTacToeBoard() {
-        IntStream.range(0, gameBoardLength).forEach(i -> gameBoard[i] = Moves.NO_MOVE);
+        IntStream.range(0, GAME_BOARD_LENGTH).forEach(i -> gameBoard[i] = Moves.NO_MOVE);
+    }
+
+
+    /**
+     * ゲーム盤の長さを返すメソッド
+     *
+     * @return ゲーム盤の長さ
+     */
+    public int getGAMEBOARDLENGTH() {
+        return GAME_BOARD_LENGTH;
     }
 
 
@@ -53,7 +66,7 @@ public class TicTacToeBoard {
      */
     public Moves[] getGameBoardState() {
         Moves[] copyArray = new Moves[9];
-        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> copyArray[i] = this.gameBoard[i]);
+        IntStream.range(0, GAME_BOARD_LENGTH).forEach(i -> copyArray[i] = this.gameBoard[i]);
         return copyArray;
     }
 

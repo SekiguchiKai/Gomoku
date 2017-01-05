@@ -5,16 +5,15 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
- * コマンドラインとのやりとりを行うクラス
- * Created by sekiguchikai on 2016/12/20.
+ * 五目並べのゲーム盤を並べる
+ * Created by sekiguchikai on 2017/01/05.
  */
-public class TicTacToeCommandLineIO extends CommandLineIO {
-
+public class GomokuCommandLineIO extends CommandLineIO {
 
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
@@ -24,8 +23,8 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
     public void drawUI(TicTacToeBoard ticTacToeBoard) {
 
 
-        System.out.print(" ___");
-        System.out.print("  ___");
+        System.out.print(" __|__");
+        System.out.print("  __|__");
         System.out.println("  ___");
         System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0), 1) + " |");
         System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1), 2) + " |");
@@ -122,6 +121,5 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         System.out.println("すでに打ち手が入力されています");
         System.out.println("再度数字を入力してください");
     }
-
 
 }

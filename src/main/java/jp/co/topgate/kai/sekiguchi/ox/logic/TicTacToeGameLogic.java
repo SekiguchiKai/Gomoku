@@ -13,7 +13,7 @@ import java.util.*;
 
 
 /**
- * ノーマルモードのゲームを表すクラス
+ * 三目並べのゲームの処理を進めていくクラス
  * Created by sekiguchikai on 2016/12/20.
  */
 public class TicTacToeGameLogic implements GameLogic {
@@ -31,7 +31,7 @@ public class TicTacToeGameLogic implements GameLogic {
         Player cpu = new Cpu(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
 
 
-        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
+        ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
 
         int depthCount = 2;
 

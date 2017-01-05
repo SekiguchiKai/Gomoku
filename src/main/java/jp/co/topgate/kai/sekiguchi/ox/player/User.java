@@ -43,7 +43,7 @@ public class User extends Player {
             System.err.println("エラー:" + e.getMessage());
             e.printStackTrace();
         }
-        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
+        ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
 
     }
 

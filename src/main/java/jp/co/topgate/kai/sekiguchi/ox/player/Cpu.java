@@ -5,6 +5,7 @@ import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
 
+
 /**
  * CPUの打ち手を表すクラス
  * Created by sekiguchikai on 2016/12/20.
@@ -29,10 +30,10 @@ public class Cpu extends Player {
      */
     @Override
     public void doMove(int depth) {
-        int spot = super.minMaxCalculator.calcMinMax(depth, ticTacToeBoard.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getBestSpot();
+        int spot = super.minMaxCalculator.calcMinMax(depth, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getBestSpot();
         System.out.println("CPUの打ち手は、" + spot);
         ticTacToeBoard.putMoves(spot, Moves.CPU_MOVE);
 
-        ticTacToeCommandLineIO.drawBoard(ticTacToeBoard);
+        ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
     }
 }

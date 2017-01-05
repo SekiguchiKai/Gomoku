@@ -1,5 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
+import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
@@ -67,7 +68,8 @@ public class MinMaxCalculator {
      * @param beta       β
      * @return 打ち手を打つのに最適な場所とそこに打ち手を打った場合の点数を格納したBestクラスのインスタンス
      */
-    public Best calcMinMax(int depth, Moves[] gameBoard, Moves playerMove, int alpha, int beta) {
+    public Best calcMinMax(int depth, TicTacToeBoard gameBoard, Moves playerMove, int alpha, int beta) {
+
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Integer> capableMove = this.makeCapableMOveList(gameBoard);
         int score;
@@ -77,13 +79,13 @@ public class MinMaxCalculator {
 
         // 試合が終了か、深さが0の場合は、スコアを
         if (capableMove.isEmpty() || depth == 0) {
-            score = scoreCalculator.calcScore(gameBoard);
+            score = scoreCalculator.calcScore(gameBoard.getGameBoardState());
             return new Best(score, spot);
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
             for (int moveSpot : capableMove) {
 
-                gameBoard[moveSpot] = playerMove;
+                gameBoard.getGameBoardState()[moveSpot] = playerMove;
 
                 if (playerMove == Moves.CPU_MOVE) {
                     score = calcMinMax(depth - 1, gameBoard, Moves.USER_MOVE, alpha, beta).bestScore;
@@ -99,7 +101,7 @@ public class MinMaxCalculator {
                     }
                 }
 
-                gameBoard[moveSpot] = Moves.NO_MOVE;
+                gameBoard.getGameBoardState()[moveSpot] = Moves.NO_MOVE;
                 if (alpha >= beta) break;
             }
             return new Best((playerMove == Moves.CPU_MOVE) ? alpha : beta, spot);
@@ -112,11 +114,11 @@ public class MinMaxCalculator {
      * @param gameBoard ゲームの盤
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-    List<Integer> makeCapableMOveList(Moves[] gameBoard) {
+    List<Integer> makeCapableMOveList(TicTacToeBoard gameBoard) {
 
         List<Integer> capableMoveList = new ArrayList<>();
-        IntStream.range(0, TicTacToeBoard.gameBoardLength).forEach(i -> {
-            if (gameBoard[i] == Moves.NO_MOVE) {
+        IntStream.range(0, gameBoard.getGameBoardState().length).forEach(i -> {
+            if (gameBoard.getGameBoardState()[i] == Moves.NO_MOVE) {
                 capableMoveList.add(i);
             }
         });
