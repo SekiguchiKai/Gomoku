@@ -53,9 +53,12 @@ public abstract class Board {
      * @return ゲーム盤のコピー
      */
     public Moves[][] getGameBoardState() {
-        Moves[][] copyArray = new Moves[Y][X];
-        IntStream.range(0, Y).forEach(i -> IntStream.range(0, X).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
-        return copyArray;
+//        Moves[][] copyArray = new Moves[Y][X];
+//        IntStream.range(0, Y).forEach(i -> IntStream.range(0, X).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
+//        return copyArray;
+
+        // 必ずのちに変更すること
+        return this.gameBoard;
     }
 
     /**

@@ -1,27 +1,14 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 /**
  * Cpuクラスをテストするためのクラス
  * Created by sekiguchikai on 2016/12/27.
  */
 public class CpuTest {
 //    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
-//    private MinMaxCalculator minMaxCalculator = new MinMaxCalculator();
+//    private TicTacToeMiniMax ticTacToeMiniMax = new TicTacToeMiniMax();
 //    private TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
-//    private Cpu cpu = new Cpu(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
+//    private Cpu cpu = new Cpu(ticTacToeBoard, ticTacToeMiniMax, ticTacToeCommandLineIO);
 //
 //    /**
 //     * doMoveメソッドをテストするためのメソッド

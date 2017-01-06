@@ -2,11 +2,9 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
 
 import java.io.IOException;
 
@@ -22,8 +20,8 @@ public class User extends Player {
      *
      * @param ticTacToeBoard ゲーム盤
      */
-    public User(Board board, MinMaxCalculator minMaxCalculator, CommandLineIO commandLineIO) {
-        super(board, minMaxCalculator, commandLineIO);
+    public User(Board board, TicTacToeMiniMax ticTacToeMiniMax, CommandLineIO commandLineIO) {
+        super(board, ticTacToeMiniMax, commandLineIO);
     }
 
     /**

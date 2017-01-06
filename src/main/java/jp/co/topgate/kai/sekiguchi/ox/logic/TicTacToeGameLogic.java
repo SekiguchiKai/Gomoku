@@ -2,7 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.judge.TicTacToeJudge;
@@ -26,9 +26,9 @@ public class TicTacToeGameLogic implements GameLogic {
     public void playGame() {
         Board ticTacToeBoard = new TicTacToeBoard();
         TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
-        MinMaxCalculator minMaxCalculator = new MinMaxCalculator();
-        Player user = new User(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
-        Player cpu = new Cpu(ticTacToeBoard, minMaxCalculator, ticTacToeCommandLineIO);
+        TicTacToeMiniMax ticTacToeMiniMax = new TicTacToeMiniMax();
+        Player user = new User(ticTacToeBoard, ticTacToeMiniMax, ticTacToeCommandLineIO);
+        Player cpu = new Cpu(ticTacToeBoard, ticTacToeMiniMax, ticTacToeCommandLineIO);
         TicTacToeJudge ticTacToeJudge = new TicTacToeJudge();
 
 

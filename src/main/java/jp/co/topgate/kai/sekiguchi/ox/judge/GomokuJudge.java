@@ -5,6 +5,8 @@ import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 
+import java.util.stream.IntStream;
+
 
 /**
  * 五目並べの勝敗結果を審査するためのクラス
@@ -28,13 +30,17 @@ public class GomokuJudge implements Judgement {
      * @return 勝敗の結果
      */
     public Result judgeResult(Board board) {
-        Moves[][] gameBoard = board.getGameBoardState();
+//        Moves[][] gameBoard = board.getGameBoardState();
+        // のちに変更予定
+//        Moves[][] gameBoard = new Moves[board.getYLength()][board.getXLength()];
+//        IntStream.range(0, board.getYLength()).forEach(y -> IntStream.range(0, board.getXLength()).forEach(x -> gameBoard[y][x] = board.getCellState(y, x)));
 
-        if (this.judgeLose(gameBoard)) {
+
+        if (this.judgeLose(board.getGameBoardState())) {
             return Result.LOSE;
-        } else if (this.judgeWin(gameBoard)) {
+        } else if (this.judgeWin(board.getGameBoardState())) {
             return Result.WIN;
-        } else if (this.judgeDraw(gameBoard)) {
+        } else if (this.judgeDraw(board.getGameBoardState())) {
             return Result.DRAW;
         }
 

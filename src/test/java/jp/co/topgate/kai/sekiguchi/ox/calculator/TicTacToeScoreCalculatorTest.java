@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
  * ScoreCalculatorクラスをテストするためのクラス
  * Created by sekiguchikai on 2016/12/27.
  */
-public class ScoreCalculatorTest {
-    private ScoreCalculator scoreCalculator = new ScoreCalculator();
+public class TicTacToeScoreCalculatorTest {
+    private TicTacToeScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
 
     /**
@@ -58,7 +58,7 @@ public class ScoreCalculatorTest {
      * @param expected 期待する値
      */
     private void helper(Moves data1, Moves data2, Moves data3, int expected) {
-        assertThat(scoreCalculator.calcLineScore(data1, data2, data3), is(expected));
+        assertThat(ticTacToeScoreCalculator.calcLineScore(data1, data2, data3), is(expected));
     }
 
 }

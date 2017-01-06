@@ -1,7 +1,8 @@
-package jp.co.topgate.kai.sekiguchi.ox.calculator;
+package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.*;
  * ミニマックスアルゴリズムを表したクラス
  * Created by sekiguchikai on 2016/12/22.
  */
-public class MinMaxCalculator {
+public class TicTacToeMiniMax {
 
 
     /**
@@ -41,11 +42,11 @@ public class MinMaxCalculator {
         int y = -1;
         int x = -1;
 
-        ScoreCalculator scoreCalculator = new ScoreCalculator();
+        TicTacToeScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
         // 試合が終了か、深さが0の場合は、スコアを
         if (capableMove.isEmpty() || depth == 0) {
-            score = scoreCalculator.calcScore(board.getGameBoardState());
+            score = ticTacToeScoreCalculator.calcScore(board.getGameBoardState());
 
 
             Cell cell = new Cell(y, x);

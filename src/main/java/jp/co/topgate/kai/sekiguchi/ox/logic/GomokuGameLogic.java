@@ -2,8 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.judge.GomokuJudge;
@@ -28,15 +27,12 @@ public class GomokuGameLogic implements GameLogic {
         Board gomokuGameBoard = new GomokuGameBoard();
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
-        gomokuCommandLineIO.receiveCommand(gomokuGameBoard);
 
-        MinMaxCalculator minMaxCalculator = new MinMaxCalculator();
-        Player user = new User(gomokuGameBoard, minMaxCalculator, gomokuCommandLineIO);
-        Player cpu = new Cpu(gomokuGameBoard, minMaxCalculator, gomokuCommandLineIO);
+        TicTacToeMiniMax ticTacToeMiniMax = new TicTacToeMiniMax();
+        Player user = new User(gomokuGameBoard, ticTacToeMiniMax, gomokuCommandLineIO);
+        Player cpu = new Cpu(gomokuGameBoard, ticTacToeMiniMax, gomokuCommandLineIO);
 
         GomokuJudge gomokuJudge = new GomokuJudge();
-
-
         int depthCount = 2;
 
 
@@ -49,7 +45,5 @@ public class GomokuGameLogic implements GameLogic {
             }
         }
         gomokuCommandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
-
     }
-
 }

@@ -2,7 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 
 
@@ -22,7 +22,7 @@ public abstract class Player {
     /**
      * ミニマックスアルゴリズム
      */
-    MinMaxCalculator minMaxCalculator;
+    TicTacToeMiniMax ticTacToeMiniMax;
 
     CommandLineIO commandLineIO;
 
@@ -32,12 +32,12 @@ public abstract class Player {
      * gameBoardを初期化する
      *
      * @param ticTacToeBoard         Boardクラスのインスタンス
-     * @param minMaxCalculator       MinMaxCalculatorクラスのインスタンス
+     * @param ticTacToeMiniMax       MinMaxCalculatorクラスのインスタンス
      * @param ticTacToeCommandLineIO CommandLineIOクラスのインスタンス
      */
-    Player(Board board, MinMaxCalculator minMaxCalculator, CommandLineIO commandLineIO) {
+    Player(Board board, TicTacToeMiniMax ticTacToeMiniMax, CommandLineIO commandLineIO) {
         this.board = board;
-        this.minMaxCalculator = minMaxCalculator;
+        this.ticTacToeMiniMax = ticTacToeMiniMax;
         this.commandLineIO = commandLineIO;
     }
 

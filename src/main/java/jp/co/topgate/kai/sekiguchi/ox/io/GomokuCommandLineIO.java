@@ -28,7 +28,15 @@ public class GomokuCommandLineIO extends CommandLineIO {
         IntStream.range(0, gomokuBoard.getXLength() - 1).forEach(x -> System.out.print("  " + x));
         System.out.println("  8");
 
-        IntStream.range(0, gomokuBoard.getYLength()).forEach(y -> System.out.println(y + "-|--|--|--|--|--|--|--|--|-"));
+
+        for (int y = 0; y < gomokuBoard.getYLength(); y++) {
+            System.out.print(y + "-");
+            for (int x = 0; x < gomokuBoard.getXLength() - 1; x++) {
+                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)) + "--");
+            }
+            System.out.println("|-");
+        }
+
 
         System.out.println("\n");
 
@@ -45,13 +53,13 @@ public class GomokuCommandLineIO extends CommandLineIO {
      * @param spotNumber ゲーム盤の場所
      * @return 打ち手を表す印の文字列
      */
-    String changeMovesToSignal(Moves moves, int spotNumber) {
+    String changeMovesToSignal(Moves moves) {
         if (moves == Moves.USER_MOVE) {
             return Signal.CIRCLE.getSignal();
         } else if (moves == Moves.CPU_MOVE) {
             return Signal.CROSS.getSignal();
         }
-        return String.valueOf(spotNumber);
+        return ("|");
 
     }
 
@@ -84,7 +92,7 @@ public class GomokuCommandLineIO extends CommandLineIO {
         if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] != Moves.NO_MOVE)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
@@ -110,5 +118,6 @@ public class GomokuCommandLineIO extends CommandLineIO {
         System.out.println("すでに打ち手が入力されています");
         System.out.println("再度数字を入力してください");
     }
+
 
 }
