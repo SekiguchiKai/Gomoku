@@ -20,8 +20,8 @@ public class Cpu extends Player {
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    public Cpu(Board board, MiniMax miniMax, CommandLineIO commandLineIO) {
-        super(board, miniMax, commandLineIO);
+    public Cpu(Board board, MiniMax miniMax, CommandLineIO commandLineIO, String name) {
+        super(board, miniMax, commandLineIO, name);
     }
 
 

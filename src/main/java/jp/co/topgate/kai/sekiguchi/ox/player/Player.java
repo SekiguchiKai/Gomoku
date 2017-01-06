@@ -13,6 +13,11 @@ import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 public abstract class Player {
 
     /**
+     * プレーヤーの名前
+     */
+    String name;
+
+    /**
      * Boardクラスのインスタンス
      */
     Board board;
@@ -37,10 +42,11 @@ public abstract class Player {
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    Player(Board board, MiniMax miniMax, CommandLineIO commandLineIO) {
+    Player(Board board, MiniMax miniMax, CommandLineIO commandLineIO, String name) {
         this.board = board;
         this.miniMax = miniMax;
         this.commandLineIO = commandLineIO;
+        this.name = name;
     }
 
     /**
@@ -49,6 +55,15 @@ public abstract class Player {
      * @param depth 深さ
      */
     public abstract void doMove(int depth);
+
+    /**
+     * プレーヤーに設定されている名前を返す
+     *
+     * @return プレーヤーの名前
+     */
+    public String getName() {
+        return this.name;
+    }
 
 
 }
