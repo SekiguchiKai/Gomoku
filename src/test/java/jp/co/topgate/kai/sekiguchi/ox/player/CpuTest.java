@@ -6,9 +6,9 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
  */
 public class CpuTest {
 //    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
-//    private TicTacToeMiniMax ticTacToeMiniMax = new TicTacToeMiniMax();
+//    private MiniMax miniMax = new MiniMax();
 //    private TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
-//    private Cpu cpu = new Cpu(ticTacToeBoard, ticTacToeMiniMax, ticTacToeCommandLineIO);
+//    private Cpu cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO);
 //
 //    /**
 //     * doMoveメソッドをテストするためのメソッド

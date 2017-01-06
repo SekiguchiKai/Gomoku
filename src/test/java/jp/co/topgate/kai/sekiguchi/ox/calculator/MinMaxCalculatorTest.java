@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class MinMaxCalculatorTest {
 
-//    private TicTacToeMiniMax minMaxCalculator = new TicTacToeMiniMax();
+//    private MiniMax minMaxCalculator = new MiniMax();
 //    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
 //
 //    /**
@@ -90,7 +90,7 @@ public class MinMaxCalculatorTest {
 //     * doMoveメソッドが適切に実行されているかテストするためのメソッド
 //     */
 //    private void assertMinMaxLogic(int expectedSpot) {
-//        TicTacToeMiniMax.Cell calcResult = this.minMaxCalculator.calcMinMax(2, this.ticTacToeBoard.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        MiniMax.Cell calcResult = this.minMaxCalculator.calcMinMax(2, this.ticTacToeBoard.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        assertThat(calcResult.getBestSpot(), is(expectedSpot));
 //
 //    }

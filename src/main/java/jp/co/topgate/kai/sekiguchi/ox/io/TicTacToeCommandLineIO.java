@@ -112,21 +112,4 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
     }
 
 
-    /**
-     * ユーザーが不適切な数字(0未満、10以上)を入力した場合に、その旨を表示するためのメソッド
-     */
-    public void drawInappropriateCaution() {
-        System.out.println("不適切な入力です");
-        System.out.println("再度数字を入力してください");
-    }
-
-    /**
-     * ユーザーが既に打ち手の存在する場所選択した場合に、その旨を表示するためのメソッド
-     */
-    public void drawExistingCaution() {
-        System.out.println("すでに打ち手が入力されています");
-        System.out.println("再度数字を入力してください");
-    }
-
-
 }

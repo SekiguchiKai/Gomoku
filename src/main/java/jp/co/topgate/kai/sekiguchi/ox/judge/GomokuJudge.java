@@ -14,27 +14,13 @@ import java.util.stream.IntStream;
  */
 public class GomokuJudge implements Judgement {
 
-    // 勝ち判定
-    // 負け判定
-
-    // たて
-    // 横
-    // 斜め
-
-    // =>一個を固定し、もう一方をi++すれば良い
-
     /**
      * 勝敗はついているかを確認し、その結果を返すためのメソッド
      *
-     * @param gameBoard ゲーム盤
+     * @param board Boardクラスのインスランス
      * @return 勝敗の結果
      */
     public Result judgeResult(Board board) {
-//        Moves[][] gameBoard = board.getGameBoardState();
-        // のちに変更予定
-//        Moves[][] gameBoard = new Moves[board.getYLength()][board.getXLength()];
-//        IntStream.range(0, board.getYLength()).forEach(y -> IntStream.range(0, board.getXLength()).forEach(x -> gameBoard[y][x] = board.getCellState(y, x)));
-
 
         if (this.judgeLose(board.getGameBoardState())) {
             return Result.LOSE;
@@ -54,7 +40,6 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ユーザーが敗北しているかの真偽値
      */
-
     boolean judgeLose(Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CPU_MOVE) || this.judgeColumn(gameBoard, Moves.CPU_MOVE) || this.judgeLeftSlanting(gameBoard, Moves.CPU_MOVE) || this.judgeRightSlanting(gameBoard, Moves.CPU_MOVE);
     }
@@ -71,8 +56,8 @@ public class GomokuJudge implements Judgement {
     }
 
     boolean judgeDraw(Moves[][] gameBoard) {
-        for (int y = 0; y < GomokuGameBoard.Y; y++) {
-            for (int x = 0; x < GomokuGameBoard.X; x++) {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
                 if (gameBoard[y][x] == Moves.NO_MOVE) {
                     return false;
                 }
@@ -90,8 +75,8 @@ public class GomokuJudge implements Judgement {
      */
     private boolean judgeRow(Moves[][] gameBoard, Moves moves) {
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 if (moves == gameBoard[i][j] && moves == gameBoard[i][j + 1] && moves == gameBoard[i][j + 2] && moves == gameBoard[i][j + 3] && moves == gameBoard[i][j + 4]) {
                     return true;
                 }
@@ -107,8 +92,8 @@ public class GomokuJudge implements Judgement {
      * @return ゲーム盤上の横のラインで5連が達成されているかの真偽値
      */
     private boolean judgeColumn(Moves[][] gameBoard, Moves moves) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 if (moves == gameBoard[i][j] && moves == gameBoard[i + 1][j] && moves == gameBoard[i + 2][j] && moves == gameBoard[i + 3][j] && moves == gameBoard[i + 4][j]) {
                     return true;
                 }
@@ -125,13 +110,12 @@ public class GomokuJudge implements Judgement {
      * @return ゲーム盤上の左斜めのラインで5連が達成されているかの真偽値
      */
     private boolean judgeLeftSlanting(Moves[][] gameBoard, Moves moves) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (moves == gameBoard[i][j] && moves == gameBoard[i + 1][j + 1] && moves == gameBoard[i + 2][j + 2] && moves == gameBoard[i + 3][j + 3] && moves == gameBoard[i + 4][j + 4]) {
-                    return true;
-                }
+        for (int i = 0; i < 5; i++) {
+            if (moves == gameBoard[i][i] && moves == gameBoard[i + 1][i + 1] && moves == gameBoard[i + 2][i + 2] && moves == gameBoard[i + 3][i + 3] && moves == gameBoard[i + 4][i + 4]) {
+                return true;
             }
         }
+
         return false;
 
     }
@@ -143,8 +127,8 @@ public class GomokuJudge implements Judgement {
      * @return ゲーム盤上の右斜めのラインで5連が達成されているかの真偽値
      */
     private boolean judgeRightSlanting(Moves[][] gameBoard, Moves moves) {
-        for (int i = 8; i > 0; i--) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 8; i > 5; i--) {
+            for (int j = 0; j < 5; j++) {
                 if (moves == gameBoard[i][j] && moves == gameBoard[i - 1][j + 1] && moves == gameBoard[i - 2][j + 2] && moves == gameBoard[i - 3][j + 3] && moves == gameBoard[i - 4][j + 4]) {
                     return true;
                 }

@@ -5,10 +5,22 @@ package jp.co.topgate.kai.sekiguchi.ox.constantset;
  * Created by sekiguchikai on 2016/12/23.
  */
 public enum Signal {
+    /**
+     * 「○」を表す印
+     */
     CIRCLE("○"),
+    /**
+     * 「×」を表す印
+     */
     CROSS("×"),
+    /**
+     * 空の状態を表す
+     */
     EMPTY(" ");
 
+    /**
+     * 印を表す
+     */
     private final String signal;
 
     /**

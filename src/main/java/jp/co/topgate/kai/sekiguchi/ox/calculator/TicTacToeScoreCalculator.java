@@ -9,7 +9,7 @@ import java.util.List;
  * 打ち手のシミュレーションを行うためのクラス
  * Created by sekiguchikai on 2016/12/22.
  */
-public class TicTacToeScoreCalculator {
+public class TicTacToeScoreCalculator implements ScoreCalculator {
 
     /**
      * 現在のゲーム盤の点数を計算するためのメソッド

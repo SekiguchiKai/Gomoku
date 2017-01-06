@@ -10,28 +10,12 @@ import java.util.stream.IntStream;
  */
 public class GomokuGameBoard extends Board {
 
-//    /**
-//     * ゲーム盤のX軸を表す
-//     */
-//    public static final int X = 9;
-//    /**
-//     * ゲーム盤のY軸を表す
-//     */
-//    public static final int Y = 9;
-//
-//    /**
-//     * ゲーム盤を表す2次元配列
-//     */
-//    private Moves[][] gameBoard = new Moves[Y][X];
-
     /**
      * コンストラクタ
      * ゲーム盤のマス数を設定する
-     *
-     * @param y y軸の長さ
-     * @param x x軸の長さ
      */
     public GomokuGameBoard() {
+        super(9, 9);
         IntStream.range(0, super.getYLength()).forEach(y -> IntStream.range(0, super.getXLength()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
     }
 }

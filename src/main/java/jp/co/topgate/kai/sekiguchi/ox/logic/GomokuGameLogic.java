@@ -2,7 +2,9 @@ package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
-import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.judge.GomokuJudge;
@@ -18,8 +20,11 @@ import java.io.IOException;
  */
 public class GomokuGameLogic implements GameLogic {
     /**
-     * ゲームを進行していくロジックを担当するメソッド
+     * ゲームを進めていくロジックを担当するメソッド
+     *
+     * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
+    @Override
     public void playGame() throws IOException {
         System.out.println("五目並べ");
 
@@ -28,12 +33,14 @@ public class GomokuGameLogic implements GameLogic {
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
-        TicTacToeMiniMax ticTacToeMiniMax = new TicTacToeMiniMax();
-        Player user = new User(gomokuGameBoard, ticTacToeMiniMax, gomokuCommandLineIO);
-        Player cpu = new Cpu(gomokuGameBoard, ticTacToeMiniMax, gomokuCommandLineIO);
+        ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
+
+        MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
+        Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO);
+        Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO);
 
         GomokuJudge gomokuJudge = new GomokuJudge();
-        int depthCount = 2;
+        int depthCount = 4;
 
 
         while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {

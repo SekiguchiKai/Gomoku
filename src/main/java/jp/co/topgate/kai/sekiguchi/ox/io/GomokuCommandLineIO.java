@@ -20,7 +20,7 @@ public class GomokuCommandLineIO extends CommandLineIO {
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
-     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param gomokuBoard Boardクラスのインスタンス
      */
     public void drawUI(Board gomokuBoard) {
 
@@ -31,10 +31,14 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
         for (int y = 0; y < gomokuBoard.getYLength(); y++) {
             System.out.print(y + "-");
-            for (int x = 0; x < gomokuBoard.getXLength() - 1; x++) {
-                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)) + "--");
+            for (int x = 0; x < gomokuBoard.getXLength(); x++) {
+                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)));
+                if (x == 8) {
+                    break;
+                }
+                System.out.print("--");
             }
-            System.out.println("|-");
+            System.out.println("-");
         }
 
 
@@ -50,7 +54,6 @@ public class GomokuCommandLineIO extends CommandLineIO {
      * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
      *
      * @param moves      プレーヤーの打ち手
-     * @param spotNumber ゲーム盤の場所
      * @return 打ち手を表す印の文字列
      */
     String changeMovesToSignal(Moves moves) {
@@ -103,21 +106,6 @@ public class GomokuCommandLineIO extends CommandLineIO {
     }
 
 
-    /**
-     * ユーザーが不適切な数字(0未満、10以上)を入力した場合に、その旨を表示するためのメソッド
-     */
-    public void drawInappropriateCaution() {
-        System.out.println("不適切な入力です");
-        System.out.println("再度数字を入力してください");
-    }
-
-    /**
-     * ユーザーが既に打ち手の存在する場所選択した場合に、その旨を表示するためのメソッド
-     */
-    public void drawExistingCaution() {
-        System.out.println("すでに打ち手が入力されています");
-        System.out.println("再度数字を入力してください");
-    }
 
 
 }

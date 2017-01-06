@@ -2,7 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.minimax.TicTacToeMiniMax;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 
@@ -16,12 +16,14 @@ public class User extends Player {
 
     /**
      * コンストラクタ
-     * gameBoardを初期化する
+     * フィールドを初期化する
      *
-     * @param ticTacToeBoard ゲーム盤
+     * @param board         Boardクラスのインスタンス
+     * @param miniMax       MinMaxクラスのインスタンス
+     * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    public User(Board board, TicTacToeMiniMax ticTacToeMiniMax, CommandLineIO commandLineIO) {
-        super(board, ticTacToeMiniMax, commandLineIO);
+    public User(Board board, MiniMax miniMax, CommandLineIO commandLineIO) {
+        super(board, miniMax, commandLineIO);
     }
 
     /**
