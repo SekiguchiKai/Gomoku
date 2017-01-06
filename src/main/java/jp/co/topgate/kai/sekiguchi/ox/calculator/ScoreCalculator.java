@@ -17,22 +17,22 @@ class ScoreCalculator {
      * @param gameBoard ゲーム盤
      * @return そのゲーム盤の点数の合計
      */
-    int calcScore(Moves[] gameBoard) {
+    int calcScore(Moves[][] gameBoard) {
 
         int totalScore = 0;
         // 横
-        totalScore += calcLineScore(gameBoard[0], gameBoard[1], gameBoard[2]);
-        totalScore += calcLineScore(gameBoard[3], gameBoard[4], gameBoard[5]);
-        totalScore += calcLineScore(gameBoard[6], gameBoard[7], gameBoard[8]);
+        totalScore += calcLineScore(gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]);
+        totalScore += calcLineScore(gameBoard[1][0], gameBoard[1][1], gameBoard[1][2]);
+        totalScore += calcLineScore(gameBoard[2][0], gameBoard[2][1], gameBoard[2][2]);
 
         // 縦
-        totalScore += calcLineScore(gameBoard[0], gameBoard[3], gameBoard[6]);
-        totalScore += calcLineScore(gameBoard[1], gameBoard[4], gameBoard[7]);
-        totalScore += calcLineScore(gameBoard[2], gameBoard[5], gameBoard[8]);
+        totalScore += calcLineScore(gameBoard[0][0], gameBoard[1][0], gameBoard[2][0]);
+        totalScore += calcLineScore(gameBoard[0][1], gameBoard[1][1], gameBoard[2][1]);
+        totalScore += calcLineScore(gameBoard[0][2], gameBoard[1][2], gameBoard[2][2]);
 
         // 斜め
-        totalScore += calcLineScore(gameBoard[0], gameBoard[4], gameBoard[8]);
-        totalScore += calcLineScore(gameBoard[2], gameBoard[4], gameBoard[6]);
+        totalScore += calcLineScore(gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]);
+        totalScore += calcLineScore(gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]);
 
         return totalScore;
     }

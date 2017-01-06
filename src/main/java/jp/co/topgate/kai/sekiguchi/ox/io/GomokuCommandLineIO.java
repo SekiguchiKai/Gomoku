@@ -6,56 +6,34 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
- * コマンドラインとのやりとりを行うクラス
- * Created by sekiguchikai on 2016/12/20.
+ * 五目並べのゲーム盤を並べる
+ * Created by sekiguchikai on 2017/01/05.
  */
-public class TicTacToeCommandLineIO extends CommandLineIO {
-
+public class GomokuCommandLineIO extends CommandLineIO {
 
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
      * @param ticTacToeBoard Boardクラスのインスタンス
      */
-    public void drawUI(Board ticTacToeBoard) {
+    public void drawUI(Board gomokuBoard) {
 
 
-        System.out.print(" ___");
-        System.out.print("  ___");
-        System.out.println("  ___");
-        System.out.print("| " + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0, 1), 2) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(0, 2), 3) + " |");
-        System.out.print(" ---");
-        System.out.print("  ---");
-        System.out.println("  ---");
+        IntStream.range(0, gomokuBoard.getXLength() - 1).forEach(x -> System.out.print("  " + x));
+        System.out.println("  8");
 
-        System.out.print(" ___");
-        System.out.print("  ___");
-        System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 0), 4) + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 1), 5) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(1, 2), 6) + " |");
-        System.out.print(" ---");
-        System.out.print("  ---");
-        System.out.println("  ---");
+        IntStream.range(0, gomokuBoard.getYLength()).forEach(y -> System.out.println(y + "-|--|--|--|--|--|--|--|--|-"));
 
-        System.out.print(" ___");
-        System.out.print("  ___");
-        System.out.println("  ___");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 0), 7) + " |");
-        System.out.print("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 1), 8) + " |");
-        System.out.println("| " + this.changeMovesToSignal(ticTacToeBoard.getCellState(2, 2), 9) + " |");
-        System.out.print(" ---");
-        System.out.print("  ---");
-        System.out.println("  ---");
+        System.out.println("\n");
 
         System.out.println("自分の打ち手を入力するにはゲーム盤上に表示されている数字を入力し、Enterキーを押してください");
+        System.out.println("縦の数字を入力しEnterキーを押してください。　その次に横の数字を入力しEnterキーを押してください。");
 
     }
 
@@ -98,15 +76,20 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         String userInputY = scanner.next();
         String userInputX = scanner.next();
 
+        System.out.println("スタート");
+
         Moves[][] gameBoard = board.getGameBoardState();
 
-        if (!(Pattern.matches("^[.0-2]$", userInputY)) || !(Pattern.matches("^[.0-2]$", userInputX))) {
+
+        if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
+
+        System.out.println("受け取った数字は" + userInputX + "と" + userInputY);
 
         return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
     }
@@ -127,6 +110,5 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         System.out.println("すでに打ち手が入力されています");
         System.out.println("再度数字を入力してください");
     }
-
 
 }
