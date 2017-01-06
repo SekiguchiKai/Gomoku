@@ -17,7 +17,7 @@ import jp.co.topgate.kai.sekiguchi.ox.player.User;
  * 三目並べのゲームの処理を進めていくクラス
  * Created by sekiguchikai on 2016/12/20.
  */
-public class TicTacToeGameLogic implements GameLogic {
+public class TicTacToeGameLogic extends GameLogic {
     // とりあえず user= ○, cpu= ×
 
     /**
@@ -33,8 +33,8 @@ public class TicTacToeGameLogic implements GameLogic {
         ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
         MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
-        Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO);
-        Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO);
+        Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
+        Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
         TicTacToeJudge ticTacToeJudge = new TicTacToeJudge();
 
 
