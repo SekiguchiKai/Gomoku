@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  * Created by sekiguchikai on 2016/12/27.
  */
 public class TicTacToeBoardTest {
-    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
+//    private TicTacToeBoard ticTacToeBoard = new TicTacToeBoard();
 
 
 //    /**
