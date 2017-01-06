@@ -5,56 +5,88 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import java.util.stream.IntStream;
 
 /**
- * ゲーム盤を表すクラス
- * Created by sekiguchikai on 2016/12/20.
+ * ゲーム盤
+ * Created by sekiguchikai on 2017/01/05.
  */
-public class Board {
-    /**
-     * 打ち手を格納するための配列
-     */
-    private Moves[] gameBoard = new Moves[9];
+public abstract class Board {
 
-    public static int gameBoardLength = 9;
+    /**
+     * ゲーム盤のX軸を表す
+     */
+    private int x;
+    /**
+     * ゲーム盤のY軸を表す
+     */
+    private int y;
+
+    /**
+     * ゲーム盤を表す二次元配列
+     */
+    private Moves[][] gameBoard;
 
     /**
      * コンストラクタ
-     * gameBoardを初期化する
+     * X軸、Y軸、配列の大きさを初期化する
+     *
+     * @param x x軸の長さ
+     * @param y y軸の長さ
      */
-    public Board() {
-        IntStream.range(0, gameBoardLength).forEach(i -> gameBoard[i] = Moves.NO_MOVE);
+    public Board(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.gameBoard = new Moves[y][x];
+    }
+
+    /**
+     * ゲーム盤の指定した場所に打ち手を打つためのメソッド
+     *
+     * @param y     ゲーム盤のy座標
+     * @param x     ゲーム盤のx座標
+     * @param moves 打ち手
+     */
+    public void putMoves(int y, int x, Moves moves) {
+        this.gameBoard[y][x] = moves;
     }
 
 
     /**
-     * ゲーム盤に打ち手を打つためのメソッド
+     * ゲーム盤の指定されたマスの打ち手を返す
      *
-     * @param spot  ゲーム盤の場所
-     * @param Moves 各プレーヤーの打ち手
+     * @param y ゲーム盤のy座標
+     * @param x ゲーム盤のx座標
+     * @return 打ち手
      */
-    public void putMoves(int spot, Moves Moves) {
-        gameBoard[spot] = Moves;
-    }
-
-
-    /**
-     * gameBoardの指定されたインデックスの要素を返す
-     *
-     * @param index gameBoardの要素を指定するためのインデックス
-     * @return インデックスで指定されたcellに格納されている要素
-     */
-    public Moves getCellState(int index) {
-        return this.gameBoard[index];
+    public Moves getCellState(int y, int x) {
+        return this.gameBoard[y][x];
     }
 
     /**
      * ゲーム盤の現在の状態を取得するためのメソッド
      *
-     * @return ゲーム盤
+     * @return ゲーム盤のコピー
      */
-    public Moves[] getGameBoardState() {
-        Moves[] copyArray = new Moves[9];
-        IntStream.range(0, Board.gameBoardLength).forEach(i -> copyArray[i] = this.gameBoard[i]);
+    public Moves[][] getGameBoardState() {
+        Moves[][] copyArray = new Moves[y][x];
+        IntStream.range(0, y).forEach(i -> IntStream.range(0, x).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
         return copyArray;
+
     }
 
+    /**
+     * ゲーム盤のY軸の長さを返す
+     *
+     * @return ゲーム盤のY軸の長さ
+     */
+    public int getYLength() {
+        return y;
+    }
+
+    /**
+     * ゲーム盤のX軸の長さを返す
+     *
+     * @return ゲーム盤のX軸の長さ
+     */
+    public int getXLength() {
+        return x;
+    }
 }

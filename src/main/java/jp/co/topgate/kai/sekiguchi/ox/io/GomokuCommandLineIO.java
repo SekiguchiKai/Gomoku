@@ -6,35 +6,34 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 /**
- * コマンドラインとのやりとりを行うクラス
- * Created by sekiguchikai on 2016/12/20.
+ * 五目並べのゲーム盤を並べる
+ * Created by sekiguchikai on 2017/01/05.
  */
-public class TicTacToeCommandLineIO extends CommandLineIO {
-
+public class GomokuCommandLineIO extends CommandLineIO {
 
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
-     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param gomokuBoard Boardクラスのインスタンス
      */
-    public void drawUI(Board ticTacToeBoard) {
+    public void drawUI(Board gomokuBoard) {
 
 
-        IntStream.range(0, ticTacToeBoard.getXLength() - 1).forEach(x -> System.out.print("  " + x));
-        System.out.println("  2");
+        IntStream.range(0, gomokuBoard.getXLength() - 1).forEach(x -> System.out.print("  " + x));
+        System.out.println("  8");
 
 
-        for (int y = 0; y < ticTacToeBoard.getYLength(); y++) {
+        for (int y = 0; y < gomokuBoard.getYLength(); y++) {
             System.out.print(y + "-");
-            for (int x = 0; x < ticTacToeBoard.getXLength(); x++) {
-                System.out.print(this.changeMovesToSignal(ticTacToeBoard.getCellState(y, x)));
-                if (x == 2) {
+            for (int x = 0; x < gomokuBoard.getXLength(); x++) {
+                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)));
+                if (x == 8) {
                     break;
                 }
                 System.out.print("--");
@@ -54,7 +53,7 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
     /**
      * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
      *
-     * @param moves プレーヤーの打ち手
+     * @param moves      プレーヤーの打ち手
      * @return 打ち手を表す印の文字列
      */
     String changeMovesToSignal(Moves moves) {
@@ -88,18 +87,25 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         String userInputY = scanner.next();
         String userInputX = scanner.next();
 
+        System.out.println("スタート");
+
         Moves[][] gameBoard = board.getGameBoardState();
 
-        if (!(Pattern.matches("^[.0-2]$", userInputY)) || !(Pattern.matches("^[.0-2]$", userInputX))) {
+
+        if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] != Moves.NO_MOVE)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
 
+        System.out.println("受け取った数字は" + userInputX + "と" + userInputY);
+
         return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
     }
+
+
 
 
 }

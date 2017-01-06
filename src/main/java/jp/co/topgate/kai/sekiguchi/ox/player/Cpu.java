@@ -1,9 +1,10 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.MinMaxCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
+
 
 /**
  * CPUの打ち手を表すクラス
@@ -13,12 +14,14 @@ public class Cpu extends Player {
 
     /**
      * コンストラクタ
-     * gameBoardを初期化する
+     * フィールドを初期化する
      *
-     * @param board ゲーム盤
+     * @param board         Boardクラスのインスタンス
+     * @param miniMax       MinMaxクラスのインスタンス
+     * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    public Cpu(Board board, MinMaxCalculator minMaxCalculator, TicTacToeCommandLineIO ticTacToeCommandLineIO) {
-        super(board, minMaxCalculator, ticTacToeCommandLineIO);
+    public Cpu(Board board, MiniMax miniMax, CommandLineIO commandLineIO) {
+        super(board, miniMax, commandLineIO);
     }
 
 
@@ -29,10 +32,12 @@ public class Cpu extends Player {
      */
     @Override
     public void doMove(int depth) {
-        int spot = super.minMaxCalculator.calcMinMax(depth, board.getGameBoardState(), Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getBestSpot();
-        System.out.println("CPUの打ち手は、" + spot);
-        board.putMoves(spot, Moves.CPU_MOVE);
+        int y = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellY();
+        int x = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellX();
 
-        ticTacToeCommandLineIO.drawBoard(board);
+        System.out.println("CPUの打ち手は、Y: " + y + "X:" + x);
+        board.putMoves(y, x, Moves.CPU_MOVE);
+
+        commandLineIO.drawUI(board);
     }
 }
