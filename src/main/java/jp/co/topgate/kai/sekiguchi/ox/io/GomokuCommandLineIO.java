@@ -70,20 +70,26 @@ public class GomokuCommandLineIO extends CommandLineIO {
      * @return 盤の場所（ユーザーからの入力がすでに石が置いてある場合場所だった場合:MAX_VALUE、ユーザーからの入力が不適切な数字だった場合 : MIN_VALUEを返す)
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
-    public Cell receiveCommand(Moves[][] gameBoard) throws IOException {
+    public Cell receiveCommand(Board board) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         String userInputY = scanner.next();
         String userInputX = scanner.next();
 
+        System.out.println("スタート");
+
+        Moves[][] gameBoard = board.getGameBoardState();
+
 
         if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
+
+        System.out.println("受け取った数字は" + userInputX + "と" + userInputY);
 
         return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
     }

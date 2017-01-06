@@ -34,11 +34,11 @@ public class User extends Player {
     @Override
     public void doMove(int depth) {
         try {
-            Cell userInput = commandLineIO.receiveCommand(board.getGameBoardState());
+            Cell userInput = commandLineIO.receiveCommand(board);
             this.choiceDO(userInput);
 
             while (userInput.getCellY() == Integer.MAX_VALUE && userInput.getCellX() == Integer.MAX_VALUE || userInput.getCellY() == Integer.MIN_VALUE && userInput.getCellX() == Integer.MIN_VALUE) {
-                userInput = commandLineIO.receiveCommand(board.getGameBoardState());
+                userInput = commandLineIO.receiveCommand(board);
                 this.choiceDO(userInput);
             }
 

@@ -11,11 +11,11 @@ public abstract class Board {
     /**
      * ゲーム盤のX軸を表す
      */
-    private final int X = 9;
+   public static final int X = 9;
     /**
      * ゲーム盤のY軸を表す
      */
-    private final int Y = 9;
+    public static final int Y = 9;
 
     /**
      * ゲーム盤を表す2次元配列

@@ -13,11 +13,11 @@ public class GomokuGameBoard extends Board {
     /**
      * ゲーム盤のX軸を表す
      */
-    private final int X = 9;
+    public static final int X = 9;
     /**
      * ゲーム盤のY軸を表す
      */
-    private final int Y = 9;
+    public static final int Y = 9;
 
     /**
      * ゲーム盤を表す2次元配列
@@ -32,6 +32,6 @@ public class GomokuGameBoard extends Board {
      * @param x x軸の長さ
      */
     public GomokuGameBoard() {
-        IntStream.range(0, Y).forEach(y -> IntStream.range(0, X).forEach(x -> gameBoard[y][x] = Moves.NO_MOVE));
+        IntStream.range(0, gameBoard.length).forEach(y -> IntStream.range(0, gameBoard[y].length).forEach(x -> gameBoard[y][x] = Moves.NO_MOVE));
     }
 }

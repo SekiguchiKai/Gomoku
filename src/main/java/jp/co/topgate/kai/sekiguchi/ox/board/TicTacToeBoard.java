@@ -31,6 +31,6 @@ public class TicTacToeBoard extends Board {
      * ゲーム盤のマス数を設定する
      */
     public TicTacToeBoard() {
-        IntStream.range(0, Y).forEach(y -> IntStream.range(0, X).forEach(x -> gameBoard[y][x] = Moves.NO_MOVE));
+        IntStream.range(0, gameBoard.length).forEach(y -> IntStream.range(0, gameBoard[y].length).forEach(x -> gameBoard[y][x] = Moves.NO_MOVE));
     }
 }
