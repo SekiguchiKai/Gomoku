@@ -5,11 +5,26 @@ package jp.co.topgate.kai.sekiguchi.ox.constantset;
  * Created by sekiguchikai on 2016/12/23.
  */
 public enum Result {
+    /**
+     * 勝ち
+     */
      WIN("君の勝ちだ"),
+    /**
+     * 負け
+     */
     LOSE("君の負けだ"),
+    /**
+     * 引き分け
+     */
     DRAW("引き分けだ"),
+    /**
+     * 未決
+     */
     PENDING("未決");
 
+    /**
+     * 勝敗の結果
+     */
     private final String result;
 
     /**

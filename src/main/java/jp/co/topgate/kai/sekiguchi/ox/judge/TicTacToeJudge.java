@@ -8,7 +8,7 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
  * 三目並べの勝敗結果を調べるクラス
  * Created by sekiguchikai on 2017/01/06.
  */
-public class TicTacToeJudge implements Judgement{
+public class TicTacToeJudge implements Judgement {
 
     /**
      * 勝敗はついているかを確認し、その結果を返すためのメソッド
@@ -16,7 +16,7 @@ public class TicTacToeJudge implements Judgement{
      * @param gameBoard ゲーム盤
      * @return 勝敗の結果
      */
-   public Result judgeResult(Board board) {
+    public Result judgeResult(Board board) {
 
         Moves[][] gameBoard = board.getGameBoardState();
 
@@ -28,13 +28,14 @@ public class TicTacToeJudge implements Judgement{
 
         for (int y = 0; y < board.getYLength(); y++) {
             for (int x = 0; x < board.getYLength(); x++) {
-                if (gameBoard[y][x] != Moves.NO_MOVE) {
-                    return Result.DRAW;
+                if (gameBoard[y][x] == Moves.NO_MOVE) {
+                    return Result.PENDING;
                 }
             }
         }
+        return Result.DRAW;
 
-        return Result.PENDING;
+
     }
 
 

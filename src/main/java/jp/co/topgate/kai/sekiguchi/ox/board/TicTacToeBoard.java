@@ -11,26 +11,14 @@ import java.util.stream.IntStream;
  */
 public class TicTacToeBoard extends Board {
 
-
-    /**
-     * ゲーム盤のX軸を表す
-     */
-    private final int X = 3;
-    /**
-     * ゲーム盤のY軸を表す
-     */
-    private final int Y = 3;
-
-    /**
-     * ゲーム盤を表す2次元配列
-     */
-    private Moves[][] gameBoard = new Moves[Y][X];
-
     /**
      * コンストラクタ
      * ゲーム盤のマス数を設定する
      */
     public TicTacToeBoard() {
-        IntStream.range(0, gameBoard.length).forEach(y -> IntStream.range(0, gameBoard[y].length).forEach(x -> gameBoard[y][x] = Moves.NO_MOVE));
+        super(3, 3);
+        IntStream.range(0, super.getXLength()).forEach(y -> IntStream.range(0, super.getYLength()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
     }
+
+
 }

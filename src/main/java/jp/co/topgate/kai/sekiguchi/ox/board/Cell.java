@@ -16,7 +16,10 @@ public class Cell {
      */
     private int cellX;
 
-    Moves moves;
+    /**
+     * 打ち手
+     */
+    private Moves moves;
 
 
     /**
@@ -56,23 +59,33 @@ public class Cell {
 
 
     /**
-     * @return
+     * @return マスのY軸の値
      */
     public int getCellY() {
         return this.cellY;
     }
 
     /**
-     * @return
+     * @return マスのX軸の値
      */
     public int getCellX() {
         return this.cellX;
     }
 
+    /**
+     * 打ち手を設定するためのメソッド
+     *
+     * @param moves 打ち手
+     */
     public void setMoves(Moves moves) {
         this.moves = moves;
     }
 
+    /**
+     * 打ち手を取得するためのメソッド
+     *
+     * @return 打ち手
+     */
     public Moves getMoves() {
         return this.moves;
     }

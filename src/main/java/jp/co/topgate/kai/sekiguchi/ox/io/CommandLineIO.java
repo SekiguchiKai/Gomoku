@@ -19,7 +19,7 @@ public abstract class CommandLineIO {
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
-     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param board Boardクラスのインスタンス
      */
     public abstract void drawUI(Board board);
 

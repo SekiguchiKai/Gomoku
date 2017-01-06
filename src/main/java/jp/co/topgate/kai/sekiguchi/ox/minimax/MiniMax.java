@@ -1,7 +1,10 @@
-package jp.co.topgate.kai.sekiguchi.ox.calculator;
+package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 import java.util.*;
@@ -10,8 +13,21 @@ import java.util.*;
  * ミニマックスアルゴリズムを表したクラス
  * Created by sekiguchikai on 2016/12/22.
  */
-public class MinMaxCalculator {
+public class MiniMax {
 
+    /**
+     * ScoreCalculatorクラスのインスタンス
+     */
+    private ScoreCalculator scoreCalculator;
+
+    /**
+     * コンストラクタ
+     * フイールドを初期化する
+     * @param scoreCalculator ScoreCalculatorクラスのインスタンス
+     */
+    public MiniMax(ScoreCalculator scoreCalculator) {
+        this.scoreCalculator = scoreCalculator;
+    }
 
     /**
      * ミニマックスアルゴリズムαβ法を用い、引数で渡された打ち手のプレイヤーに取って最適な点数とゲーム盤の場所を返すメソッド
@@ -41,12 +57,11 @@ public class MinMaxCalculator {
         int y = -1;
         int x = -1;
 
-        ScoreCalculator scoreCalculator = new ScoreCalculator();
 
         // 試合が終了か、深さが0の場合は、スコアを
         if (capableMove.isEmpty() || depth == 0) {
-            score = scoreCalculator.calcScore(board.getGameBoardState());
 
+            score = scoreCalculator.calcScore(board.getGameBoardState());
 
             Cell cell = new Cell(y, x);
             cell.setBestScore(score);
@@ -66,11 +81,13 @@ public class MinMaxCalculator {
                     if (score > alpha) {
                         alpha = score;
                         x = cellX;
+                        y = cellY;
                     }
                 } else if (playerMove == Moves.USER_MOVE) {
                     score = calcMinMax(depth - 1, board, Moves.CPU_MOVE, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
+                        x = cellX;
                         y = cellY;
                     }
                 }

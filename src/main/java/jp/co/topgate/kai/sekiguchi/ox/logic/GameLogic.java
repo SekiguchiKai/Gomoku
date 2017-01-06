@@ -13,7 +13,8 @@ import java.io.IOException;
 public interface GameLogic {
 
     /**
-     * ゲームを進行していくロジックを担当するメソッド
+     * ゲームを進めていくロジックを担当するメソッド
+     * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
     void playGame() throws IOException;
 
