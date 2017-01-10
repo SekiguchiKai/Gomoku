@@ -59,6 +59,12 @@ public class CellTest {
     }
 
 
+    /**
+     * getMovesメソッドをテストし、setMovesメソッドをテストするためのメソッドを補助するためのメソッド
+     *
+     * @param data     テストに用いるためのデータ
+     * @param expected 期待する値
+     */
     private void getMoves(Moves data, Moves expected) {
         this.cell.setMoves(data);
         Moves actual = this.cell.getMoves();

@@ -30,7 +30,11 @@ public class GomokuGameLogic extends GameLogic {
         System.out.println("五目並べ");
 
         GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
-        Board gomokuGameBoard = new GomokuGameBoard();
+
+        final int row = 3;
+        final int column = 3;
+
+        Board gomokuGameBoard = new GomokuGameBoard(row, column);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
