@@ -32,7 +32,7 @@ public enum Result {
      * 初期化する
      * @param result 勝敗結果
      */
-    Result(String result) {
+    Result(final String result) {
         this.result = result;
     }
 

@@ -4,10 +4,10 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.judge.Judgement;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.judge.GomokuJudge;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Order;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
@@ -31,8 +31,8 @@ public class GomokuGameLogic extends GameLogic {
 
         GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
 
-        final int row = 3;
-        final int column = 3;
+        final int row = 9;
+        final int column = 9;
 
         Board gomokuGameBoard = new GomokuGameBoard(row, column);
 
@@ -44,11 +44,14 @@ public class GomokuGameLogic extends GameLogic {
         Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
         Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        GomokuJudge gomokuJudge = new GomokuJudge();
-        int depthCount = 4;
+        Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
+        final int depthCount = 3;
 
 
-        while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+        final int judgeHighSore = 500;
+        final int judgeLowSore = -500;
+
+        while (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
 
             Order order = super.setOrder(cpu, user);
 
@@ -59,12 +62,12 @@ public class GomokuGameLogic extends GameLogic {
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+            if (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
+        gomokuCommandLineIO.drawResult(judgement.judgeResult(judgeHighSore, judgeLowSore));
     }
 
 }

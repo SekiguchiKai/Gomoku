@@ -21,9 +21,10 @@ public class MiniMax {
     /**
      * コンストラクタ
      * フイールドを初期化する
+     *
      * @param scoreCalculator ScoreCalculatorクラスのインスタンス
      */
-    public MiniMax(ScoreCalculator scoreCalculator) {
+    public MiniMax(final ScoreCalculator scoreCalculator) {
         this.scoreCalculator = scoreCalculator;
     }
 
