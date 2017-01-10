@@ -3,6 +3,10 @@ import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
 import jp.co.topgate.kai.sekiguchi.ox.logic.TicTacToeGameLogic;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Mainのクラス、このアプリケーションのエントリーポイント
@@ -14,7 +18,8 @@ public class Main {
      *
      * @param args
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
+
 
         // 最初の選択画面を選択させる
         SelectModeCommandLineIO selectModeCommandLineIO = new SelectModeCommandLineIO();
@@ -26,4 +31,6 @@ public class Main {
 
 
     }
+
+
 }

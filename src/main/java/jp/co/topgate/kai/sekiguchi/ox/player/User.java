@@ -22,7 +22,7 @@ public class User extends Player {
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    public User(Board board, MiniMax miniMax, CommandLineIO commandLineIO, String name) {
+    public User(final Board board, final MiniMax miniMax, final CommandLineIO commandLineIO, final String name) {
         super(board, miniMax, commandLineIO, name);
     }
 
@@ -32,12 +32,12 @@ public class User extends Player {
      * @param depth 深さ
      */
     @Override
-    public void doMove(int depth) {
+    public void doMove(final int depth) {
         try {
             Cell userInput = commandLineIO.receiveCommand(board);
             this.choiceDO(userInput);
 
-            while (userInput.getCellY() == Integer.MAX_VALUE && userInput.getCellX() == Integer.MAX_VALUE || userInput.getCellY() == Integer.MIN_VALUE && userInput.getCellX() == Integer.MIN_VALUE) {
+            while (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE || userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
                 userInput = commandLineIO.receiveCommand(board);
                 this.choiceDO(userInput);
             }
@@ -55,13 +55,13 @@ public class User extends Player {
      *
      * @param userInput ユーザの入力の値
      */
-    private void choiceDO(Cell userInput) {
-        if (userInput.getCellY() == Integer.MAX_VALUE && userInput.getCellX() == Integer.MAX_VALUE) {
+    private void choiceDO(final Cell userInput) {
+        if (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE) {
             commandLineIO.drawExistingCaution();
-        } else if (userInput.getCellY() == Integer.MIN_VALUE && userInput.getCellX() == Integer.MIN_VALUE) {
+        } else if (userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
             commandLineIO.drawInappropriateCaution();
         } else {
-            board.putMoves(userInput.getCellY(), userInput.getCellX(), Moves.USER_MOVE);
+            board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.USER_MOVE);
         }
     }
 }

@@ -30,7 +30,11 @@ public class GomokuGameLogic extends GameLogic {
         System.out.println("五目並べ");
 
         GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
-        Board gomokuGameBoard = new GomokuGameBoard();
+
+        final int rowSize = 9;
+        final int columnSize = 9;
+
+        Board gomokuGameBoard = new GomokuGameBoard(rowSize, columnSize);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
@@ -41,7 +45,7 @@ public class GomokuGameLogic extends GameLogic {
         Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
         GomokuJudge gomokuJudge = new GomokuJudge();
-        int depthCount = 4;
+        final int depthCount = 3;
 
 
         while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {

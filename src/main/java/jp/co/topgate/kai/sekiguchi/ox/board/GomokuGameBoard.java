@@ -9,13 +9,14 @@ import java.util.stream.IntStream;
  * Created by sekiguchikai on 2017/01/05.
  */
 public class GomokuGameBoard extends Board {
-
     /**
      * コンストラクタ
      * ゲーム盤のマス数を設定する
+     * @param rowSize ゲーム盤の行のサイズ
+     * @param columnSize ゲーム盤の列のサイズ
      */
-    public GomokuGameBoard() {
-        super(9, 9);
-        IntStream.range(0, super.getYLength()).forEach(y -> IntStream.range(0, super.getXLength()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
+    public GomokuGameBoard(final int rowSize, final int columnSize) {
+        super(rowSize, columnSize);
+        IntStream.range(0, getRowLength()).forEach(y -> IntStream.range(0, super.getColumnLength()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
     }
 }

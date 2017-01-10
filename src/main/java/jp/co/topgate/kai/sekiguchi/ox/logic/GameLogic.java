@@ -32,7 +32,7 @@ public abstract class GameLogic {
      * @param cpu  Cpuクラスのインスタンス
      * @return Orderクラスのインスタンス
      */
-    public Order setOrder(Player user, Player cpu) {
+    public Order setOrder(final Player user, final Player cpu) {
         int userOrder = (int) (Math.random() * 2) + 1;
 
         if (userOrder == 1) {

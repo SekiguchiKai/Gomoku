@@ -27,7 +27,12 @@ public class TicTacToeGameLogic extends GameLogic {
      */
     @Override
     public void playGame() {
-        Board ticTacToeBoard = new TicTacToeBoard();
+
+        final int rowSize = 3;
+        final int columnSize = 3;
+
+
+        Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
         TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
 
         ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
@@ -40,7 +45,7 @@ public class TicTacToeGameLogic extends GameLogic {
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
 
-        int depthCount = 2;
+        final int depthCount = 2;
 
 
         while (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
