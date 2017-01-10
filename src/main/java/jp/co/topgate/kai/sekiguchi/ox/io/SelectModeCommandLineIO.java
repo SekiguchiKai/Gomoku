@@ -44,7 +44,7 @@ public class SelectModeCommandLineIO {
      * @param id 各ゲームロジックのid
      * @return ゲームのロジック
      */
-    private GameLogic getGameLogic(final int id) {
+    private GameLogic getGameLogic(int id) {
         Map<Integer, GameLogic> logicMap = new HashMap<>();
         logicMap.put(1, new TicTacToeGameLogic());
         logicMap.put(2, new GomokuGameLogic());

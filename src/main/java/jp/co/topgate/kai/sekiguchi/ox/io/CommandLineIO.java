@@ -27,7 +27,6 @@ public abstract class CommandLineIO {
     /**
      * コマンドラインからの入力を受け取り、受け取った入力を加工してプログラム上のゲーム盤の位置を返すメソッド
      *
-     * @param board ゲーム盤
      * @return 盤の場所（ユーザーからの入力がすでに石が置いてある場合場所だった場合:MAX_VALUE、ユーザーからの入力が不適切な数字だった場合 : MIN_VALUEを返す)
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */

@@ -15,23 +15,23 @@ public abstract class Player {
     /**
      * プレーヤーの名前
      */
-    private String name;
+    String name;
 
     /**
      * Boardクラスのインスタンス
      */
-    protected Board board;
+    Board board;
 
 
     /**
      * MiniMaxクラスのインスタンス
      */
-    protected MiniMax miniMax;
+    MiniMax miniMax;
 
     /**
      * CommandLineIOクラスのインスタンス
      */
-    protected CommandLineIO commandLineIO;
+    CommandLineIO commandLineIO;
 
 
     /**
@@ -42,7 +42,7 @@ public abstract class Player {
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
      */
-    Player(final Board board, final MiniMax miniMax, final CommandLineIO commandLineIO, final String name) {
+    Player(Board board, MiniMax miniMax, CommandLineIO commandLineIO, String name) {
         this.board = board;
         this.miniMax = miniMax;
         this.commandLineIO = commandLineIO;

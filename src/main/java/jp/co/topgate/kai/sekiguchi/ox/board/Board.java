@@ -6,18 +6,18 @@ import java.util.stream.IntStream;
 
 /**
  * ゲーム盤
- * Created by sekiguchikai on 2017/01/05.
+ * Created brow sekiguchikai on 2017/01/05.
  */
 public abstract class Board {
 
     /**
-     * ゲーム盤のX軸を表す
+     * ゲーム盤の列を表す
      */
-    private final int column;
+    private int column;
     /**
-     * ゲーム盤のY軸を表す
+     * ゲーム盤の行を表す
      */
-    private final int row;
+    private int row;
 
     /**
      * ゲーム盤を表す二次元配列
@@ -26,12 +26,12 @@ public abstract class Board {
 
     /**
      * コンストラクタ
-     * X軸、Y軸、配列の大きさを初期化する
+     * column、row、配列の大きさを初期化する
      *
-     * @param column x軸の長さ
-     * @param row    y軸の長さ
+     * @param column columnの長さ
+     * @param row    rowの長さ
      */
-    Board(final int column, final int row) {
+    public Board(final int column, final int row) {
         this.column = column;
         this.row = row;
         this.gameBoard = new Moves[row][column];
@@ -40,26 +40,24 @@ public abstract class Board {
     /**
      * ゲーム盤の指定した場所に打ち手を打つためのメソッド
      *
-     * @param column ゲーム盤の列
-     * @param row    ゲーム盤の行
+     * @param row    ゲーム盤のrow座標
+     * @param column ゲーム盤のcolumn座標
      * @param moves  打ち手
      */
-    public void putMoves(final int column, final int row, final Moves moves) {
-        this.gameBoard[column][row] = moves;
+    public void putMoves(final int row, final int column, final Moves moves) {
+        this.gameBoard[row][column] = moves;
     }
 
 
     /**
-     /**
      * ゲーム盤の指定されたマスの打ち手を返す
      *
-     * @param column ゲーム盤の列
-     * @param row    ゲーム盤の行
-     *
-     * @return 指定された箇所の打ち手
+     * @param row    ゲーム盤のrow座標
+     * @param column ゲーム盤のcolumn座標
+     * @return 打ち手
      */
-    public Moves getCellState(final int column, final int row) {
-        return this.gameBoard[column][row];
+    public Moves getCellState(final int row, final int column) {
+        return this.gameBoard[row][column];
     }
 
     /**
@@ -68,26 +66,27 @@ public abstract class Board {
      * @return ゲーム盤のコピー
      */
     public Moves[][] getGameBoardState() {
-        Moves[][] copyArray = new Moves[row][column];
-        IntStream.range(0, this.row).forEach(i -> IntStream.range(0, this.column).forEach(j -> copyArray[i][j] = this.gameBoard[i][j]));
+        final Moves[][] copyArray = new Moves[row][column];
+        IntStream.range(0, row).forEach(i -> IntStream.range(0, column).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
         return copyArray;
+
     }
 
     /**
-     * ゲーム盤のY軸の長さを返す
+     * ゲーム盤の列の長さを返す
      *
-     * @return ゲーム盤のY軸の長さ
+     * @return ゲーム盤の行の長さ
      */
-    public int getRowLength() {
+    public int getRowSize() {
         return this.row;
     }
 
     /**
      * ゲーム盤のX軸の長さを返す
      *
-     * @return ゲーム盤のX軸の長さ
+     * @return ゲーム盤の列の長さ
      */
-    public int getColumnLength() {
+    public int getColumnSize() {
         return this.column;
     }
 }
