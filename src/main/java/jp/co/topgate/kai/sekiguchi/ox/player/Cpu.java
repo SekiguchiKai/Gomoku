@@ -19,9 +19,10 @@ public class Cpu extends Player {
      * @param board         Boardクラスのインスタンス
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
+     * @param name プレーヤー名
      */
-    public Cpu(Board board, MiniMax miniMax, CommandLineIO commandLineIO) {
-        super(board, miniMax, commandLineIO);
+    public Cpu(final Board board, final MiniMax miniMax, final CommandLineIO commandLineIO, final String name) {
+        super(board, miniMax, commandLineIO, name);
     }
 
 
@@ -31,9 +32,9 @@ public class Cpu extends Player {
      * @param depth 深さ
      */
     @Override
-    public void doMove(int depth) {
-        int y = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellY();
-        int x = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellX();
+    public void doMove(final int depth) {
+        int y = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellRow();
+        int x = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellColumn();
 
         System.out.println("CPUの打ち手は、Y: " + y + "X:" + x);
         board.putMoves(y, x, Moves.CPU_MOVE);

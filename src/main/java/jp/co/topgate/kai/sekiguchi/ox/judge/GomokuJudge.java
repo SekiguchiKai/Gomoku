@@ -20,7 +20,7 @@ public class GomokuJudge implements Judgement {
      * @param board Boardクラスのインスランス
      * @return 勝敗の結果
      */
-    public Result judgeResult(Board board) {
+    public Result judgeResult(final Board board) {
 
         if (this.judgeLose(board.getGameBoardState())) {
             return Result.LOSE;
@@ -40,7 +40,7 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ユーザーが敗北しているかの真偽値
      */
-    boolean judgeLose(Moves[][] gameBoard) {
+    boolean judgeLose(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CPU_MOVE) || this.judgeColumn(gameBoard, Moves.CPU_MOVE) || this.judgeLeftSlanting(gameBoard, Moves.CPU_MOVE) || this.judgeRightSlanting(gameBoard, Moves.CPU_MOVE);
     }
 
@@ -50,14 +50,19 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ユーザーが勝利しているかの真偽値
      */
-
-    boolean judgeWin(Moves[][] gameBoard) {
+    boolean judgeWin(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.USER_MOVE) || this.judgeColumn(gameBoard, Moves.USER_MOVE) || this.judgeLeftSlanting(gameBoard, Moves.USER_MOVE) || this.judgeRightSlanting(gameBoard, Moves.USER_MOVE);
     }
 
-    boolean judgeDraw(Moves[][] gameBoard) {
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
+    /**
+     * 引き分けかどうかの真偽値を返すメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @return 引き分けかどうかの真偽値
+     */
+    boolean judgeDraw(final Moves[][] gameBoard) {
+        for (int y = 0; y < gameBoard.length; y++) {
+            for (int x = 0; x < gameBoard[y].length; x++) {
                 if (gameBoard[y][x] == Moves.NO_MOVE) {
                     return false;
                 }
@@ -73,11 +78,18 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ゲーム盤上の縦のラインで5連が達成されているかの真偽値
      */
-    private boolean judgeRow(Moves[][] gameBoard, Moves moves) {
+    private boolean judgeRow(final Moves[][] gameBoard, final Moves moves) {
 
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (moves == gameBoard[i][j] && moves == gameBoard[i][j + 1] && moves == gameBoard[i][j + 2] && moves == gameBoard[i][j + 3] && moves == gameBoard[i][j + 4]) {
+        final int maxLength = 5;
+
+        final int one = 1;
+        final int two = 2;
+        final int three = 3;
+        final int four = 4;
+
+        for (int i = 0; i < maxLength; i++) {
+            for (int j = 0; j < maxLength; j++) {
+                if (moves == gameBoard[i][j] && moves == gameBoard[i][j + one] && moves == gameBoard[i][j + two] && moves == gameBoard[i][j + three] && moves == gameBoard[i][j + four]) {
                     return true;
                 }
             }
@@ -91,10 +103,18 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ゲーム盤上の横のラインで5連が達成されているかの真偽値
      */
-    private boolean judgeColumn(Moves[][] gameBoard, Moves moves) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (moves == gameBoard[i][j] && moves == gameBoard[i + 1][j] && moves == gameBoard[i + 2][j] && moves == gameBoard[i + 3][j] && moves == gameBoard[i + 4][j]) {
+    private boolean judgeColumn(final Moves[][] gameBoard, final Moves moves) {
+
+        final int maxLength = 5;
+
+        final int one = 1;
+        final int two = 2;
+        final int three = 3;
+        final int four = 4;
+
+        for (int i = 0; i < maxLength; i++) {
+            for (int j = 0; j < maxLength; j++) {
+                if (moves == gameBoard[i][j] && moves == gameBoard[i + one][j] && moves == gameBoard[i + two][j] && moves == gameBoard[i + three][j] && moves == gameBoard[i + four][j]) {
                     return true;
                 }
             }
@@ -109,9 +129,17 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ゲーム盤上の左斜めのラインで5連が達成されているかの真偽値
      */
-    private boolean judgeLeftSlanting(Moves[][] gameBoard, Moves moves) {
-        for (int i = 0; i < 5; i++) {
-            if (moves == gameBoard[i][i] && moves == gameBoard[i + 1][i + 1] && moves == gameBoard[i + 2][i + 2] && moves == gameBoard[i + 3][i + 3] && moves == gameBoard[i + 4][i + 4]) {
+    private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
+
+        final int maxLength = 5;
+
+        final int one = 1;
+        final int two = 2;
+        final int three = 3;
+        final int four = 4;
+
+        for (int i = 0; i < maxLength; i++) {
+            if (moves == gameBoard[i][i] && moves == gameBoard[i + one][i + one] && moves == gameBoard[i + two][i + two] && moves == gameBoard[i + three][i + three] && moves == gameBoard[i + four][i + four]) {
                 return true;
             }
         }
@@ -126,10 +154,20 @@ public class GomokuJudge implements Judgement {
      * @param gameBoard ゲーム盤
      * @return ゲーム盤上の右斜めのラインで5連が達成されているかの真偽値
      */
-    private boolean judgeRightSlanting(Moves[][] gameBoard, Moves moves) {
-        for (int i = 8; i > 5; i--) {
-            for (int j = 0; j < 5; j++) {
-                if (moves == gameBoard[i][j] && moves == gameBoard[i - 1][j + 1] && moves == gameBoard[i - 2][j + 2] && moves == gameBoard[i - 3][j + 3] && moves == gameBoard[i - 4][j + 4]) {
+    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves) {
+
+        final int maxLength = 5;
+        final int startNumber = 8;
+
+        final int one = 1;
+        final int two = 2;
+        final int three = 3;
+        final int four = 4;
+
+
+        for (int i = startNumber; i > maxLength; i--) {
+            for (int j = 0; j < maxLength; j++) {
+                if (moves == gameBoard[i][j] && moves == gameBoard[i - one][j + one] && moves == gameBoard[i - two][j + two] && moves == gameBoard[i - three][j + three] && moves == gameBoard[i - four][j + four]) {
                     return true;
                 }
             }

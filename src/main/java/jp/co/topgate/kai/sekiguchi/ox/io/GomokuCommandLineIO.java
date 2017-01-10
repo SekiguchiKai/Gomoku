@@ -22,18 +22,18 @@ public class GomokuCommandLineIO extends CommandLineIO {
      *
      * @param gomokuBoard Boardクラスのインスタンス
      */
-    public void drawUI(Board gomokuBoard) {
+    public void drawUI(final Board gomokuBoard) {
 
 
-        IntStream.range(0, gomokuBoard.getXLength() - 1).forEach(x -> System.out.print("  " + x));
+        IntStream.range(0, gomokuBoard.getColumnLength() - 1).forEach(x -> System.out.print("  " + x));
         System.out.println("  8");
 
 
-        for (int y = 0; y < gomokuBoard.getYLength(); y++) {
+        for (int y = 0; y < gomokuBoard.getRowLength(); y++) {
             System.out.print(y + "-");
-            for (int x = 0; x < gomokuBoard.getXLength(); x++) {
+            for (int x = 0; x < gomokuBoard.getColumnLength(); x++) {
                 System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)));
-                if (x == 8) {
+                if (x == gomokuBoard.getColumnLength()) {
                     break;
                 }
                 System.out.print("--");
@@ -56,7 +56,7 @@ public class GomokuCommandLineIO extends CommandLineIO {
      * @param moves      プレーヤーの打ち手
      * @return 打ち手を表す印の文字列
      */
-    String changeMovesToSignal(Moves moves) {
+    String changeMovesToSignal(final Moves moves) {
         if (moves == Moves.USER_MOVE) {
             return Signal.CIRCLE.getSignal();
         } else if (moves == Moves.CPU_MOVE) {
@@ -71,38 +71,39 @@ public class GomokuCommandLineIO extends CommandLineIO {
      *
      * @param result 勝敗結果
      */
-    public void drawResult(Result result) {
+    public void drawResult(final Result result) {
         System.out.println(result.getResult());
     }
 
     /**
      * コマンドラインからの入力を受け取り、受け取った入力を加工してプログラム上のゲーム盤の位置を返すメソッド
      *
+     * @param board Boardクラスのインスタンス
      * @return 盤の場所（ユーザーからの入力がすでに石が置いてある場合場所だった場合:MAX_VALUE、ユーザーからの入力が不適切な数字だった場合 : MIN_VALUEを返す)
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
-    public Cell receiveCommand(Board board) throws IOException {
+    public Cell receiveCommand(final Board board) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        String userInputY = scanner.next();
-        String userInputX = scanner.next();
+        String userInputRow = scanner.next();
+        String userInputColumn = scanner.next();
 
         System.out.println("スタート");
 
         Moves[][] gameBoard = board.getGameBoardState();
 
 
-        if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
+        if (!(Pattern.matches("^[.0-8]$", userInputRow)) || !(Pattern.matches("^[.0-8]$", userInputColumn))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] != Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputRow)][Integer.parseInt(userInputColumn)] != Moves.NO_MOVE)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
 
-        System.out.println("受け取った数字は" + userInputX + "と" + userInputY);
+        System.out.println("受け取った数字は" + userInputColumn + "と" + userInputRow);
 
-        return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
+        return new Cell(Integer.parseInt(userInputRow), Integer.parseInt(userInputColumn));
     }
 
 

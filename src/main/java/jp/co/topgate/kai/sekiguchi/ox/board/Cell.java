@@ -9,12 +9,12 @@ public class Cell {
     /**
      * 打ち手を打つのに最適なゲーム盤上のY軸
      */
-    private int cellY;
+    private final int cellRow;
 
     /**
      * 打ち手を打つのに最適なゲーム盤上のX軸
      */
-    private int cellX;
+    private final int cellColumn;
 
     /**
      * 打ち手
@@ -31,22 +31,23 @@ public class Cell {
     /**
      * コンストラクタ
      *
-     * @param cellY 　打ち手を打つのに最適なゲーム盤上のY座標
-     * @param cellX 打ち手を打つのに最適なゲーム盤上のX軸
+     * @param cellRow    　打ち手を打つのに最適なゲーム盤上のY座標
+     * @param cellColumn 打ち手を打つのに最適なゲーム盤上のX軸
      */
-    public Cell(int cellY, int cellX) {
-        this.cellY = cellY;
-        this.cellX = cellX;
+    public Cell(final int cellRow, final int cellColumn) {
+        this.cellRow = cellRow;
+        this.cellColumn = cellColumn;
     }
 
+
     /**
-     * 最適な場所に打ち手を打った時に得られる得点を取得するためのメソッド
-     *
-     * @param bestScore 最適な場所に打ち手を打った時に得られる得点
+     * 最適なマスに打ち手を打った際の点数を設定するためのメソッド
+     * @param bestScore 最適なマスに打ち手を打った際の点数
      */
-    public void setBestScore(int bestScore) {
+    public void setBestScore(final int bestScore) {
         this.bestScore = bestScore;
     }
+
 
     /**
      * bestSpotを返すためのメソッド
@@ -61,15 +62,15 @@ public class Cell {
     /**
      * @return マスのY軸の値
      */
-    public int getCellY() {
-        return this.cellY;
+    public int getCellRow() {
+        return this.cellRow;
     }
 
     /**
      * @return マスのX軸の値
      */
-    public int getCellX() {
-        return this.cellX;
+    public int getCellColumn() {
+        return this.cellColumn;
     }
 
     /**
@@ -77,7 +78,7 @@ public class Cell {
      *
      * @param moves 打ち手
      */
-    public void setMoves(Moves moves) {
+    public void setMoves(final Moves moves) {
         this.moves = moves;
     }
 

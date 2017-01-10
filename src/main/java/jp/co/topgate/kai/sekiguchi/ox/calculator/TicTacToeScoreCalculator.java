@@ -17,7 +17,7 @@ public class TicTacToeScoreCalculator implements ScoreCalculator {
      * @param gameBoard ゲーム盤
      * @return そのゲーム盤の点数の合計
      */
-    public int calcScore(Moves[][] gameBoard) {
+    public int calcScore(final Moves[][] gameBoard) {
 
         int totalScore = 0;
         // 横
@@ -66,7 +66,7 @@ public class TicTacToeScoreCalculator implements ScoreCalculator {
      * @return ラインの合計点数
      */
 
-    int calcLineScore(Moves moves1, Moves moves2, Moves moves3) {
+    int calcLineScore(final Moves moves1, final Moves moves2, final Moves moves3) {
 
         int score = 0;
 
@@ -74,21 +74,29 @@ public class TicTacToeScoreCalculator implements ScoreCalculator {
 
         int counter = 0;
 
-        counter += 10;
+        final int perTurnScore = 10;
+        counter += perTurnScore;
 
         for (Moves moves : movesList) {
             if (moves == Moves.CPU_MOVE) {
-                score += 10;
+                score += perTurnScore;
             } else if (moves == Moves.USER_MOVE) {
-                score -= 10;
+                score -= perTurnScore;
             }
         }
 
+        final int maxScore = 30;
+        final int minScore = -30;
+
+        final int bonusMaxScore = 1000;
+        final int bonusMinScore = -1000;
+
+
         // 勝敗がつくときには、点数の差を大きくする
-        if (score == 30) {
-            score = 100 - counter;
-        } else if (score == -30) {
-            score = counter - 100;
+        if (score == maxScore) {
+            score = bonusMaxScore - counter;
+        } else if (score == minScore) {
+            score = counter + bonusMinScore;
         }
 
         return score;
