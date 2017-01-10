@@ -2,9 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 import java.util.*;
@@ -23,9 +21,10 @@ public class MiniMax {
     /**
      * コンストラクタ
      * フイールドを初期化する
+     *
      * @param scoreCalculator ScoreCalculatorクラスのインスタンス
      */
-    public MiniMax(ScoreCalculator scoreCalculator) {
+    public MiniMax(final ScoreCalculator scoreCalculator) {
         this.scoreCalculator = scoreCalculator;
     }
 
@@ -49,7 +48,7 @@ public class MiniMax {
      * @param beta       β
      * @return 打ち手を打つのに最適な場所とそこに打ち手を打った場合の点数を格納したBestクラスのインスタンス
      */
-    public Cell calcMinMax(int depth, Board board, Moves playerMove, int alpha, int beta) {
+    public Cell calcMinMax(final int depth, final Board board, final Moves playerMove, int alpha, int beta) {
 
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
@@ -71,8 +70,8 @@ public class MiniMax {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
             for (Cell cell : capableMove) {
 
-                int cellY = cell.getCellY();
-                int cellX = cell.getCellX();
+                int cellY = cell.getCellRow();
+                int cellX = cell.getCellColumn();
 
                 board.putMoves(cellY, cellX, playerMove);
 
@@ -106,15 +105,15 @@ public class MiniMax {
     /**
      * 現在こと打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
      *
-     * @param gameBoard ゲームの盤
+     * @param board ゲームの盤
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-    private List<Cell> makeCapableMOveList(Board board) {
+    private List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
-        for (int y = 0; y < board.getYLength(); y++) {
-            for (int x = 0; x < board.getXLength(); x++) {
+        for (int y = 0; y < board.getRowLength(); y++) {
+            for (int x = 0; x < board.getColumnLength(); x++) {
                 if (board.getCellState(y, x) == Moves.NO_MOVE) {
                     capableMoveList.add(new Cell(y, x));
                 }

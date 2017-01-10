@@ -2,91 +2,92 @@ package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
+import java.util.stream.IntStream;
+
 /**
- * 打ち手にとって、最適なゲーム盤上の場所とそこに打ち手を打った時の得点を格納するためのクラス
+ * ゲーム盤
+ * Created by sekiguchikai on 2017/01/05.
  */
-public class Cell {
-    /**
-     * 打ち手を打つのに最適なゲーム盤上のY軸
-     */
-    private int cellY;
+public abstract class Board {
 
     /**
-     * 打ち手を打つのに最適なゲーム盤上のX軸
+     * ゲーム盤のX軸を表す
      */
-    private int cellX;
+    private final int column;
+    /**
+     * ゲーム盤のY軸を表す
+     */
+    private final int row;
 
     /**
-     * 打ち手
+     * ゲーム盤を表す二次元配列
      */
-    private Moves moves;
-
-
-    /**
-     * 最適なゲーム盤上の場所に打ち手を打った際に取得する得点
-     */
-    private int bestScore;
-
+    private Moves[][] gameBoard;
 
     /**
      * コンストラクタ
+     * X軸、Y軸、配列の大きさを初期化する
      *
-     * @param cellY 　打ち手を打つのに最適なゲーム盤上のY座標
-     * @param cellX 打ち手を打つのに最適なゲーム盤上のX軸
+     * @param column x軸の長さ
+     * @param row    y軸の長さ
      */
-    public Cell(int cellY, int cellX) {
-        this.cellY = cellY;
-        this.cellX = cellX;
+    Board(final int column, final int row) {
+        this.column = column;
+        this.row = row;
+        this.gameBoard = new Moves[row][column];
     }
 
     /**
-     * 最適な場所に打ち手を打った時に得られる得点を取得するためのメソッド
+     * ゲーム盤の指定した場所に打ち手を打つためのメソッド
      *
-     * @param bestScore 最適な場所に打ち手を打った時に得られる得点
+     * @param column ゲーム盤の列
+     * @param row    ゲーム盤の行
+     * @param moves  打ち手
      */
-    public void setBestScore(int bestScore) {
-        this.bestScore = bestScore;
+    public void putMoves(final int column, final int row, final Moves moves) {
+        this.gameBoard[column][row] = moves;
     }
 
+
     /**
-     * bestSpotを返すためのメソッド
+     /**
+     * ゲーム盤の指定されたマスの打ち手を返す
      *
-     * @return bestSpot
-     */
-    public int getBestScore() {
-        return this.bestScore;
-    }
-
-
-    /**
-     * @return マスのY軸の値
-     */
-    public int getCellY() {
-        return this.cellY;
-    }
-
-    /**
-     * @return マスのX軸の値
-     */
-    public int getCellX() {
-        return this.cellX;
-    }
-
-    /**
-     * 打ち手を設定するためのメソッド
+     * @param column ゲーム盤の列
+     * @param row    ゲーム盤の行
      *
-     * @param moves 打ち手
+     * @return 指定された箇所の打ち手
      */
-    public void setMoves(Moves moves) {
-        this.moves = moves;
+    public Moves getCellState(final int column, final int row) {
+        return this.gameBoard[column][row];
     }
 
     /**
-     * 打ち手を取得するためのメソッド
+     * ゲーム盤の現在の状態を取得するためのメソッド
      *
-     * @return 打ち手
+     * @return ゲーム盤のコピー
      */
-    public Moves getMoves() {
-        return this.moves;
+    public Moves[][] getGameBoardState() {
+        Moves[][] copyArray = new Moves[row][column];
+        IntStream.range(0, this.row).forEach(i -> IntStream.range(0, this.column).forEach(j -> copyArray[i][j] = this.gameBoard[i][j]));
+        return copyArray;
+    }
+
+    /**
+     * ゲーム盤のY軸の長さを返す
+     *
+     * @return ゲーム盤のY軸の長さ
+     */
+    public int getRowLength() {
+        return this.row;
+    }
+
+    /**
+     * ゲーム盤のX軸の長さを返す
+     *
+     * @return ゲーム盤のX軸の長さ
+     */
+    public int getColumnLength() {
+        return this.column;
     }
 }
