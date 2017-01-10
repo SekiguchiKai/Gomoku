@@ -48,7 +48,7 @@ public class MiniMax {
      * @param beta       β
      * @return 打ち手を打つのに最適な場所とそこに打ち手を打った場合の点数を格納したBestクラスのインスタンス
      */
-    public Cell calcMinMax(int depth, Board board, Moves playerMove, int alpha, int beta) {
+    public Cell calcMinMax(final int depth, final Board board, final Moves playerMove, int alpha, int beta) {
 
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
@@ -103,12 +103,12 @@ public class MiniMax {
 
 
     /**
-     * 現在こと打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
+     * 現在の打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
      *
-     * @param gameBoard ゲームの盤
+     * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-    private List<Cell> makeCapableMOveList(Board board) {
+    private List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 

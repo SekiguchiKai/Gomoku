@@ -26,7 +26,7 @@ public class Order {
      * @param firstPlayer  最初のプレーヤー
      * @param secondPlayer 2番目のプレーヤー
      */
-    public Order(Player firstPlayer, Player secondPlayer) {
+    public Order(final Player firstPlayer, final Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
     }
@@ -37,16 +37,16 @@ public class Order {
      *
      * @param firstPlayer Playerのインスタンス
      */
-    public void setFirstPlayer(Player firstPlayer) {
+    public void setFirstPlayer(final Player firstPlayer) {
         this.firstPlayer = firstPlayer;
     }
 
     /**
      * setSecondPlayerを設定するためのメソッド
      *
-     * @param firstPlayer Playerのインスタンス
+     * @param secondPlayer Playerのインスタンス
      */
-    public void setSecondPlayer(Player secondPlayer) {
+    public void setSecondPlayer(final Player secondPlayer) {
         this.secondPlayer = secondPlayer;
     }
 

@@ -21,8 +21,9 @@ public class User extends Player {
      * @param board         Boardクラスのインスタンス
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
+     * @param name          プレーヤーの名前を表す
      */
-    public User(Board board, MiniMax miniMax, CommandLineIO commandLineIO, String name) {
+    public User(final Board board, final MiniMax miniMax, final CommandLineIO commandLineIO, final String name) {
         super(board, miniMax, commandLineIO, name);
     }
 
@@ -32,7 +33,7 @@ public class User extends Player {
      * @param depth 深さ
      */
     @Override
-    public void doMove(int depth) {
+    public void doMove(final int depth) {
         try {
             Cell userInput = commandLineIO.receiveCommand(board);
             this.choiceDO(userInput);
@@ -55,7 +56,7 @@ public class User extends Player {
      *
      * @param userInput ユーザの入力の値
      */
-    private void choiceDO(Cell userInput) {
+    private void choiceDO(final Cell userInput) {
         if (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE) {
             commandLineIO.drawExistingCaution();
         } else if (userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
