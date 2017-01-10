@@ -24,12 +24,11 @@ public class GomokuGameBoardTest {
     public void putMoves() {
 
         Moves[] movesArray = new Moves[9];
-        IntStream.range(0, 4).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
-        IntStream.range(4, 9).forEach(i -> movesArray[i] = Moves.USER_MOVE);
+        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
+        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
 
-
-        IntStream.range(0, 4).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
-        IntStream.range(4, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.USER_MOVE);
+        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
 
     }
 
@@ -55,7 +54,7 @@ public class GomokuGameBoardTest {
      */
     @Test
     public void getGameBoardState() {
-        Board board = new GomokuGameBoard(9, 9);
+
         this.getGameBoardStateHelper(Moves.CPU_MOVE, Moves.CPU_MOVE);
         this.getGameBoardStateHelper(Moves.USER_MOVE, Moves.USER_MOVE);
         this.getGameBoardStateHelper(Moves.NO_MOVE, Moves.NO_MOVE);
@@ -69,9 +68,9 @@ public class GomokuGameBoardTest {
      * @param expected 期待する値
      */
     private void getGameBoardStateHelper(Moves data, Moves expected) {
-        IntStream.range(0, 2).forEach(row -> IntStream.range(0, 2).forEach(column -> this.board.putMoves(row, column, data)));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> this.board.putMoves(row, column, data)));
 
-        IntStream.range(0, 2).forEach(row -> IntStream.range(0, 2).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
     }
 
     /**
