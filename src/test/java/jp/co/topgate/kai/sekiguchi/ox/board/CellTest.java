@@ -1,5 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.board;
 
+import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
@@ -23,29 +24,45 @@ public class CellTest {
         assertThat(this.cell.getBestScore(), is(100));
     }
 
+    /**
+     * getBestScoreメソッドをテストするためのメソッド
+     */
     @Test
     public void getBestScore() {
         this.cell.setBestScore(200);
         assertThat(this.cell.getBestScore(), is(200));
     }
 
+    /**
+     * getCellRowメソッドをテストするためのメソッド
+     */
     @Test
     public void getCellRow() {
-
+        assertThat(this.cell.getCellRow(), is(3));
     }
 
+    /**
+     * getCellColumnメソッドをテストするためのメソッド
+     */
     @Test
     public void getCellColumn() {
-
+        assertThat(this.cell.getCellColumn(), is(3));
     }
 
+    /**
+     * setMovesメソッドをテストするためのメソッド
+     */
     @Test
     public void setMoves() {
-
+        this.getMoves(Moves.CPU_MOVE, Moves.CPU_MOVE);
+        this.getMoves(Moves.USER_MOVE, Moves.USER_MOVE);
     }
 
-    @Test
-    public void getMoves() {
+
+    private void getMoves(Moves data, Moves expected) {
+        this.cell.setMoves(data);
+        Moves actual = this.cell.getMoves();
+        assertThat(actual, is(expected));
 
     }
 

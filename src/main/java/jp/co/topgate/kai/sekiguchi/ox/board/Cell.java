@@ -59,14 +59,14 @@ public class Cell {
 
 
     /**
-     * @return マスのY軸の値
+     * @return マスの列の値
      */
     public int getCellRow() {
         return this.cellRow;
     }
 
     /**
-     * @return マスのX軸の値
+     * @return マスの行の値
      */
     public int getCellColumn() {
         return this.cellColumn;
