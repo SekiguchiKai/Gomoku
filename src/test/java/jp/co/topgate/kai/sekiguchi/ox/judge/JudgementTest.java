@@ -42,7 +42,7 @@ public class JudgementTest {
         this.judgeResultHelper(3, Moves.CPU_MOVE, Result.LOSE, ticTacToeJudgement, ticTacToeBoard);
         this.initBoard(ticTacToeBoard);
 
-        this.judgeResultHelper(3, Moves.USER_MOVE, Result.LOSE, ticTacToeJudgement, ticTacToeBoard);
+        this.judgeResultHelper(3, Moves.USER_MOVE, Result.WIN, ticTacToeJudgement, ticTacToeBoard);
         this.initBoard(ticTacToeBoard);
 
         this.judgeResultHelper(3, Moves.NO_MOVE, Result.PENDING, ticTacToeJudgement, ticTacToeBoard);
@@ -53,7 +53,7 @@ public class JudgementTest {
         this.judgeResultHelper(5, Moves.CPU_MOVE, Result.LOSE, gomokuJudgement, gomokuBoard);
         this.initBoard(gomokuBoard);
 
-        this.judgeResultHelper(5, Moves.USER_MOVE, Result.LOSE, gomokuJudgement, gomokuBoard);
+        this.judgeResultHelper(5, Moves.USER_MOVE, Result.WIN, gomokuJudgement, gomokuBoard);
         this.initBoard(gomokuBoard);
 
         this.judgeResultHelper(5, Moves.NO_MOVE, Result.PENDING, gomokuJudgement, gomokuBoard);
