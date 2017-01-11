@@ -44,7 +44,13 @@ public class GomokuScoreCalculator extends ScoreCalculator {
                 for (int k = 0; k < arraySize; k++) {
                     movesArray[k] = gameBoard[i][j + k];
                 }
-                totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+                int score = super.calcLineScore(movesArray, maxPoint, minPoint);
+                if (score == Integer.MAX_VALUE) {
+                    return score;
+                } else if (score == Integer.MIN_VALUE) {
+                    return score;
+                }
+                totalScore += score;
             }
         }
 
@@ -54,7 +60,13 @@ public class GomokuScoreCalculator extends ScoreCalculator {
                 for (int k = 0; k < arraySize; k++) {
                     movesArray[k] = gameBoard[i + k][j];
                 }
-                totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+                int score = super.calcLineScore(movesArray, maxPoint, minPoint);
+                if (score == Integer.MAX_VALUE) {
+                    return score;
+                } else if (score == Integer.MIN_VALUE) {
+                    return score;
+                }
+                totalScore += score;
             }
         }
 
@@ -63,7 +75,13 @@ public class GomokuScoreCalculator extends ScoreCalculator {
             for (int k = 0; k < arraySize; k++) {
                 movesArray[k] = gameBoard[i + k][i + k];
             }
-            totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+            int score = super.calcLineScore(movesArray, maxPoint, minPoint);
+            if (score == Integer.MAX_VALUE) {
+                return score;
+            } else if (score == Integer.MIN_VALUE) {
+                return score;
+            }
+            totalScore += score;
         }
 
         // 右斜め
@@ -75,12 +93,19 @@ public class GomokuScoreCalculator extends ScoreCalculator {
                 for (int k = 0; k < arraySize; k++) {
                     movesArray[k] = gameBoard[i - k][j + k];
                 }
-                totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+                int score = super.calcLineScore(movesArray, maxPoint, minPoint);
+                if (score == Integer.MAX_VALUE) {
+                    return score;
+                } else if (score == Integer.MIN_VALUE) {
+                    return score;
+                }
+                totalScore += score;
             }
         }
 
 
         return totalScore;
     }
+
 
 }

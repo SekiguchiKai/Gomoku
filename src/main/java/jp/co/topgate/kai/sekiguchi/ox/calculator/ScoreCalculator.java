@@ -7,6 +7,8 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
  * Created by sekiguchikai on 2017/01/06.
  */
 public abstract class ScoreCalculator {
+
+
     /**
      * 現在のゲーム盤の点数を計算するためのメソッド
      *
@@ -42,7 +44,7 @@ public abstract class ScoreCalculator {
      * @param minPoint   相手の打ち手が一列揃った時の点数
      * @return ラインの合計点数
      */
-    int calcLineScore(final Moves[] movesArray, final int maxPoint, final int minPoint) {
+    protected int calcLineScore(final Moves[] movesArray, final int maxPoint, final int minPoint) {
 
         int score = 0;
 
@@ -61,18 +63,19 @@ public abstract class ScoreCalculator {
             }
         }
 
-        final int finalMaxPoint = 1000;
-        final int finalMinPoint = -1000;
+        final int finalMaxPoint = Integer.MAX_VALUE;
+        final int finalMinPoint = Integer.MIN_VALUE;
 
         // 勝敗がつくときには、点数の差を大きくする
         if (score == maxPoint) {
-            score = finalMaxPoint - counter;
+            score = finalMaxPoint;
         } else if (score == minPoint) {
-            score = counter + finalMinPoint;
+            score = finalMinPoint;
         }
 
         return score;
 
 
     }
+
 }

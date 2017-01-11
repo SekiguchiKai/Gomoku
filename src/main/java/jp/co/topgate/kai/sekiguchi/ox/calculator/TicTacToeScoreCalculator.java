@@ -2,8 +2,6 @@ package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 打ち手のシミュレーションを行うためのクラス
@@ -33,45 +31,104 @@ public class TicTacToeScoreCalculator extends ScoreCalculator {
         movesArray[0] = gameBoard[0][0];
         movesArray[1] = gameBoard[0][1];
         movesArray[2] = gameBoard[0][2];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+
+        int score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
+
 
         movesArray[0] = gameBoard[1][0];
         movesArray[1] = gameBoard[1][1];
         movesArray[2] = gameBoard[1][2];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
         movesArray[0] = gameBoard[2][0];
         movesArray[1] = gameBoard[2][1];
         movesArray[2] = gameBoard[2][2];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
         // 縦
         movesArray[0] = gameBoard[0][0];
         movesArray[1] = gameBoard[1][0];
         movesArray[2] = gameBoard[2][0];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
         movesArray[0] = gameBoard[0][1];
         movesArray[1] = gameBoard[1][1];
         movesArray[2] = gameBoard[2][1];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
         movesArray[0] = gameBoard[0][2];
         movesArray[1] = gameBoard[1][2];
         movesArray[2] = gameBoard[2][2];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
 
         // 斜め
         movesArray[0] = gameBoard[0][0];
         movesArray[1] = gameBoard[1][1];
         movesArray[2] = gameBoard[2][2];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
         movesArray[0] = gameBoard[0][2];
         movesArray[1] = gameBoard[1][1];
         movesArray[2] = gameBoard[2][0];
-        totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
+        score = super.calcLineScore(movesArray, maxPoint, minPoint);
+        if (score == Integer.MAX_VALUE) {
+            return score;
+        } else if (score == Integer.MIN_VALUE) {
+            return score;
+        }
+        totalScore += score;
+        score = 0;
 
 
         return totalScore;

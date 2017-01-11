@@ -43,9 +43,9 @@ public class Judgement {
     public Result judgeResult(final int judgeHighSore, final int judgeLowSore) {
         Moves[][] gameBoard = board.getGameBoardState();
 
-        if (scoreCalculator.calcScore(gameBoard) > judgeHighSore) {
+        if (scoreCalculator.calcScore(gameBoard) ==  Integer.MAX_VALUE) {
             return Result.LOSE;
-        } else if (scoreCalculator.calcScore(gameBoard) < judgeLowSore) {
+        } else if (scoreCalculator.calcScore(gameBoard) == Integer.MIN_VALUE) {
             return Result.WIN;
         } else if (this.judgeDraw()) {
             return Result.DRAW;
