@@ -1,4 +1,4 @@
-# Gomoku Game
+# TicTacToe/Gomoku Game
 [![CircleCI](https://circleci.com/gh/SekiguchiKai/Gomoku.svg?style=svg)](https://circleci.com/gh/SekiguchiKai/Gomoku)
 
 
