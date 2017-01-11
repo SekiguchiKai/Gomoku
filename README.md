@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # TicTacToe/Gomoku Game
 [![CircleCI](https://circleci.com/gh/SekiguchiKai/Gomoku.svg?style=svg)](https://circleci.com/gh/SekiguchiKai/Gomoku)
 
@@ -45,9 +46,11 @@ You can play 2games.<br>
 =======
 <<<<<<< HEAD
 >>>>>>> master
+=======
+
+Gomoku Game
+
+>>>>>>> 3fe0b57e756bc06a93d0e78a8c9280505b895e5b
 ## Licence
   [MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-=======
-# Gomoku
-Gomoku game.
->>>>>>> e7ef2984ba1e10dae69f5bf792a474b1bfb3abda
+
