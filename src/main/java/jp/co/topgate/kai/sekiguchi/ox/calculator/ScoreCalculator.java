@@ -68,10 +68,11 @@ public abstract class ScoreCalculator {
 
         // 勝敗がつくときには、点数の差を大きくする
         if (score == maxPoint) {
-            score = finalMaxPoint - perTernPoint;
+            score = finalMaxPoint - counter;
         } else if (score == minPoint) {
-            score = finalMinPoint + perTernPoint;
+            score = finalMinPoint + counter;
         }
+
 
         return score;
 
