@@ -31,15 +31,15 @@ public class TicTacToeGameLogic extends GameLogic {
         final int row = 3;
         final int column = 3;
 
-        Board ticTacToeBoard = new TicTacToeBoard(row, column);
-        TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
+        final Board ticTacToeBoard = new TicTacToeBoard(row, column);
+        final TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
 
-        ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
+        final ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
-        MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
-        Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
-        Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
-        Judgement judgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
+        final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
+        final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
+        final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
+        final  Judgement judgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
 
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);

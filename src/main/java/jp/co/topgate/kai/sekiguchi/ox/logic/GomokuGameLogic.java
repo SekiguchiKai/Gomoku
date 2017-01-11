@@ -34,17 +34,17 @@ public class GomokuGameLogic extends GameLogic {
         final int row = 9;
         final int column = 9;
 
-        Board gomokuGameBoard = new GomokuGameBoard(row, column);
+        final Board gomokuGameBoard = new GomokuGameBoard(row, column);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
-        ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
+        final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 
-        MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
-        Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
+        final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
+        final  Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
+        final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
+        final  Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
         final int depthCount = 3;
 
 
