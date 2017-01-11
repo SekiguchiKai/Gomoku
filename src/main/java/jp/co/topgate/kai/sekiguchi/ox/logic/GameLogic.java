@@ -23,6 +23,6 @@ public abstract class GameLogic {
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
     public abstract void playGame() throws IOException;
-    
+
 
 }

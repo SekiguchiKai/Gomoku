@@ -57,7 +57,3 @@ public class TicTacToeGameLogic extends GameLogic {
         ticTacToeCommandLineIO.drawResult(judgement.judgeResult());
     }
 }
-
-
-
-

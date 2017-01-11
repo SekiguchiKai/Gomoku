@@ -45,7 +45,7 @@ public class GomokuGameLogic extends GameLogic {
         final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
         final Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
-        final int depthCount = 3; //
+        final int depthCount = 3;
         Order order = new Order();
 
         while (judgement.judgeResult() == Result.PENDING) {
