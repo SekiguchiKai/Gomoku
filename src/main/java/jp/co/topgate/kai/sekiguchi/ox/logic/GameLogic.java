@@ -23,24 +23,6 @@ public abstract class GameLogic {
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
     public abstract void playGame() throws IOException;
-
-
-    /**
-     * 各プレーヤーの打ち手の順番を決める
-     *
-     * @param user Userクラスのインスタンス
-     * @param cpu  Cpuクラスのインスタンス
-     * @return Orderクラスのインスタンス
-     */
-    public Order setOrder(final Player user, final Player cpu) {
-        int userOrder = (int) (Math.random() * 2) + 1;
-
-        if (userOrder == 1) {
-            return new Order(user, cpu);
-        }
-        return new Order(cpu, user);
-
-    }
-
+    
 
 }

@@ -18,15 +18,43 @@ public class Order {
     private Player secondPlayer;
 
     /**
-     * コンストラクタ
+     * 先攻の打ち手となるプレーヤーを設定するためのメソッド
      *
-     * @param firstPlayer  最初のプレーヤー
-     * @param secondPlayer 2番目のプレーヤー
+     * @param firstPlayer 先行の打ち手となるプレーヤー
      */
-    public Order(final Player firstPlayer, final Player secondPlayer) {
+    public void setFirstPlayer(final Player firstPlayer) {
         this.firstPlayer = firstPlayer;
+
+    }
+
+    /**
+     * 後攻の打ち手となるプレーヤーを設定するためのメソッド
+     *
+     * @param secondPlayer 先行の打ち手となるプレーヤー
+     */
+    public void setSecondPlayer(final Player secondPlayer) {
         this.secondPlayer = secondPlayer;
     }
+
+    /**
+     * 各プレーヤーの打ち手の順番を決める
+     *
+     * @param user Userクラスのインスタンス
+     * @param cpu  Cpuクラスのインスタンス
+     */
+    public void setRandomOrder(final Player user, final Player cpu) {
+        int userOrder = (int) (Math.random() * 2) + 1;
+
+        if (userOrder == 1) {
+            this.firstPlayer = user;
+            this.secondPlayer = cpu;
+        } else {
+            this.firstPlayer = cpu;
+            this.secondPlayer = user;
+        }
+
+    }
+
 
     /**
      * firstPlayerを取得するためのメソッド
