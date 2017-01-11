@@ -85,6 +85,11 @@ public class JudgementTest {
 
     }
 
+    /**
+     * ゲーム盤をクリアするためのメソッド
+     *
+     * @param board Boardクラスのインスタンス
+     */
     private void initBoard(Board board) {
         int rowSize = board.getRowSize();
         int columnSize = board.getColumnSize();

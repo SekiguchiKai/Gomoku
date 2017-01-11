@@ -70,7 +70,7 @@ public abstract class ScoreCalculator {
         if (score == maxPoint) {
             score = finalMaxPoint - perTernPoint;
         } else if (score == minPoint) {
-            score = finalMaxPoint + perTernPoint;
+            score = finalMinPoint + perTernPoint;
         }
 
         return score;
