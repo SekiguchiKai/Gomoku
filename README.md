@@ -1,10 +1,10 @@
-# Gomoku Game
+# TicTacToe/Gomoku Game
 [![CircleCI](https://circleci.com/gh/SekiguchiKai/Gomoku.svg?style=svg)](https://circleci.com/gh/SekiguchiKai/Gomoku)
 
 
 ## Overview
-you play 2games.
-1. TicTacToe Game.
+You can play 2games.<br>
+1. TicTacToe Game
 2. Gomoku Game
  
 ## Description
@@ -34,7 +34,7 @@ you play 2games.
  
 ### Gomoku Game 
 1. Each player will put his/her move on board.
-2. player's order will be change at random ever terns.
+2. Player's order will be change at random ever terns.
 3. The player will be winner who arrange five moves in a continuous on the game board.
  
 ## Specifications of each classes.
