@@ -1,22 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 /**
  * MiniMaxクラスをテストするためのクラス
@@ -99,7 +83,7 @@ public class MiniMaxTest {
 //
 //        final int row = 9;
 //        final int column = 9;
-//        Board gomokuGameBoard = new GomokuGameBoard(row, column);
+//        Board gomokuGameBoard = new GomokuBoard(row, column);
 //
 //
 //        this.initGameBoard(gomokuGameBoard);

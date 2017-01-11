@@ -12,9 +12,9 @@ import static org.junit.Assert.*;
  * GomokuGameBoardクラスをテストするためのクラス
  * Created by sekiguchikai on 2017/01/10.
  */
-public class GomokuGameBoardTest {
+public class GomokuBoardTest {
 
-    Board board = new GomokuGameBoard(9, 9);
+    Board board = new GomokuBoard(9, 9);
 
 
     /**

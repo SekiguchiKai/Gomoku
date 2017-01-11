@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  */
 public class TicTacToeBoardTest {
 
-    Board board = new GomokuGameBoard(3, 3);
+    Board board = new GomokuBoard(3, 3);
 
 
     /**

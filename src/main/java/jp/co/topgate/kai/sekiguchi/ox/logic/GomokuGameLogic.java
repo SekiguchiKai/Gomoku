@@ -1,7 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
+import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.judge.Judgement;
@@ -34,7 +34,7 @@ public class GomokuGameLogic extends GameLogic {
         final int row = 9;
         final int column = 9;
 
-        final Board gomokuGameBoard = new GomokuGameBoard(row, column);
+        final Board gomokuGameBoard = new GomokuBoard(row, column);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 

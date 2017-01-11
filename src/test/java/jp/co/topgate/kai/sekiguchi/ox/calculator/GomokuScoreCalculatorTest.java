@@ -1,15 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import org.junit.Test;
-
-import java.util.stream.IntStream;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 /**
  * GomokuScoreCalculatorクラスをテストするためのクラス
@@ -50,7 +41,7 @@ public class GomokuScoreCalculatorTest {
 //        GomokuScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 //        final int rowSize = 9;
 //        final int columnSize = 9;
-//        final Board gomokuGameBoard = new GomokuGameBoard(rowSize, columnSize);
+//        final Board gomokuGameBoard = new GomokuBoard(rowSize, columnSize);
 //
 //
 //        Moves[] movesArray = {moves1, moves2, moves3, moves4, moves5};
