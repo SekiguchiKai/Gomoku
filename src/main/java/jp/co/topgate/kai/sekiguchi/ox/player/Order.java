@@ -1,8 +1,5 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
-import com.sun.org.apache.xpath.internal.operations.Plus;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
 /**
  * 順番を扱うクラス
@@ -30,26 +27,6 @@ public class Order {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
     }
-
-
-    /**
-     * firstPlayerを設定するためのメソッド
-     *
-     * @param firstPlayer Playerのインスタンス
-     */
-    public void setFirstPlayer(final Player firstPlayer) {
-        this.firstPlayer = firstPlayer;
-    }
-
-    /**
-     * setSecondPlayerを設定するためのメソッド
-     *
-     * @param secondPlayer Playerのインスタンス
-     */
-    public void setSecondPlayer(final Player secondPlayer) {
-        this.secondPlayer = secondPlayer;
-    }
-
 
     /**
      * firstPlayerを取得するためのメソッド

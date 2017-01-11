@@ -36,16 +36,19 @@ public class Judgement {
     /**
      * 勝敗はついているかを確認し、その結果を返すためのメソッド
      *
-     * @param judgeHighSore 勝敗を判断する際に用いる最大の基準値
-     * @param judgeLowSore  勝敗を判断する際に用いる最小の基準値
      * @return 勝敗の結果
      */
-    public Result judgeResult(final int judgeHighSore, final int judgeLowSore) {
+    public Result judgeResult() {
         Moves[][] gameBoard = board.getGameBoardState();
 
-        if (scoreCalculator.calcScore(gameBoard) ==  Integer.MAX_VALUE) {
+
+        final int referenceHighValue = 1000;
+        final int referenceLowValue = -1000;
+
+
+        if (scoreCalculator.calcScore(gameBoard) > referenceHighValue) {
             return Result.LOSE;
-        } else if (scoreCalculator.calcScore(gameBoard) == Integer.MIN_VALUE) {
+        } else if (scoreCalculator.calcScore(gameBoard) < referenceLowValue) {
             return Result.WIN;
         } else if (this.judgeDraw()) {
             return Result.DRAW;

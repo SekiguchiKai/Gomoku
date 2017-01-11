@@ -63,14 +63,14 @@ public abstract class ScoreCalculator {
             }
         }
 
-        final int finalMaxPoint = Integer.MAX_VALUE;
-        final int finalMinPoint = Integer.MIN_VALUE;
+        final int finalMaxPoint = 10000;
+        final int finalMinPoint = -10000;
 
         // 勝敗がつくときには、点数の差を大きくする
         if (score == maxPoint) {
-            score = finalMaxPoint;
+            score = finalMaxPoint - perTernPoint;
         } else if (score == minPoint) {
-            score = finalMinPoint;
+            score = finalMaxPoint + perTernPoint;
         }
 
         return score;

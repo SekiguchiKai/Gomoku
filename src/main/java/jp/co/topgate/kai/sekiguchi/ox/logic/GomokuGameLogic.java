@@ -41,17 +41,14 @@ public class GomokuGameLogic extends GameLogic {
         final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 
         final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        final  Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
+        final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
         final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        final  Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
+        final Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
         final int depthCount = 3;
 
 
-        final int judgeHighSore = 500;
-        final int judgeLowSore = -500;
-
-        while (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
+        while (judgement.judgeResult() == Result.PENDING) {
 
             Order order = super.setOrder(cpu, user);
 
@@ -62,12 +59,12 @@ public class GomokuGameLogic extends GameLogic {
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
+            if (judgement.judgeResult() == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(judgement.judgeResult(judgeHighSore, judgeLowSore));
+        gomokuCommandLineIO.drawResult(judgement.judgeResult());
     }
 
 }

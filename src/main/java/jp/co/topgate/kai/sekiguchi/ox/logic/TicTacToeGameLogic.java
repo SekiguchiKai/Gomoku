@@ -39,28 +39,22 @@ public class TicTacToeGameLogic extends GameLogic {
         final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
         final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
         final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
-        final  Judgement judgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
+        final Judgement judgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
 
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
 
         final int depthCount = 2;
 
-        final int judgeHighSore = 300;
-        final int judgeLowSore = -300;
 
-
-        while (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
-
+        while (judgement.judgeResult() == Result.PENDING) {
             user.doMove(depthCount);
 
-
-            if (judgement.judgeResult(judgeHighSore, judgeLowSore) == Result.PENDING) {
+            if (judgement.judgeResult() == Result.PENDING) {
                 cpu.doMove(depthCount);
             }
-
         }
-        ticTacToeCommandLineIO.drawResult(judgement.judgeResult(judgeHighSore, judgeLowSore));
+        ticTacToeCommandLineIO.drawResult(judgement.judgeResult());
     }
 }
 
