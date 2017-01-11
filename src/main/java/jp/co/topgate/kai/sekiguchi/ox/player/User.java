@@ -21,6 +21,7 @@ public class User extends Player {
      * @param board         Boardクラスのインスタンス
      * @param miniMax       MinMaxクラスのインスタンス
      * @param commandLineIO CommandLineIO クラスのインスタンス
+     * @param name          プレーヤーの名前を表す
      */
     public User(final Board board, final MiniMax miniMax, final CommandLineIO commandLineIO, final String name) {
         super(board, miniMax, commandLineIO, name);

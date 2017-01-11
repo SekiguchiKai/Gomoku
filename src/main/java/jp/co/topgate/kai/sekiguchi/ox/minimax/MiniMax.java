@@ -103,17 +103,17 @@ public class MiniMax {
 
 
     /**
-     * 現在こと打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
+     * 現在の打ち手を打つことが可能なすべてのゲーム盤の場所をリスト化する（NO_MOVEが存在しているGameBoardの場所）
      *
-     * @param board ゲームの盤
+     * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
     private List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
-        for (int y = 0; y < board.getRowLength(); y++) {
-            for (int x = 0; x < board.getColumnLength(); x++) {
+        for (int y = 0; y < board.getRowSize(); y++) {
+            for (int x = 0; x < board.getColumnSize(); x++) {
                 if (board.getCellState(y, x) == Moves.NO_MOVE) {
                     capableMoveList.add(new Cell(y, x));
                 }

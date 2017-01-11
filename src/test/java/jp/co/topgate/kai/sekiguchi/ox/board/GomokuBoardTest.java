@@ -3,18 +3,18 @@ package jp.co.topgate.kai.sekiguchi.ox.board;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import org.junit.Test;
 
+import java.util.stream.IntStream;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.util.stream.IntStream;
-
 /**
- * GameBoardクラスをテストするためのクラス
- * Created by sekiguchikai on 2016/12/27.
+ * GomokuGameBoardクラスをテストするためのクラス
+ * Created by sekiguchikai on 2017/01/10.
  */
-public class TicTacToeBoardTest {
+public class GomokuBoardTest {
 
-    Board board = new GomokuBoard(3, 3);
+    Board board = new GomokuBoard(9, 9);
 
 
     /**
@@ -23,13 +23,12 @@ public class TicTacToeBoardTest {
     @Test
     public void putMoves() {
 
-        Moves[] movesArray = new Moves[3];
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.USER_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.USER_MOVE, Moves.USER_MOVE));
+        Moves[] movesArray = new Moves[9];
+        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
+        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
 
-
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.USER_MOVE);
+        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
 
     }
 
@@ -69,9 +68,9 @@ public class TicTacToeBoardTest {
      * @param expected 期待する値
      */
     private void getGameBoardStateHelper(Moves data, Moves expected) {
-        IntStream.range(0, 3).forEach(row -> IntStream.range(0, 3).forEach(column -> this.board.putMoves(row, column, data)));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> this.board.putMoves(row, column, data)));
 
-        IntStream.range(0, 3).forEach(row -> IntStream.range(0, 3).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
     }
 
     /**
@@ -80,7 +79,7 @@ public class TicTacToeBoardTest {
     @Test
     public void getRowSize() {
         int actual = this.board.getRowSize();
-        assertThat(actual, is(3));
+        assertThat(actual, is(9));
     }
 
     /**
@@ -89,7 +88,8 @@ public class TicTacToeBoardTest {
     @Test
     public void getColumnSize() {
         int actual = this.board.getColumnSize();
-        assertThat(actual, is(3));
+        assertThat(actual, is(9));
     }
+
 
 }

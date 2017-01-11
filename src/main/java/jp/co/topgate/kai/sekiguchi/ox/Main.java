@@ -1,6 +1,6 @@
-import jp.co.topgate.kai.sekiguchi.ox.io.SelectModeCommandLineIO;
+package jp.co.topgate.kai.sekiguchi.ox;
+
 import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
-import jp.co.topgate.kai.sekiguchi.ox.logic.TicTacToeGameLogic;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public class Main {
 
 
         // 最初の選択画面を選択させる
-        SelectModeCommandLineIO selectModeCommandLineIO = new SelectModeCommandLineIO();
-        selectModeCommandLineIO.drawUI();
+        SelectMode selectMode = new SelectMode();
+        selectMode.showMode();
 
         // 実行するゲームのロジック
-        GameLogic gameLogic = selectModeCommandLineIO.receiveCommand();
+        GameLogic gameLogic = selectMode.selectMode();
         gameLogic.playGame();
 
 

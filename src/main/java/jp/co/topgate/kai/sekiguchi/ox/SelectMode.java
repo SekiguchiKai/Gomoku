@@ -1,5 +1,4 @@
-package jp.co.topgate.kai.sekiguchi.ox.io;
-
+package jp.co.topgate.kai.sekiguchi.ox;
 
 import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
 import jp.co.topgate.kai.sekiguchi.ox.logic.GomokuGameLogic;
@@ -8,17 +7,18 @@ import jp.co.topgate.kai.sekiguchi.ox.logic.TicTacToeGameLogic;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * 最初のモードを選択する画面についてのユーザーインターフェース
  * Created by sekiguchikai on 2017/01/05.
  */
-public class SelectModeCommandLineIO {
+public class SelectMode {
 
     /**
      * ユーザーに遊ぶゲームを選択させる画面を表示するメソッド
      */
-    public void drawUI() {
+    public void showMode() {
         System.out.println("以下の中から遊びたいゲームの番号を入力して、[Enter]キーを入力してください");
         System.out.println("1: 三目並べ");
         System.out.println("2: 五目並べ");
@@ -30,12 +30,31 @@ public class SelectModeCommandLineIO {
      *
      * @return 選択されたゲームのロジック
      */
-    public GameLogic receiveCommand() {
+    public GameLogic selectMode() {
+        int selectedModeNumber = this.getUserInput();
+
+        while (selectedModeNumber == Integer.MIN_VALUE) {
+            selectedModeNumber = this.getUserInput();
+        }
+        return this.getGameLogic(selectedModeNumber);
+
+    }
+
+    /**
+     * ユーザーがコマンドラインで入力した値（不適切な値を入力した場合は、Integer.MIN_VALUE）を返すメソッド
+     *
+     * @return ユーザーがコマンドラインで入力した値（不適切な値を入力した場合は、Integer.MIN_VALUE）
+     */
+    private int getUserInput() {
         Scanner scanner = new Scanner(System.in);
-        int selectedMode = scanner.nextInt();
+        String selectedMode = scanner.next();
 
-        return this.getGameLogic(selectedMode);
+        if (!Pattern.matches("^[.1-2]$", selectedMode)) {
+            System.out.println("不適切な入力です。表示されている番号を入力してください");
+            return Integer.MIN_VALUE;
+        }
 
+        return Integer.parseInt(selectedMode);
     }
 
     /**
