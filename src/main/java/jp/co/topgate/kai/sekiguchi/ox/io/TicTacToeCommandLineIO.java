@@ -26,13 +26,13 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
     public void drawUI(final Board ticTacToeBoard) {
 
 
-        IntStream.range(0, ticTacToeBoard.getColumnLength() - 1).forEach(x -> System.out.print("  " + x));
+        IntStream.range(0, ticTacToeBoard.getColumnSize() - 1).forEach(x -> System.out.print("  " + x));
         System.out.println("  2");
 
 
-        for (int y = 0; y < ticTacToeBoard.getRowLength(); y++) {
+        for (int y = 0; y < ticTacToeBoard.getRowSize(); y++) {
             System.out.print(y + "-");
-            for (int x = 0; x < ticTacToeBoard.getColumnLength(); x++) {
+            for (int x = 0; x < ticTacToeBoard.getColumnSize(); x++) {
                 System.out.print(this.changeMovesToSignal(ticTacToeBoard.getCellState(y, x)));
                 if (x == 2) {
                     break;

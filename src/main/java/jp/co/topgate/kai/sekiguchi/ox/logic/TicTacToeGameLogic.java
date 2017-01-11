@@ -7,7 +7,7 @@ import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.judge.TicTacToeJudge;
+import jp.co.topgate.kai.sekiguchi.ox.judge.Judgement;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 import jp.co.topgate.kai.sekiguchi.ox.player.User;
@@ -28,19 +28,18 @@ public class TicTacToeGameLogic extends GameLogic {
     @Override
     public void playGame() {
 
-        final int rowSize = 3;
-        final int columnSize = 3;
+        final int row = 3;
+        final int column = 3;
 
+        final Board ticTacToeBoard = new TicTacToeBoard(row, column);
+        final TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
 
-        Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
-        TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
+        final ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
-        ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
-
-        MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
-        Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
-        Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
-        TicTacToeJudge ticTacToeJudge = new TicTacToeJudge();
+        final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
+        final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
+        final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
+        final Judgement judgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
 
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
@@ -48,20 +47,13 @@ public class TicTacToeGameLogic extends GameLogic {
         final int depthCount = 2;
 
 
-        while (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
-
+        while (judgement.judgeResult() == Result.PENDING) {
             user.doMove(depthCount);
 
-
-            if (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
+            if (judgement.judgeResult() == Result.PENDING) {
                 cpu.doMove(depthCount);
             }
-
         }
-        ticTacToeCommandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
+        ticTacToeCommandLineIO.drawResult(judgement.judgeResult());
     }
 }
-
-
-
-

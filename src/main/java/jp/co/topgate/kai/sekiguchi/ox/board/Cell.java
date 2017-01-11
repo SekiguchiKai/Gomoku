@@ -7,14 +7,14 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
  */
 public class Cell {
     /**
-     * 打ち手を打つのに最適なゲーム盤上のY軸
+     * 打ち手を打つのに最適なゲーム盤上の行の位置
      */
-    private final int cellRow;
+    private int cellRow;
 
     /**
-     * 打ち手を打つのに最適なゲーム盤上のX軸
+     * 打ち手を打つのに最適なゲーム盤上の列の位置
      */
-    private final int cellColumn;
+    private int cellColumn;
 
     /**
      * 打ち手
@@ -31,28 +31,27 @@ public class Cell {
     /**
      * コンストラクタ
      *
-     * @param cellRow    　打ち手を打つのに最適なゲーム盤上のY座標
-     * @param cellColumn 打ち手を打つのに最適なゲーム盤上のX軸
+     * @param cellRow 　打ち手を打つのに最適なゲーム盤上の行の位置
+     * @param cellColumn 打ち手を打つのに最適なゲーム盤上の列の位置
      */
     public Cell(final int cellRow, final int cellColumn) {
         this.cellRow = cellRow;
         this.cellColumn = cellColumn;
     }
 
-
     /**
-     * 最適なマスに打ち手を打った際の点数を設定するためのメソッド
-     * @param bestScore 最適なマスに打ち手を打った際の点数
+     * 最適な場所に打ち手を打った時に得られる得点を取得するためのメソッド
+     *
+     * @param bestScore 最適な場所に打ち手を打った時に得られる得点
      */
     public void setBestScore(final int bestScore) {
         this.bestScore = bestScore;
     }
 
-
     /**
-     * bestSpotを返すためのメソッド
+     * 最適な場所に打ち手を打った時に得られる得点を返すためのメソッド
      *
-     * @return bestSpot
+     * @return 最適な場所に打ち手を打った時に得られる得点
      */
     public int getBestScore() {
         return this.bestScore;
@@ -60,14 +59,14 @@ public class Cell {
 
 
     /**
-     * @return マスのY軸の値
+     * @return マスの列の値
      */
     public int getCellRow() {
         return this.cellRow;
     }
 
     /**
-     * @return マスのX軸の値
+     * @return マスの行の値
      */
     public int getCellColumn() {
         return this.cellColumn;

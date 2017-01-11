@@ -6,7 +6,7 @@ apply plugin: 'checkstyle'
 //
 apply plugin: 'war'
 
-mainClassName = 'Main'
+mainClassName = 'jp.co.topgate.kai.sekiguchi.ox.Main'
 
 // gradleラッパー、これを使ってビルドするとGradleが自動的にダウンロードされ、それを使ってビルドが実行される
 

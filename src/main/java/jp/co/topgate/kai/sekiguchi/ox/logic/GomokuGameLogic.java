@@ -1,13 +1,13 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuGameBoard;
+import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.judge.Judgement;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.judge.GomokuJudge;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Order;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
@@ -31,26 +31,25 @@ public class GomokuGameLogic extends GameLogic {
 
         GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
 
-        final int rowSize = 9;
-        final int columnSize = 9;
+        final int row = 9;
+        final int column = 9;
 
-        Board gomokuGameBoard = new GomokuGameBoard(rowSize, columnSize);
+        final Board gomokuGameBoard = new GomokuBoard(row, column);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
-        ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
+        final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 
-        MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
-        Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
+        final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
+        final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
+        final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        GomokuJudge gomokuJudge = new GomokuJudge();
+        final Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
         final int depthCount = 3;
+        Order order = new Order();
 
-
-        while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
-
-            Order order = super.setOrder(cpu, user);
+        while (judgement.judgeResult() == Result.PENDING) {
+            order.setRandomOrder(user, cpu);
 
             Player firstPlayer = order.getFirstPlayer();
             Player secondPlayer = order.getSecondPlayer();
@@ -59,12 +58,12 @@ public class GomokuGameLogic extends GameLogic {
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+            if (judgement.judgeResult() == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
+        gomokuCommandLineIO.drawResult(judgement.judgeResult());
     }
 
 }
