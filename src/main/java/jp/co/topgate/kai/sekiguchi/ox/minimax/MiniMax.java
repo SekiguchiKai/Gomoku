@@ -108,7 +108,7 @@ public class MiniMax {
      * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-    private List<Cell> makeCapableMOveList(final Board board) {
+  List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 

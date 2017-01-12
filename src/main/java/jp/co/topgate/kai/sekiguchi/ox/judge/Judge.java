@@ -9,7 +9,7 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
  * 三目並べの勝敗結果を調べるクラス
  * Created by sekiguchikai on 2017/01/06.
  */
-public class Judgement {
+public class Judge {
 
     /**
      * Boardクラスのインスタンス
@@ -27,7 +27,7 @@ public class Judgement {
      * @param board           Boardクラスのインスタンス
      * @param scoreCalculator ScoreCalculatorクラスのインスタンス
      */
-    public Judgement(final Board board, final ScoreCalculator scoreCalculator) {
+    public Judge(final Board board, final ScoreCalculator scoreCalculator) {
         this.board = board;
         this.scoreCalculator = scoreCalculator;
     }
@@ -45,11 +45,10 @@ public class Judgement {
         final int referenceHighValue = 1000;
         final int referenceLowValue = -1000;
 
-        int resultScore = scoreCalculator.calcScore(gameBoard);
 
-        if (resultScore > referenceHighValue) {
+        if (scoreCalculator.calcScore(gameBoard) > referenceHighValue) {
             return Result.LOSE;
-        } else if (resultScore < referenceLowValue) {
+        } else if (scoreCalculator.calcScore(gameBoard) < referenceLowValue) {
             return Result.WIN;
         } else if (this.judgeDraw()) {
             return Result.DRAW;

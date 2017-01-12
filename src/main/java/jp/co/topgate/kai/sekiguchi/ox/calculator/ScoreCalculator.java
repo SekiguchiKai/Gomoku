@@ -52,6 +52,7 @@ public abstract class ScoreCalculator {
         final int perTernPoint = 10;
 
         for (Moves moves : movesArray) {
+
             if (moves == Moves.CPU_MOVE) {
                 score += perTernPoint;
             } else if (moves == Moves.USER_MOVE) {
@@ -66,8 +67,8 @@ public abstract class ScoreCalculator {
         int counterCorrectionValue = counter * correctionValue;
 
 
-        final int finalMaxPoint = 1000000000;
-        final int finalMinPoint = -1000000000;
+        final int finalMaxPoint = 100000;
+        final int finalMinPoint = -100000;
 
         // 勝敗がつくときには、点数の差を大きくする
         if (score == maxPoint) {

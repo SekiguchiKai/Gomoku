@@ -4,7 +4,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.judge.Judgement;
+import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
@@ -44,11 +44,11 @@ public class GomokuGameLogic extends GameLogic {
         final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
         final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        final Judgement judgement = new Judgement(gomokuGameBoard, gomokuScoreCalculator);
+        final Judge judge = new Judge(gomokuGameBoard, gomokuScoreCalculator);
         final int depthCount = 3;
         Order order = new Order();
 
-        while (judgement.judgeResult() == Result.PENDING) {
+        while (judge.judgeResult() == Result.PENDING) {
             order.setRandomOrder(user, cpu);
 
             Player firstPlayer = order.getFirstPlayer();
@@ -58,12 +58,12 @@ public class GomokuGameLogic extends GameLogic {
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (judgement.judgeResult() == Result.PENDING) {
+            if (judge.judgeResult() == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(judgement.judgeResult());
+        gomokuCommandLineIO.drawResult(judge.judgeResult());
     }
 
 }
