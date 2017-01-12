@@ -24,8 +24,8 @@ public class GomokuScoreCalculatorTest {
     @Test
     public void calcScore() {
 
-        this.helper(Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 10150);
-        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, -10150);
+        this.helper(Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 1000000060);
+        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, -999993060);
         this.helper(Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, 0);
 
 

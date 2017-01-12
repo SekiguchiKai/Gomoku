@@ -35,6 +35,7 @@ public class MiniMaxTest {
         this.CalcMinMaxTicTacToeTest(Moves.CPU_MOVE);
         this.CalcMinMaxTicTacToeTest(Moves.USER_MOVE);
 
+
         this.CalcMinMaxGomokuTest(Moves.CPU_MOVE);
         this.CalcMinMaxGomokuTest(Moves.USER_MOVE);
     }
@@ -66,13 +67,14 @@ public class MiniMaxTest {
             initGameBoard(ticTacToeBoard);
         });
 
+        initGameBoard(ticTacToeBoard);
 
-        // 一列
+        // 勝つ時の一手
         ticTacToeBoard.putMoves(0, 0, moves);
         ticTacToeBoard.putMoves(0, 1, moves);
         this.assertMinMaxLogic(ticTacToeBoard, ticTacToeScoreCalculator, 0, 2);
 
-        initGameBoard(ticTacToeBoard);
+        this.initGameBoard(ticTacToeBoard);
 
         ticTacToeBoard.putMoves(0, 0, moves);
         ticTacToeBoard.putMoves(1, 1, moves);
@@ -86,7 +88,11 @@ public class MiniMaxTest {
         this.assertMinMaxLogic(ticTacToeBoard, ticTacToeScoreCalculator, 2, 0);
 
         this.initGameBoard(ticTacToeBoard);
-    }
+
+
+
+
+}
 
 
     /**
@@ -122,6 +128,9 @@ public class MiniMaxTest {
         IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(i, 0, moves));
         this.assertMinMaxLogic(gomokuGameBoard, gomokuScoreCalculator, 4, 0);
         this.initGameBoard(gomokuGameBoard);
+
+
+        // 負けないための一手
 
     }
 

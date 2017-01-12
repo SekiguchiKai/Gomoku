@@ -45,10 +45,11 @@ public class Judgement {
         final int referenceHighValue = 1000;
         final int referenceLowValue = -1000;
 
+        int resultScore = scoreCalculator.calcScore(gameBoard);
 
-        if (scoreCalculator.calcScore(gameBoard) > referenceHighValue) {
+        if (resultScore > referenceHighValue) {
             return Result.LOSE;
-        } else if (scoreCalculator.calcScore(gameBoard) < referenceLowValue) {
+        } else if (resultScore < referenceLowValue) {
             return Result.WIN;
         } else if (this.judgeDraw()) {
             return Result.DRAW;

@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
 
 /**
  * ScoreCalculator系クラスの継承元となるクラス
@@ -48,12 +49,7 @@ public abstract class ScoreCalculator {
 
         int score = 0;
 
-        int counter = 0;
-
         final int perTernPoint = 10;
-
-        counter += perTernPoint;
-
 
         for (Moves moves : movesArray) {
             if (moves == Moves.CPU_MOVE) {
@@ -63,15 +59,24 @@ public abstract class ScoreCalculator {
             }
         }
 
-        final int finalMaxPoint = 10000;
-        final int finalMinPoint = -10000;
+
+        int counter = Counter.getCount();
+        final int correctionValue = 100;
+
+        int counterCorrectionValue = counter * correctionValue;
+
+
+        final int finalMaxPoint = 1000000000;
+        final int finalMinPoint = -1000000000;
 
         // 勝敗がつくときには、点数の差を大きくする
         if (score == maxPoint) {
-            score = finalMaxPoint - counter;
+            score = finalMaxPoint - counterCorrectionValue;
         } else if (score == minPoint) {
-            score = finalMinPoint + counter;
+            score = finalMinPoint + counterCorrectionValue;
         }
+
+        Counter.upCount();
 
 
         return score;

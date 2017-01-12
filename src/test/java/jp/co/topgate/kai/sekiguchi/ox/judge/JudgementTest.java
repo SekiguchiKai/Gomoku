@@ -38,6 +38,8 @@ public class JudgementTest {
         Judgement gomokuJudgement = new Judgement(gomokuBoard, gomokuScoreCalculator);
         Judgement ticTacToeJudgement = new Judgement(ticTacToeBoard, ticTacToeScoreCalculator);
 
+
+
         // TicTacToe
         this.judgeResultHelper(3, Moves.CPU_MOVE, Result.LOSE, ticTacToeJudgement, ticTacToeBoard);
         this.initBoard(ticTacToeBoard);
@@ -73,14 +75,16 @@ public class JudgementTest {
      */
     private void judgeResultHelper(int maxLength, Moves moves, Result result, Judgement judgement, Board board) {
         IntStream.range(0, maxLength).forEach(i -> board.putMoves(0, i, moves));
-
         assertThat(judgement.judgeResult(), is(result));
+        this.initBoard(board);
 
         IntStream.range(0, maxLength).forEach(i -> board.putMoves(i, 0, moves));
         assertThat(judgement.judgeResult(), is(result));
+        this.initBoard(board);
 
         IntStream.range(0, maxLength).forEach(i -> board.putMoves(i, i, moves));
         assertThat(judgement.judgeResult(), is(result));
+        this.initBoard(board);
 
 
     }
