@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="PlayBoardTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-12-21T08:50:46" hostname="SekiguchiKai-1.local" time="0.015">
-  <properties/>
-  <testcase name="addMove" classname="PlayBoardTest" time="0.013"/>
-  <testcase name="getMoveArray" classname="PlayBoardTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

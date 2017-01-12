@@ -42,11 +42,20 @@ You can play 2games.<br>
 ## Specifications of each classes.
  Please read JavaDocument under ```doc``` directory.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
  
 >>>>>>> b83558ca002ff294de4e72eca3ea282b568ed58f
+=======
+>>>>>>> release/1.5
 
 ## Licence
   [MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
 
+<<<<<<< HEAD
+=======
+# Gomoku
+Gomoku game.
+
+>>>>>>> release/1.5

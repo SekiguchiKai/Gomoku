@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="jp.co.topgate.kai.sekiguchi.ox.player.UserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-12-28T03:04:20" hostname="SekiguchiKai-1.local" time="0.0">
-  <properties/>
-  <testcase name="doMove" classname="jp.co.topgate.kai.sekiguchi.ox.player.UserTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
