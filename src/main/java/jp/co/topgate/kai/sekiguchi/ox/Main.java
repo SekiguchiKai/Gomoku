@@ -29,8 +29,5 @@ public class Main {
         GameLogic gameLogic = selectMode.selectMode();
         gameLogic.playGame();
 
-
     }
-
-
 }

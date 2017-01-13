@@ -42,9 +42,7 @@ You can play 2games.<br>
 ## Specifications of each classes.
  Please read JavaDocument under ```doc``` directory.
 
+
 ## Licence
   [MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-
-# Gomoku
-Gomoku game.
 
