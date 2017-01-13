@@ -79,18 +79,29 @@ public class GomokuJudge implements Judge {
             innerEndNum++;
         }
 
+
         endNum = 5;
-        innerEndNum = 9;
-        int column = 8;
+
+
+        int rowStartNum = 8;
+        int rowEndNum = 3;
+
+        int columnStartNum = 0;
+        int columnEndNum = 5;
+
+
         // 右斜め
         for (int startNum = 0; startNum < endNum; startNum++) {
-            result = this.judgeRightSlanting(gameBoard, moves, startNum, innerEndNum, column);
+            result = this.judgeRightSlanting(gameBoard, moves, rowStartNum, rowEndNum, columnStartNum, columnEndNum);
             if (result) {
                 return result;
             }
-            innerEndNum--;
-            column--;
+            rowStartNum--;
+            rowEndNum--;
+            columnEndNum++;
+
         }
+
 
         return false;
 
@@ -155,7 +166,8 @@ public class GomokuJudge implements Judge {
      */
     private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves, final int startNum, final int endNum) {
         for (int i = startNum; i < endNum; i++) {
-            if (gameBoard[i][i] != moves) {
+            Moves actualMoves = gameBoard[i][i]; // ここ他にも
+            if (actualMoves != moves) {
                 return false;
             }
         }
@@ -170,18 +182,46 @@ public class GomokuJudge implements Judge {
      * @param gameBoard ゲーム盤
      * @return ゲーム盤上の右斜めのラインで5連が達成されているかの真偽値
      */
-    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int startNum, final int endNum, int column) {
+    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int rowStartNum, final int rowEndNum, final int columnStartNum, final int columnEndNum) {
 
-        for (int row = startNum; row < endNum; row++) {
-            if (gameBoard[row][column] != moves) {
-                return false;
+        for (int row = rowStartNum; row > rowEndNum; row--) {
+            for (int column = columnStartNum; column < columnEndNum; column++) {
+                Moves actualMoves = gameBoard[row][column]; // ここ他にも
+                if (actualMoves != moves) {
+                    return false;
+                }
+
             }
-            column--;
-
         }
+
+
         return true;
 
     }
+
+    // モデル
+//    /**
+//     * ゲーム盤上の右斜めのラインで5連が達成されているかを審査するメソッド
+//     *
+//     * @param gameBoard ゲーム盤
+//     * @return ゲーム盤上の右斜めのラインで5連が達成されているかの真偽値
+//     */
+//    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int startNum, final int endNum) {
+//
+//        for (int row = 8; row > 3; row--) {
+//            for (int column = 0; column < 5; column++) {
+//                Moves actualMoves = gameBoard[row][column]; // ここ他にも
+//                if (actualMoves != moves) {
+//                    return false;
+//                }
+//
+//            }
+//        }
+//
+//
+//        return true;
+//
+//    }
 
 
 }
