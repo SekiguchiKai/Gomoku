@@ -4,6 +4,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.judge.TicTacToeJudge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
@@ -39,7 +40,7 @@ public class TicTacToeGameLogic extends GameLogic {
         final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
         final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
         final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
-        final Judge judge = new Judge(ticTacToeBoard, ticTacToeScoreCalculator);
+        final Judge ticTacToeJudge = new TicTacToeJudge();
 
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
@@ -47,13 +48,13 @@ public class TicTacToeGameLogic extends GameLogic {
         final int depthCount = 2;
 
 
-        while (judge.judgeResult() == Result.PENDING) {
+        while (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
             user.doMove(depthCount);
 
-            if (judge.judgeResult() == Result.PENDING) {
+            if (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
                 cpu.doMove(depthCount);
             }
         }
-        ticTacToeCommandLineIO.drawResult(judge.judgeResult());
+        ticTacToeCommandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
     }
 }
