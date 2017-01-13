@@ -198,30 +198,5 @@ public class GomokuJudge implements Judge {
         return true;
 
     }
-
-    // モデル
-//    /**
-//     * ゲーム盤上の右斜めのラインで5連が達成されているかを審査するメソッド
-//     *
-//     * @param gameBoard ゲーム盤
-//     * @return ゲーム盤上の右斜めのラインで5連が達成されているかの真偽値
-//     */
-//    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int startNum, final int endNum) {
-//
-//        for (int row = 8; row > 3; row--) {
-//            for (int column = 0; column < 5; column++) {
-//                Moves actualMoves = gameBoard[row][column]; // ここ他にも
-//                if (actualMoves != moves) {
-//                    return false;
-//                }
-//
-//            }
-//        }
-//
-//
-//        return true;
-//
-//    }
-
-
+    
 }
