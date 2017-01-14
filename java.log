@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246681</millis>
+  <sequence>0</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246709</millis>
+  <sequence>1</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column1</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246711</millis>
+  <sequence>2</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column2</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246713</millis>
+  <sequence>3</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column3</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246715</millis>
+  <sequence>4</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column4</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246718</millis>
+  <sequence>5</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246720</millis>
+  <sequence>6</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:1column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246723</millis>
+  <sequence>7</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:2column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246725</millis>
+  <sequence>8</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:3column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246726</millis>
+  <sequence>9</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246728</millis>
+  <sequence>10</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246729</millis>
+  <sequence>11</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:1column1</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246731</millis>
+  <sequence>12</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:2column2</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246732</millis>
+  <sequence>13</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:3column3</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246734</millis>
+  <sequence>14</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column4</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246735</millis>
+  <sequence>15</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:8column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246738</millis>
+  <sequence>16</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:7column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246739</millis>
+  <sequence>17</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:6column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246744</millis>
+  <sequence>18</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:5column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246745</millis>
+  <sequence>19</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246746</millis>
+  <sequence>20</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246748</millis>
+  <sequence>21</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column1</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246749</millis>
+  <sequence>22</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column2</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246750</millis>
+  <sequence>23</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column3</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246751</millis>
+  <sequence>24</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column4</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246752</millis>
+  <sequence>25</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246753</millis>
+  <sequence>26</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:1column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246756</millis>
+  <sequence>27</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:2column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246757</millis>
+  <sequence>28</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:3column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246758</millis>
+  <sequence>29</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246759</millis>
+  <sequence>30</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:0column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246760</millis>
+  <sequence>31</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:1column1</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246766</millis>
+  <sequence>32</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:2column2</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246767</millis>
+  <sequence>33</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:3column3</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246768</millis>
+  <sequence>34</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column4</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246773</millis>
+  <sequence>35</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:8column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246774</millis>
+  <sequence>36</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:7column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246776</millis>
+  <sequence>37</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:6column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246776</millis>
+  <sequence>38</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:5column0</message>
+</record>
+<record>
+  <date>2017-01-13T17:47:26</date>
+  <millis>1484297246779</millis>
+  <sequence>39</sequence>
+  <logger>jp.co.topgate.kai.sekiguchi.ox.util.Log</logger>
+  <level>INFO</level>
+  <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
+  <method>writeLog</method>
+  <thread>1</thread>
+  <message>row:4column0</message>
+</record>
+</log>
