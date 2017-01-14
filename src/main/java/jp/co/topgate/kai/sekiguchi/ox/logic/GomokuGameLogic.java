@@ -45,15 +45,20 @@ public class GomokuGameLogic extends GameLogic {
         final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
         final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
 
-        final Judge gomokuJudge= new GomokuJudge();
+        final Judge gomokuJudge = new GomokuJudge();
         final int depthCount = 3;
         Order order = new Order();
 
         while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
             order.setRandomOrder(user, cpu);
 
+
             Player firstPlayer = order.getFirstPlayer();
             Player secondPlayer = order.getSecondPlayer();
+
+            // 実験用
+//            Player firstPlayer = user;
+//            Player secondPlayer = user;
 
 
             System.out.println(firstPlayer.getName() + "の番です");

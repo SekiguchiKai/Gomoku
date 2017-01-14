@@ -4,10 +4,6 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.util.Log;
-
-import java.util.logging.Logger;
-import java.util.stream.IntStream;
 
 
 /**
