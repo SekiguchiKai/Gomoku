@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox;
 
 import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
+import jp.co.topgate.kai.sekiguchi.ox.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ public class Main {
      *
      * @param args
      */
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) {
+//
+//        // ログを取得するための準備をする
+//        Log.doLogging();
 
         // 最初の選択画面を選択させる
         SelectMode selectMode = new SelectMode();
@@ -27,10 +30,14 @@ public class Main {
 
         // 実行するゲームのロジック
         GameLogic gameLogic = selectMode.selectMode();
-        gameLogic.playGame();
+
+        try {
+            gameLogic.playGame();
+        } catch (IOException e) {
+            System.err.println("エラーが発生しました" + e.getMessage());
+            e.printStackTrace();
+        }
 
 
     }
-
-
 }
