@@ -24,41 +24,17 @@ public class GomokuScoreCalculator extends ScoreCalculator {
         final int arraySize = 5;
         final Moves[] movesArray = new Moves[arraySize];
 
-
         // row
-        int endNum = 5;
-        int innerEndNum = 5;
-        for (int startNum = 0; startNum < endNum; startNum++) {
-            totalScore += calcRow(movesArray, gameBoard, startNum, innerEndNum, startNum);
-            innerEndNum++;
-        }
+        totalScore += calcRow(movesArray, gameBoard);
 
         // Column
-        endNum = 5;
-        innerEndNum = 5;
-        for (int startNum = 0; startNum < endNum; startNum++) {
-            totalScore += calcColumn(movesArray, gameBoard, startNum, innerEndNum, startNum);
-            innerEndNum++;
-        }
+        totalScore += calcColumn(movesArray, gameBoard);
 
         // leftSlanting
-        endNum = 5;
-        innerEndNum = 5;
-        for (int startNum = 0; startNum < endNum; startNum++) {
-            totalScore += calcLeftSlanting(movesArray, gameBoard, startNum, innerEndNum, startNum);
-            innerEndNum++;
-        }
+        totalScore += calcLeftSlanting(movesArray, gameBoard);
 
-
-        // leftSlanting
-        endNum = 5;
-        innerEndNum = 5;
-        int column = 8;
-        for (int startNum = 0; startNum < endNum; startNum++) {
-            totalScore += calcRightSlanting(movesArray, gameBoard, startNum, innerEndNum, startNum, column);
-            innerEndNum--;
-            column--;
-        }
+        // rightSlanting
+        totalScore += calcRightSlanting(movesArray, gameBoard);
 
         return totalScore;
     }
@@ -67,92 +43,120 @@ public class GomokuScoreCalculator extends ScoreCalculator {
     /**
      * rowの点数を計算するためのメソッド
      *
-     * @param movesArray      Movesを格納するための配列
-     * @param gameBoard       ゲーム盤
-     * @param startNum        rowの走査する範囲の最初の番号
-     * @param innerEndNum     rowの走査する範囲の最後の番号
-     * @param indexDifference movesArrayのインテレーター
+     * @param movesArray Movesを格納するための配列
+     * @param gameBoard  ゲーム盤
      * @return rowの合計点数
      */
-    private int calcRow(final Moves[] movesArray, final Moves[][] gameBoard, final int startNum, final int innerEndNum, final int indexDifference) {
+    private int calcRow(final Moves[] movesArray, final Moves[][] gameBoard) {
 
         final int maxPoint = 50;
         final int minPoint = -50;
-
         final int maxLength = 9;
+        int index = 0;
 
-        IntStream.range(0, maxLength).forEach(row -> IntStream.range(startNum, innerEndNum).forEach(column -> movesArray[column - indexDifference] = gameBoard[row][column]));
-        return super.calcLineScore(movesArray, maxPoint, minPoint);
+        int subTotal = 0;
 
+        for (int row = 0; row < maxLength; row++) {
+            for (int column = 0; column < 5; column++) {
+                movesArray[index] = gameBoard[row][column];
+                movesArray[index + 1] = gameBoard[row][column + 1];
+                movesArray[index + 2] = gameBoard[row][column + 2];
+                movesArray[index + 3] = gameBoard[row][column + 3];
+                movesArray[index + 4] = gameBoard[row][column + 4];
+
+                subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+            }
+        }
+        return subTotal;
     }
 
     /**
      * columnの点数を計算するためのメソッド
      *
-     * @param movesArray      Movesを格納するための配列
-     * @param gameBoard       ゲーム盤
-     * @param startNum        rowの走査する範囲の最初の番号
-     * @param innerEndNum     rowの走査する範囲の最後の番号
-     * @param indexDifference movesArrayのインテレーター
+     * @param movesArray Movesを格納するための配列
+     * @param gameBoard  ゲーム盤
      * @return columnの合計点数
      */
-    private int calcColumn(final Moves[] movesArray, final Moves[][] gameBoard, final int startNum, final int innerEndNum, final int indexDifference) {
-
+    private int calcColumn(final Moves[] movesArray, final Moves[][] gameBoard) {
         final int maxPoint = 50;
         final int minPoint = -50;
-
         final int maxLength = 9;
+        int index = 0;
 
-        IntStream.range(0, maxLength).forEach(column -> IntStream.range(startNum, innerEndNum).forEach(row -> movesArray[row - indexDifference] = gameBoard[row][column]));
-        return super.calcLineScore(movesArray, maxPoint, minPoint);
+        int subTotal = 0;
+
+        for (int column = 0; column < maxLength; column++) {
+            for (int row = 0; row < 5; row++) {
+                movesArray[index] = gameBoard[row][column];
+                movesArray[index + 1] = gameBoard[row + 1][column];
+                movesArray[index + 2] = gameBoard[row + 2][column];
+                movesArray[index + 3] = gameBoard[row + 3][column];
+                movesArray[index + 4] = gameBoard[row + 4][column];
+
+                subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+            }
+        }
+        return subTotal;
 
     }
-
 
     /**
      * 左斜めのラインの点数を計算するためのメソッド
      *
-     * @param movesArray      Movesを格納するための配列
-     * @param gameBoard       ゲーム盤
-     * @param startNum        rowの走査する範囲の最初の番号
-     * @param innerEndNum     rowの走査する範囲の最後の番号
-     * @param indexDifference movesArrayのインテレーター
+     * @param movesArray Movesを格納するための配列
+     * @param gameBoard  ゲーム盤
      * @return columnの合計点数
      */
-    private int calcLeftSlanting(final Moves[] movesArray, final Moves[][] gameBoard, final int startNum, final int innerEndNum, final int indexDifference) {
+
+    private int calcLeftSlanting(final Moves[] movesArray, final Moves[][] gameBoard) {
 
         final int maxPoint = 50;
         final int minPoint = -50;
 
-        IntStream.range(startNum, innerEndNum).forEach(i -> movesArray[i - indexDifference] = gameBoard[i][i]);
-        return super.calcLineScore(movesArray, maxPoint, minPoint);
+        int arrayIndex = 0;
+        int subTotal = 0;
+
+        for (int index = 0; index < 5; index++) {
+            movesArray[arrayIndex] = gameBoard[index][index];
+            movesArray[arrayIndex + 1] = gameBoard[index + 1][index + 1];
+            movesArray[arrayIndex + 2] = gameBoard[index + 2][index + 2];
+            movesArray[arrayIndex + 3] = gameBoard[index + 3][index + 3];
+            movesArray[arrayIndex + 4] = gameBoard[index + 4][index + 4];
+
+            subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+        }
+
+        return subTotal;
 
     }
+
 
     /**
      * 右斜めのラインの点数を計算するためのメソッド
      *
-     * @param movesArray      Movesを格納するための配列
-     * @param gameBoard       ゲーム盤
-     * @param startNum        rowの走査する範囲の最初の番号
-     * @param innerEndNum     rowの走査する範囲の最後の番号
-     * @param indexDifference movesArrayのインテレーター
+     * @param movesArray Movesを格納するための配列
+     * @param gameBoard  ゲーム盤
      * @return columnの合計点数
      */
-    private int calcRightSlanting(final Moves[] movesArray, final Moves[][] gameBoard, final int startNum, final int innerEndNum, final int indexDifference, int column) {
-
+    private int calcRightSlanting(final Moves[] movesArray, final Moves[][] gameBoard) {
         final int maxPoint = 50;
         final int minPoint = -50;
 
-        final int maxLength = 9;
+        int column = 8;
+        int index = 0;
+        int subTotal = 0;
 
-        int i = 0;
-        for (int row = startNum; row < innerEndNum; row++) {
+        // for文1回で、1つの連を表す
+        for (int row = 0; row < 5; row++) {
+            movesArray[index] = gameBoard[row][column];
+            movesArray[index + 1] = gameBoard[row + 1][column - 1];
+            movesArray[index + 2] = gameBoard[row + 2][column - 2];
+            movesArray[index + 3] = gameBoard[row + 3][column - 3];
+            movesArray[index + 4] = gameBoard[row + 4][column - 4];
 
-            movesArray[row] = gameBoard[row][column];
+            subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
             column--;
-
         }
-        return super.calcLineScore(movesArray, maxPoint, minPoint);
+        return subTotal;
     }
 }
