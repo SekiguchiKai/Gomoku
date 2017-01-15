@@ -14,10 +14,10 @@ public class TicTacToeJudge implements Judge {
     /**
      * 勝敗はついているかを確認し、その結果を返すためのメソッド
      *
-     * @param gameBoard ゲーム盤
+     * @param board Boardクラスのインスタンス
      * @return 勝敗の結果
      */
-    public Result judgeResult(Board board) {
+    public Result judgeResult(final Board board) {
 
         Moves[][] gameBoard = board.getGameBoardState();
 
@@ -47,7 +47,7 @@ public class TicTacToeJudge implements Judge {
      * @return ユーザーが敗北しているかの真偽値
      */
 
-    boolean judgeLose(Moves[][] gameBoard) {
+    boolean judgeLose(final Moves[][] gameBoard) {
 
         return (gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[0][2] == Moves.CPU_MOVE ||
                 gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE ||
@@ -67,7 +67,7 @@ public class TicTacToeJudge implements Judge {
      * @return ユーザーが勝利しているかの真偽値
      */
 
-    private boolean judgeWin(Moves[][] gameBoard) {
+    private boolean judgeWin(final Moves[][] gameBoard) {
 
         return (gameBoard[0][0] == Moves.USER_MOVE && gameBoard[0][1] == Moves.USER_MOVE && gameBoard[0][2] == Moves.USER_MOVE ||
                 gameBoard[1][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE ||
