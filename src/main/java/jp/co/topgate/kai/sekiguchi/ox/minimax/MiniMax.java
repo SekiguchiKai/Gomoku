@@ -4,6 +4,8 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
+
 
 import java.util.*;
 
@@ -12,6 +14,7 @@ import java.util.*;
  * Created by sekiguchikai on 2016/12/22.
  */
 public class MiniMax {
+
 
     /**
      * ScoreCalculatorクラスのインスタンス
@@ -49,6 +52,7 @@ public class MiniMax {
      * @return 打ち手を打つのに最適な場所とそこに打ち手を打った場合の点数を格納したBestクラスのインスタンス
      */
     public Cell calcMinMax(final int depth, final Board board, final Moves playerMove, int alpha, int beta) {
+
 
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
@@ -108,7 +112,7 @@ public class MiniMax {
      * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-  List<Cell> makeCapableMOveList(final Board board) {
+    List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 

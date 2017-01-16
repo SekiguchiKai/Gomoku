@@ -7,6 +7,7 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
  */
 public class Order {
 
+
     /**
      * 最初のプレーヤー
      */

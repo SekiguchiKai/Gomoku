@@ -77,8 +77,8 @@ public abstract class ScoreCalculator {
             score = finalMinPoint + counterCorrectionValue;
         }
 
-        Counter.upCount();
 
+        Counter.upCount();
 
         return score;
 

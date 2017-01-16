@@ -25,4 +25,8 @@ public class Counter {
     public static int getCount() {
         return count;
     }
+
+    public static void resetCount() {
+        Counter.count = 0;
+    }
 }
