@@ -25,16 +25,19 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
      */
     public void drawUI(final Board ticTacToeBoard) {
 
+        final int columnSize = ticTacToeBoard.getColumnSize();
 
-        IntStream.range(0, ticTacToeBoard.getColumnSize() - 1).forEach(x -> System.out.print("  " + x));
+        IntStream.range(0, columnSize - 1).forEach(x -> System.out.print("  " + x));
         System.out.println("  2");
 
 
-        for (int y = 0; y < ticTacToeBoard.getRowSize(); y++) {
-            System.out.print(y + "-");
-            for (int x = 0; x < ticTacToeBoard.getColumnSize(); x++) {
-                System.out.print(this.changeMovesToSignal(ticTacToeBoard.getCellState(y, x)));
-                if (x == 2) {
+        final int rowSize = ticTacToeBoard.getRowSize();
+
+        for (int row = 0; row < rowSize; row++) {
+            System.out.print(row + "-");
+            for (int column = 0; column < columnSize; column++) {
+                System.out.print(this.changeMovesToSignal(ticTacToeBoard.getCellState(row, column)));
+                if (column == 2) {
                     break;
                 }
                 System.out.print("--");

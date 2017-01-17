@@ -49,7 +49,7 @@ public class SelectMode {
         Scanner scanner = new Scanner(System.in);
         String selectedMode = scanner.next();
 
-        if (!Pattern.matches("^[.1-2]$", selectedMode)) {
+        if (!Pattern.matches("^[1-2]$", selectedMode)) {
             System.out.println("不適切な入力です。表示されている番号を入力してください");
             return Integer.MIN_VALUE;
         }

@@ -42,7 +42,7 @@ public abstract class Board {
      * インスタンス変数であるgameBoard(ゲーム盤)を初期化する
      */
     protected void initGameBoard() {
-        IntStream.range(0, this.rowSize).forEach(y -> IntStream.range(0, this.columnSize).forEach(x -> this.putMoves(y, x, Moves.NO_MOVE)));
+        IntStream.range(0, this.rowSize).forEach(row -> IntStream.range(0, this.columnSize).forEach(column -> this.putMoves(row, column, Moves.NO_MOVE)));
     }
 
     /**

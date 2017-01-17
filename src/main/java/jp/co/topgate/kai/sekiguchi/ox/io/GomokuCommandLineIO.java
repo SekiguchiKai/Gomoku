@@ -30,11 +30,15 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
 
         final int limitNumber = 8;
-        for (int y = 0; y < gomokuBoard.getRowSize(); y++) {
-            System.out.print(y + "-");
-            for (int x = 0; x < gomokuBoard.getColumnSize(); x++) {
-                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(y, x)));
-                if (x == limitNumber) {
+
+        final int rowSize = gomokuBoard.getRowSize();
+        final int columnSize = gomokuBoard.getColumnSize();
+
+        for (int row = 0; row < rowSize; row++) {
+            System.out.print(row + "-");
+            for (int column = 0; column < columnSize; column++) {
+                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(row, column)));
+                if (column == limitNumber) {
                     break;
                 }
                 System.out.print("--");
