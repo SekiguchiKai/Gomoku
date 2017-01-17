@@ -28,11 +28,11 @@ public class GomokuScoreCalculator extends ScoreCalculator {
 
         totalScore += this.calcRow(movesArray, gameBoard);
 
-        totalScore += calcColumn(movesArray, gameBoard);
+        totalScore += this.calcColumn(movesArray, gameBoard);
 
-        totalScore += calcLeftSlanting(movesArray, gameBoard);
+        totalScore += this.calcLeftSlanting(movesArray, gameBoard);
 
-        totalScore += calcRightSlanting(movesArray, gameBoard);
+        totalScore += this.calcRightSlanting(movesArray, gameBoard);
 
 
         Counter.resetCount();
