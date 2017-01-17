@@ -1,5 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox;
 
+import jp.co.topgate.kai.sekiguchi.ox.constantset.Games;
 import jp.co.topgate.kai.sekiguchi.ox.logic.GameLogic;
 import jp.co.topgate.kai.sekiguchi.ox.logic.GomokuGameLogic;
 import jp.co.topgate.kai.sekiguchi.ox.logic.TicTacToeGameLogic;
@@ -13,12 +14,12 @@ import java.util.regex.Pattern;
  * 最初のモードを選択する画面についてのユーザーインターフェース
  * Created by sekiguchikai on 2017/01/05.
  */
-public class SelectMode {
+public class SelectGameMode {
 
     /**
      * ユーザーに遊ぶゲームを選択させる画面を表示するメソッド
      */
-    public void showMode() {
+    public void showGameTitle() {
         System.out.println("以下の中から遊びたいゲームの番号を入力して、[Enter]キーを入力してください");
         System.out.println("1: 三目並べ");
         System.out.println("2: 五目並べ");
@@ -30,13 +31,13 @@ public class SelectMode {
      *
      * @return 選択されたゲームのロジック
      */
-    public GameLogic selectMode() {
-        int selectedModeNumber = this.getUserInput();
+    public GameLogic selectGame() {
+        Games selectedGame = this.getUserInput();
 
-        while (selectedModeNumber == Integer.MIN_VALUE) {
-            selectedModeNumber = this.getUserInput();
+        while (selectedGame == Games.NO_EXIST) {
+            selectedGame = this.getUserInput();
         }
-        return this.getGameLogic(selectedModeNumber);
+        return this.getGameLogic(selectedGame);
 
     }
 
@@ -45,33 +46,41 @@ public class SelectMode {
      *
      * @return ユーザーがコマンドラインで入力した値（不適切な値を入力した場合は、Integer.MIN_VALUE）
      */
-    private int getUserInput() {
+    private Games getUserInput() {
         Scanner scanner = new Scanner(System.in);
         String selectedMode = scanner.next();
 
-        if (!Pattern.matches("^[.1-2]$", selectedMode)) {
-            System.out.println("不適切な入力です。表示されている番号を入力してください");
-            return Integer.MIN_VALUE;
+        final String ticTacToe = "1";
+        final String gomoku = "2";
+
+        switch (selectedMode) {
+            case ticTacToe:
+                return Games.TIC_TAC_TOE;
+            case gomoku:
+                return Games.GOMOKU;
         }
 
-        return Integer.parseInt(selectedMode);
+        System.out.println("不適切な入力です。表示されている番号を入力してください");
+
+        return Games.NO_EXIST;
     }
 
     /**
      * 選択されたゲームのロジックのインスタンスを返す
      *
-     * @param id 各ゲームロジックのid
+     * @param games 各ゲームロジックのid
      * @return ゲームのロジック
      */
-    private GameLogic getGameLogic(final int id) {
+    private GameLogic getGameLogic(final Games games) {
 
-        switch (id) {
-            case 1:
-                return new TicTacToeGameLogic();
-            case 2:
-                return new GomokuGameLogic();
+        if (games == Games.TIC_TAC_TOE) {
+            return new TicTacToeGameLogic();
+        } else if (games == Games.GOMOKU) {
+            return new GomokuGameLogic();
         }
 
+
+        // ここで例外処理を書く
         return null;
 
     }
