@@ -19,30 +19,11 @@ public abstract class ScoreCalculator {
     public abstract int calcScore(Moves[][] gameBoard);
 
     /**
-     * 引数として受け取った打ち手3つの点数の合計を求める
-     * 点数の計算方法は以下
-     * <p>
-     * CPUの石1つ :1
-     * USERの石1つ :-1
-     * EMPTY :0
-     * <p>
-     * 合計
-     * 【CPU】
-     * CPUの石が3つ揃っていた場合 : 100
-     * CPUの石が2つ揃っていた場合 : 20
-     * CPUの石が1つ揃っていた場合 : 10
-     * <p>
-     * 【USER】
-     * USERの石が3つ揃っていた場合 : -100
-     * USERの石が2つ揃っていた場合 : -20
-     * USERの石が1つ揃っていた場合 : -10
-     * <p>
-     * 【EMPTY】
-     * EMPTYの場合 :0
+     * 引数として受け取った3つの打ち手の点数の合計を求める
      *
      * @param movesArray 一列分のMovesを格納した配列
-     * @param maxPoint   自分の打ち手が一列揃った時の点数
-     * @param minPoint   相手の打ち手が一列揃った時の点数
+     * @param maxPoint   自分の打ち手がラインが揃った時の点数
+     * @param minPoint   相手の打ち手がラインが揃った時の点数
      * @return ラインの合計点数
      */
     protected int calcLineScore(final Moves[] movesArray, final int maxPoint, final int minPoint) {
@@ -76,6 +57,7 @@ public abstract class ScoreCalculator {
         } else if (score == minPoint) {
             score = finalMinPoint + counterCorrectionValue;
         }
+
 
         Counter.upCount();
 

@@ -183,25 +183,5 @@ public class GomokuJudgeTest {
     }
 
 
-//
-//
-//       gomokuBoard.putMoves(0,8,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(1,7,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(2,6,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(3,5,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(4,4,Moves.USER_MOVE);
-//
-//    assertThat(gomokuJudge.judgeResult(gomokuBoard),is(Result.WIN));
-//        BoardInitializer.initGameBoard(gomokuBoard);
-//
-//
-//        gomokuBoard.putMoves(1,7,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(2,6,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(3,5,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(4,4,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(5,3,Moves.USER_MOVE);
-//
-//    assertThat(gomokuJudge.judgeResult(gomokuBoard),is(Result.WIN));
-//        BoardInitializer.initGameBoard(gomokuBoard);
 
 }

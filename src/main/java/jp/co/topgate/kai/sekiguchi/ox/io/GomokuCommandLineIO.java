@@ -90,8 +90,6 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
         System.out.println("スタート");
 
-        Moves[][] gameBoard = board.getGameBoardState();
-
 
         if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);

@@ -12,7 +12,7 @@ public interface Judge {
     /**
      * 勝敗はついているかを確認し、その結果を返すためのメソッド
      *
-     * @param gameBoard ゲーム盤
+     * @param board Boardクラスのインスタンス
      * @return 勝敗の結果
      */
     Result judgeResult(Board board);
