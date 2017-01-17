@@ -4,6 +4,8 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
+
 
 import java.util.*;
 
@@ -12,6 +14,7 @@ import java.util.*;
  * Created by sekiguchikai on 2016/12/22.
  */
 public class MiniMax {
+
 
     /**
      * ScoreCalculatorクラスのインスタンス
@@ -65,6 +68,7 @@ public class MiniMax {
             Cell cell = new Cell(y, x);
             cell.setBestScore(score);
 
+
             return cell;
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
@@ -97,6 +101,7 @@ public class MiniMax {
             }
             Cell cell = new Cell(y, x);
             cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+
             return cell;
         }
     }
@@ -108,7 +113,7 @@ public class MiniMax {
      * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-  List<Cell> makeCapableMOveList(final Board board) {
+    List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
