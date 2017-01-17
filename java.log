@@ -10,7 +10,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -21,7 +21,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column1</message>
+  <message>rowSize:0column1</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -32,7 +32,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column2</message>
+  <message>rowSize:0column2</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -43,7 +43,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column3</message>
+  <message>rowSize:0column3</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -54,7 +54,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column4</message>
+  <message>rowSize:0column4</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -65,7 +65,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -76,7 +76,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:1column0</message>
+  <message>rowSize:1column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -87,7 +87,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:2column0</message>
+  <message>rowSize:2column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -98,7 +98,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:3column0</message>
+  <message>rowSize:3column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -109,7 +109,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column0</message>
+  <message>rowSize:4column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -120,7 +120,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -131,7 +131,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:1column1</message>
+  <message>rowSize:1column1</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -142,7 +142,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:2column2</message>
+  <message>rowSize:2column2</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -153,7 +153,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:3column3</message>
+  <message>rowSize:3column3</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -164,7 +164,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column4</message>
+  <message>rowSize:4column4</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -175,7 +175,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:8column0</message>
+  <message>rowSize:8column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -186,7 +186,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:7column0</message>
+  <message>rowSize:7column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -197,7 +197,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:6column0</message>
+  <message>rowSize:6column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -208,7 +208,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:5column0</message>
+  <message>rowSize:5column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -219,7 +219,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column0</message>
+  <message>rowSize:4column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -230,7 +230,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -241,7 +241,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column1</message>
+  <message>rowSize:0column1</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -252,7 +252,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column2</message>
+  <message>rowSize:0column2</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -263,7 +263,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column3</message>
+  <message>rowSize:0column3</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -274,7 +274,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column4</message>
+  <message>rowSize:0column4</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -285,7 +285,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -296,7 +296,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:1column0</message>
+  <message>rowSize:1column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -307,7 +307,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:2column0</message>
+  <message>rowSize:2column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -318,7 +318,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:3column0</message>
+  <message>rowSize:3column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -329,7 +329,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column0</message>
+  <message>rowSize:4column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -340,7 +340,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:0column0</message>
+  <message>rowSize:0column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -351,7 +351,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:1column1</message>
+  <message>rowSize:1column1</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -362,7 +362,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:2column2</message>
+  <message>rowSize:2column2</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -373,7 +373,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:3column3</message>
+  <message>rowSize:3column3</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -384,7 +384,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column4</message>
+  <message>rowSize:4column4</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -395,7 +395,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:8column0</message>
+  <message>rowSize:8column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -406,7 +406,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:7column0</message>
+  <message>rowSize:7column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -417,7 +417,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:6column0</message>
+  <message>rowSize:6column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -428,7 +428,7 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:5column0</message>
+  <message>rowSize:5column0</message>
 </record>
 <record>
   <date>2017-01-13T17:47:26</date>
@@ -439,6 +439,6 @@
   <class>jp.co.topgate.kai.sekiguchi.ox.util.Log</class>
   <method>writeLog</method>
   <thread>1</thread>
-  <message>row:4column0</message>
+  <message>rowSize:4column0</message>
 </record>
 </log>

@@ -5,8 +5,6 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 
-import java.util.stream.IntStream;
-
 /**
  * 三目並べの勝敗結果を調べるクラス
  * Created by sekiguchikai on 2017/01/06.
@@ -52,19 +50,9 @@ public class TicTacToeJudge implements Judge {
 
         return this.judgeRow(gameBoard, Moves.CPU_MOVE)
                 || this.judgeColumn(gameBoard, Moves.CPU_MOVE)
-                || this.judgeleftSlanting(gameBoard, Moves.CPU_MOVE)
+                || this.judgeLeftSlanting(gameBoard, Moves.CPU_MOVE)
                 || this.judgeRightSlanting(gameBoard, Moves.CPU_MOVE);
 
-
-//        return (gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[0][2] == Moves.CPU_MOVE ||
-//                gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE ||
-//                gameBoard[2][0] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-//                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE ||
-//                gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE ||
-//                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-//                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-//                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE
-//        );
     }
 
 
@@ -80,19 +68,8 @@ public class TicTacToeJudge implements Judge {
 
         return this.judgeRow(gameBoard, Moves.USER_MOVE)
                 || this.judgeColumn(gameBoard, Moves.USER_MOVE)
-                || this.judgeleftSlanting(gameBoard, Moves.USER_MOVE)
+                || this.judgeLeftSlanting(gameBoard, Moves.USER_MOVE)
                 || this.judgeRightSlanting(gameBoard, Moves.USER_MOVE);
-
-//        return (gameBoard[0][0] == Moves.USER_MOVE && gameBoard[0][1] == Moves.USER_MOVE && gameBoard[0][2] == Moves.USER_MOVE ||
-//                gameBoard[1][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE ||
-//                gameBoard[2][0] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-//                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][0] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE ||
-//                gameBoard[0][1] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE ||
-//                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-//                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-//                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE
-//        );
-
     }
 
     /**
@@ -147,7 +124,7 @@ public class TicTacToeJudge implements Judge {
      *
      * @return 左斜めのラインで、3つ同じ打ち手が揃っているかどうかの真偽値
      */
-    private boolean judgeleftSlanting(final Moves[][] gameBoard, final Moves moves) {
+    private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
         final int indexSize = 3;
         for (int index = 0; index < indexSize; index++) {
             if (gameBoard[index][index] != moves) {

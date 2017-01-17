@@ -56,7 +56,7 @@ set CMD_LINE_ARGS=
 set _SKIP=2
 
 :win9xME_args_slurp
-if "column%~1" == "column" goto execute
+if "columnSize%~1" == "columnSize" goto execute
 
 set CMD_LINE_ARGS=%*
 

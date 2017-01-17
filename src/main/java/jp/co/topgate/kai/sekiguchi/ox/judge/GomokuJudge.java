@@ -66,10 +66,10 @@ public class GomokuJudge implements Judge {
      * @return 引き分けかどうかの真偽値
      */
     private boolean judgeDraw(final Moves[][] gameBoard) {
-        final int maxLength = 9;
+        final int maxSize = 9;
 
-        for (int row = 0; row < maxLength; row++) {
-            for (int column = 0; column < maxLength; column++) {
+        for (int row = 0; row < maxSize; row++) {
+            for (int column = 0; column < maxSize; column++) {
                 if (this.judgeWin(gameBoard) || this.judgeLose(gameBoard) || gameBoard[row][column] == Moves.NO_MOVE) {
                     return false;
                 }
@@ -92,8 +92,11 @@ public class GomokuJudge implements Judge {
         final int differenceThree = 3;
         final int differenceFour = 4;
 
-        for (int row = 0; row < 9; row++) {
-            for (int column = 0; column < 5; column++) {
+        final int rowSize = 9;
+        final int columnMax = 5;
+
+        for (int row = 0; row < rowSize; row++) {
+            for (int column = 0; column < columnMax; column++) {
                 Moves[][] target = gameBoard;
                 if (gameBoard[row][column] == moves && gameBoard[row][column + differenceOne] == moves && gameBoard[row][column + differenceTwo] == moves && gameBoard[row][column + differenceThree] == moves && gameBoard[row][column + differenceFour] == moves) {
                     return true;
@@ -117,8 +120,11 @@ public class GomokuJudge implements Judge {
         final int differenceThree = 3;
         final int differenceFour = 4;
 
-        for (int column = 0; column < 9; column++) {
-            for (int row = 0; row < 5; row++) {
+        final int columnSize = 9;
+        final int rowMax = 5;
+
+        for (int column = 0; column < columnSize; column++) {
+            for (int row = 0; row < rowMax; row++) {
                 Moves[][] target = gameBoard;
                 if (gameBoard[row][column] == moves && gameBoard[row + differenceOne][column] == moves && gameBoard[row + differenceTwo][column] == moves && gameBoard[row + differenceThree][column] == moves && gameBoard[row + differenceFour][column] == moves) {
                     return true;
@@ -142,7 +148,9 @@ public class GomokuJudge implements Judge {
         final int differenceThree = 3;
         final int differenceFour = 4;
 
-        for (int index = 0; index < 5; index++) {
+        final int indexMax = 5;
+
+        for (int index = 0; index < indexMax; index++) {
             if (gameBoard[index][index] == moves && gameBoard[index + differenceOne][index + differenceOne] == moves && gameBoard[index + differenceTwo][index + differenceTwo] == moves && gameBoard[index + differenceThree][index + differenceThree] == moves && gameBoard[index + differenceFour][index + differenceFour] == moves) {
                 return true;
             }
@@ -167,10 +175,11 @@ public class GomokuJudge implements Judge {
         final int differenceFour = 4;
 
         int column = 8;
+        final int rowMax = 5;
 
 
         // for文1回で、1つの連を表す
-        for (int row = 0; row < 5; row++) {
+        for (int row = 0; row < rowMax; row++) {
             if (gameBoard[row][column] == moves && gameBoard[row + differenceOne][column - differenceOne] == moves && gameBoard[row + differenceTwo][column - differenceTwo] == moves && gameBoard[row + differenceThree][column - differenceThree] == moves && gameBoard[row + differenceFour][column - differenceFour] == moves) {
                 return true;
             }

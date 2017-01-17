@@ -32,10 +32,10 @@ public class GomokuGameLogic extends GameLogic {
 
         GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
 
-        final int row = 9;
-        final int column = 9;
+        final int rowSize = 9;
+        final int columnSize = 9;
 
-        final Board gomokuGameBoard = new GomokuBoard(row, column);
+        final Board gomokuGameBoard = new GomokuBoard(rowSize, columnSize);
 
         gomokuCommandLineIO.drawUI(gomokuGameBoard);
 
@@ -55,7 +55,7 @@ public class GomokuGameLogic extends GameLogic {
 
             Player firstPlayer = order.getFirstPlayer();
             Player secondPlayer = order.getSecondPlayer();
-            
+
 
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
