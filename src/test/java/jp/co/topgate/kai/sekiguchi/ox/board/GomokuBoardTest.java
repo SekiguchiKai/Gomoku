@@ -76,6 +76,27 @@ public class GomokuBoardTest {
     }
 
     /**
+     * initGameBoardメソッドテストするためのメソッド
+     */
+    @Test
+    public void initGameBoard() {
+        final int row = 1;
+        final int column = 1;
+
+        gomokuBoard.putMoves(row, column, Moves.CPU_MOVE);
+        Moves actual = gomokuBoard.getCellState(row, column);
+
+        Moves expected = Moves.CPU_MOVE;
+        assertThat(actual, is(expected));
+
+
+        gomokuBoard.initGameBoard();
+        Moves actual2 = gomokuBoard.getCellState(row, column);
+        Moves expected2 = Moves.NO_MOVE;
+        assertThat(actual2, is(expected2));
+    }
+
+    /**
      * getRowSizeメソッドをテストするためのメソッド
      */
     @Test

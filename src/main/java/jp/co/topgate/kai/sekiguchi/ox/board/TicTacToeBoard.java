@@ -20,7 +20,7 @@ public class TicTacToeBoard extends Board {
      */
     public TicTacToeBoard(final int row, final int column) {
         super(row, column);
-        IntStream.range(0, super.getColumnSize()).forEach(y -> IntStream.range(0, super.getRowSize()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
+        super.initGameBoard();
     }
 
 

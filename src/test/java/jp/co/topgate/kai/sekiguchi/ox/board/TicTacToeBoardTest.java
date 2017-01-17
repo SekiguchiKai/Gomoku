@@ -15,6 +15,27 @@ import java.util.stream.IntStream;
 public class TicTacToeBoardTest {
     Board ticTacToeBoard = new GomokuBoard(3, 3);
 
+    /**
+     * initGameBoardメソッドテストするためのメソッド
+     */
+    @Test
+    public void initGameBoard() {
+        final int row = 1;
+        final int column = 1;
+
+        ticTacToeBoard.putMoves(row, column, Moves.CPU_MOVE);
+        Moves actual = ticTacToeBoard.getCellState(row, column);
+
+        Moves expected = Moves.CPU_MOVE;
+        assertThat(actual, is(expected));
+
+
+        ticTacToeBoard.initGameBoard();
+        Moves actual2 = ticTacToeBoard.getCellState(row, column);
+        Moves expected2 = Moves.NO_MOVE;
+        assertThat(actual2, is(expected2));
+    }
+
 
     /**
      * putMovesメソッドをテストするためのメソッド

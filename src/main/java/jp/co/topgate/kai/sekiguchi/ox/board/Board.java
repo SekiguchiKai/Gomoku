@@ -39,6 +39,13 @@ public abstract class Board {
     }
 
     /**
+     * インスタンス変数であるgameBoard(ゲーム盤)を初期化する
+     */
+    protected void initGameBoard() {
+        IntStream.range(0, this.row).forEach(y -> IntStream.range(0, this.column).forEach(x -> this.putMoves(y, x, Moves.NO_MOVE)));
+    }
+
+    /**
      * ゲーム盤の指定した場所に打ち手を打つためのメソッド
      *
      * @param row    ゲーム盤のrow座標
