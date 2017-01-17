@@ -128,37 +128,16 @@ public class GomokuJudge implements Judge {
      */
     private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
 
-        boolean result;
-
-        for (int startIndex = 0; startIndex < 5; startIndex++) {
-            result = this.judgeLeftSlantingHelper(gameBoard, moves, startIndex);
-
-            if (result) {
-                return result;
-            }
-        }
-
-        return false;
-
-    }
-
-    /**
-     * 引数で受け取った各左斜めのラインについて、指定されたMoveで5連が達成されているか確認するためのメソッド
-     *
-     * @param gameBoard  ゲーム盤
-     * @param moves      検査対象のプレーヤーの打ち手
-     * @param startIndex rowとcolumnのインデックスの開始値
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeLeftSlantingHelper(final Moves[][] gameBoard, final Moves moves, final int startIndex) {
-
         for (int index = 0; index < 5; index++) {
             if (gameBoard[index][index] == moves && gameBoard[index + 1][index + 1] == moves && gameBoard[index + 2][index + 2] == moves && gameBoard[index + 3][index + 3] == moves && gameBoard[index + 4][index + 4] == moves) {
                 return true;
             }
         }
         return false;
+
     }
+
+
 
 
     /**

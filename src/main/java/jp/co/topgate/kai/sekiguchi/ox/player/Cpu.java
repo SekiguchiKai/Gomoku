@@ -5,7 +5,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
+
 
 
 /**

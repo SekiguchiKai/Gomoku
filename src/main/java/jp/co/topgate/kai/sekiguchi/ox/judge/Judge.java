@@ -15,5 +15,5 @@ public interface Judge {
      * @param board Boardクラスのインスタンス
      * @return 勝敗の結果
      */
-    Result judgeResult(final Board board);
+    Result judgeResult(Board board);
 }

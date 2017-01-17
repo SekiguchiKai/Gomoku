@@ -13,8 +13,7 @@ import java.util.stream.IntStream;
  * Created by sekiguchikai on 2016/12/27.
  */
 public class TicTacToeBoardTest {
-
-    Board board = new GomokuBoard(3, 3);
+    Board ticTacToeBoard = new GomokuBoard(3, 3);
 
 
     /**
@@ -23,13 +22,20 @@ public class TicTacToeBoardTest {
     @Test
     public void putMoves() {
 
-        Moves[] movesArray = new Moves[3];
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.USER_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.USER_MOVE, Moves.USER_MOVE));
+        int rowSize = ticTacToeBoard.getRowSize();
+        int columnSize = ticTacToeBoard.getColumnSize();
+
+        // 全てMoves.CPU_MOVE
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> ticTacToeBoard.putMoves(row, column, Moves.CPU_MOVE)));
+        Moves[][] gameBoardState = ticTacToeBoard.getGameBoardState();
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> this.getCellState(gameBoardState[row][column], Moves.CPU_MOVE)));
 
 
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+        // 全てMoves.USER_MOVE
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> ticTacToeBoard.putMoves(row, column, Moves.USER_MOVE)));
+        Moves[][] gameBoardState2 = ticTacToeBoard.getGameBoardState();
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> this.getCellState(gameBoardState2[row][column], Moves.USER_MOVE)));
+
 
     }
 
@@ -37,14 +43,10 @@ public class TicTacToeBoardTest {
     /**
      * getCellStateメソッドをテストし、putMovesメソッドをテストするためのメソッドを補助するためのメソッド
      *
-     * @param rowData    列のデータ
-     * @param columnData 行のデータ
-     * @param moveData   打ち手のデータ
-     * @param expected   期待する値
+     * @param actual   実際の値
+     * @param expected 期待する値
      */
-    private void getCellState(final int rowData, final int columnData, final Moves moveData, final Moves expected) {
-        this.board.putMoves(rowData, columnData, moveData);
-        Moves actual = this.board.getCellState(rowData, columnData);
+    private void getCellState(Moves actual, Moves expected) {
 
         assertThat(actual, is(expected));
     }
@@ -69,9 +71,13 @@ public class TicTacToeBoardTest {
      * @param expected 期待する値
      */
     private void getGameBoardStateHelper(Moves data, Moves expected) {
-        IntStream.range(0, 3).forEach(row -> IntStream.range(0, 3).forEach(column -> this.board.putMoves(row, column, data)));
 
-        IntStream.range(0, 3).forEach(row -> IntStream.range(0, 3).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
+        int rowSize = ticTacToeBoard.getRowSize();
+        int columnSize = ticTacToeBoard.getColumnSize();
+
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> this.ticTacToeBoard.putMoves(row, column, data)));
+
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> assertThat(this.ticTacToeBoard.getGameBoardState()[row][column], is(expected))));
     }
 
     /**
@@ -79,7 +85,7 @@ public class TicTacToeBoardTest {
      */
     @Test
     public void getRowSize() {
-        int actual = this.board.getRowSize();
+        int actual = this.ticTacToeBoard.getRowSize();
         assertThat(actual, is(3));
     }
 
@@ -88,7 +94,7 @@ public class TicTacToeBoardTest {
      */
     @Test
     public void getColumnSize() {
-        int actual = this.board.getColumnSize();
+        int actual = this.ticTacToeBoard.getColumnSize();
         assertThat(actual, is(3));
     }
 

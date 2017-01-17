@@ -53,7 +53,6 @@ public class MiniMax {
      */
     public Cell calcMinMax(final int depth, final Board board, final Moves playerMove, int alpha, int beta) {
 
-
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
         int score;
@@ -68,6 +67,7 @@ public class MiniMax {
 
             Cell cell = new Cell(y, x);
             cell.setBestScore(score);
+
 
             return cell;
         } else {
@@ -101,6 +101,7 @@ public class MiniMax {
             }
             Cell cell = new Cell(y, x);
             cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+
             return cell;
         }
     }

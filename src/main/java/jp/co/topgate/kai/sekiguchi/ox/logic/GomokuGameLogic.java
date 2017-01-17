@@ -55,11 +55,7 @@ public class GomokuGameLogic extends GameLogic {
 
             Player firstPlayer = order.getFirstPlayer();
             Player secondPlayer = order.getSecondPlayer();
-
-            // 実験用
-//            Player firstPlayer = user;
-//            Player secondPlayer = user;
-
+            
 
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);

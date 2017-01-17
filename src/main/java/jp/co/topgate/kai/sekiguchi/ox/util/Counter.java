@@ -26,6 +26,9 @@ public class Counter {
         return count;
     }
 
+    /**
+     * カウンターを初期化するためのメソッド
+     */
     public static void resetCount() {
         Counter.count = 0;
     }

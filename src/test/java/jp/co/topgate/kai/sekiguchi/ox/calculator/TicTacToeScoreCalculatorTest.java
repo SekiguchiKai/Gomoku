@@ -30,108 +30,196 @@ public class TicTacToeScoreCalculatorTest {
      */
     @Test
     public void calcScore() {
-        int rowNumber;
+        this.checkRow1(Moves.CPU_MOVE, 99950);
+        this.checkRow1(Moves.USER_MOVE, -99150);
 
+        this.checkRow2(Moves.CPU_MOVE, 99950);
+        this.checkRow2(Moves.USER_MOVE, -99950);
 
-        Moves[] movesArray1 = this.helper(Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE);
-        final int count = 3;
+        this.checkRow3(Moves.CPU_MOVE, 99850);
+        this.checkRow3(Moves.USER_MOVE, -99850);
 
-        final int cpuExpectedScore1 = 99750;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray1, Moves.CPU_MOVE, count, rowNum, cpuExpectedScore1));
+        this.checkColumn1(Moves.CPU_MOVE, 99750);
+        this.checkColumn1(Moves.USER_MOVE, -99750);
 
-        final int userExpectedScore1 = 100350;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray1, Moves.USER_MOVE, count, rowNum, userExpectedScore1));
+        this.checkColumn2(Moves.CPU_MOVE, 99650);
+        this.checkColumn2(Moves.USER_MOVE, -99650);
 
+        this.checkColumn3(Moves.CPU_MOVE, 99550);
+        this.checkColumn3(Moves.USER_MOVE, -99550);
 
-        Moves[] movesArray2 = this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE);
-        final int count2 = 3;
+        this.checkLeftSlanting(Moves.CPU_MOVE, 99470);
+        this.checkLeftSlanting(Moves.USER_MOVE, -99470);
 
-        final int cpuExpectedScore2 = -100350;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray2, Moves.CPU_MOVE, count2, rowNum, cpuExpectedScore2));
-
-        final int userExpectedScore2 = -99750;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray2, Moves.USER_MOVE, count2, rowNum, userExpectedScore2));
-
-
-        Moves[] movesArray3 = this.helper(Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE);
-        final int count3 = 0;
-
-        final int cpuExpectedScore3 = 0;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray3, Moves.CPU_MOVE, count3, rowNum, cpuExpectedScore3));
-
-        final int userExpectedScore3 = 0;
-        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray3, Moves.USER_MOVE, count3, rowNum, userExpectedScore3));
-
-
-        Moves[] movesArray4 = this.helper(Moves.CPU_MOVE, Moves.NO_MOVE, Moves.NO_MOVE);
-        final int count4 = 1;
-
-
-        final int cpuExpectedScore4 = 0;
-        rowNumber = 0;
-        this.checkRowScore(movesArray4, Moves.CPU_MOVE, count4, rowNumber, cpuExpectedScore4);
-        rowNumber = 1;
-        this.checkRowScore(movesArray4, Moves.CPU_MOVE, count4, rowNumber, cpuExpectedScore4);
-
-
-//        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray3, Moves.CPU_MOVE, count3, rowNum, cpuExpectedScore3));
-//
-//        final int userExpectedScore3 = 0;
-//        IntStream.range(0, 3).forEach(rowNum -> this.checkRowScore(movesArray3, Moves.USER_MOVE, count3, rowNum, userExpectedScore3));
+        this.checkRightSlanting(Moves.CPU_MOVE, 99370);
+        this.checkRightSlanting(Moves.USER_MOVE, -99370);
 
 
     }
 
 
     /**
-     * calcScoreメソッドをテストするためのメソッドとcalcLineScoreメソッドをテストするためのメソッドを補助するためのメソッド
+     * 1行目のrowをテストするためのメソッド
      *
-     * @param moves1   テストで使用するMOVES型のデータ^
-     * @param moves2   テストで使用するMOVES型のデータ
-     * @param moves3   テストで使用するMOVES型のデータ
+     * @param moves    打ち手
      * @param expected 期待する値
      */
-    private Moves[] helper(Moves moves1, Moves moves2, Moves moves3) {
-        return new Moves[]{moves1, moves2, moves3};
-    }
+    private void checkRow1(Moves moves, int expected) {
 
+        for (int column = 0; column < 3; column++) {
+            ticTacToeBoard.putMoves(0, column, moves);
+        }
 
-    Moves[][] gameBoard;
-
-    // 横
-    private void checkRowScore(Moves[] movesArray, Moves player, int count, int rowNum, int expected) {
-
-        IntStream.range(0, 3).forEach(column -> ticTacToeBoard.putMoves(rowNum, column, movesArray[column]));
-        this.assertScore(ticTacToeBoard, player, count, expected);
-
-    }
-
-
-    private void assertScore(Board ticTacToeBoard, Moves player, int count, int expected) {
-        IntStream.range(0, count).forEach(i -> Counter.upCount());
         Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
-//        int score = ticTacToeScoreCalculator.calcScore(gameBoard, player);
-//        assertThat(score, is(expected));
-//        Counter.resetCount();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+//        assertThat(actual, is(expected));
+
         BoardInitializer.initGameBoard(ticTacToeBoard);
     }
 
 
-    // 縦
-    private void checkColumnScore(Moves[] movesArray, int expected) {
-        IntStream.range(0, 3).forEach(i -> ticTacToeBoard.putMoves(0, i, movesArray[i]));
+    /**
+     * 行目のrowをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkRow2(Moves moves, int expected) {
+        for (int column = 0; column < 3; column++) {
+            ticTacToeBoard.putMoves(1, column, moves);
+        }
+
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
     }
 
+    /**
+     * 3行目のrowをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkRow3(Moves moves, int expected) {
+        for (int column = 0; column < 3; column++) {
+            ticTacToeBoard.putMoves(2, column, moves);
+        }
 
-    // 左斜め
-    private void checkLeftSlantingScore(Moves[] movesArray, int expected) {
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
 
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
     }
 
-    // 右斜め
-    private void checkRightSlantingScore(Moves[] movesArray, int expected) {
+    /**
+     * 1列目のcolumnをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkColumn1(Moves moves, int expected) {
 
+        for (int row = 0; row < 3; row++) {
+            ticTacToeBoard.putMoves(row, 0, moves);
+        }
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+        assertThat(actual, is(expected));
+
+        BoardInitializer.initGameBoard(ticTacToeBoard);
+    }
+
+    /**
+     * 2列目のcolumnをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkColumn2(Moves moves, int expected) {
+        for (int row = 0; row < 3; row++) {
+            ticTacToeBoard.putMoves(row, 1, moves);
+        }
+
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
+    }
+
+    /**
+     * 3列目のcolumnをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkColumn3(Moves moves, int expected) {
+        for (int row = 0; row < 3; row++) {
+            ticTacToeBoard.putMoves(row, 2, moves);
+        }
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
+    }
+
+    /**
+     * 左斜めのラインをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkLeftSlanting(Moves moves, int expected) {
+        for (int index = 0; index < 3; index++) {
+            ticTacToeBoard.putMoves(index, index, moves);
+        }
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
+    }
+
+    /**
+     * 右斜めのラインをテストするためのメソッド
+     *
+     * @param moves    打ち手
+     * @param expected 期待する値
+     */
+    private void checkRightSlanting(Moves moves, int expected) {
+
+        int column = 2;
+
+        for (int row = 0; row < 3; row++) {
+            ticTacToeBoard.putMoves(row, column, moves);
+            column--;
+
+        }
+
+        Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
+        int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
+
+
+        assertThat(actual, is(expected));
+        BoardInitializer.initGameBoard(ticTacToeBoard);
     }
 
 
 }
+

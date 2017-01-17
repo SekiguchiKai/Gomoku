@@ -19,6 +19,7 @@ public class GomokuBoard extends Board {
      */
     public GomokuBoard(final int row, final int column) {
         super(row, column);
+
         IntStream.range(0, super.getRowSize()).forEach(y -> IntStream.range(0, super.getColumnSize()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
     }
 }

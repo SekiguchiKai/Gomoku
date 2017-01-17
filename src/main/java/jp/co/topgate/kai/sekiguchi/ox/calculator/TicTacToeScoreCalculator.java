@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
 
 
 /**
@@ -74,6 +75,8 @@ public class TicTacToeScoreCalculator extends ScoreCalculator {
         movesArray[2] = gameBoard[2][0];
         totalScore += super.calcLineScore(movesArray, maxPoint, minPoint);
 
+
+        Counter.resetCount();
 
         return totalScore;
     }

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class GomokuBoardTest {
 
-    Board board = new GomokuBoard(9, 9);
+    Board gomokuBoard = new GomokuBoard(9, 9);
 
 
     /**
@@ -22,28 +22,30 @@ public class GomokuBoardTest {
      */
     @Test
     public void putMoves() {
+        int rowSize = gomokuBoard.getRowSize();
+        int columnSize = gomokuBoard.getColumnSize();
 
-        Moves[] movesArray = new Moves[9];
-        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
-        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+        // 全てMoves.CPU_MOVE
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> gomokuBoard.putMoves(row, column, Moves.CPU_MOVE)));
+        Moves[][] gameBoardState = gomokuBoard.getGameBoardState();
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> this.getCellState(gameBoardState[row][column], Moves.CPU_MOVE)));
 
-        IntStream.range(0, 9).forEach(i -> movesArray[i] = Moves.USER_MOVE);
-        IntStream.range(0, 9).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+
+        // 全てMoves.USER_MOVE
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> gomokuBoard.putMoves(row, column, Moves.USER_MOVE)));
+        Moves[][] gameBoardState2 = gomokuBoard.getGameBoardState();
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> this.getCellState(gameBoardState2[row][column], Moves.USER_MOVE)));
+
 
     }
-
 
     /**
      * getCellStateメソッドをテストし、putMovesメソッドをテストするためのメソッドを補助するためのメソッド
      *
-     * @param rowData    列のデータ
-     * @param columnData 行のデータ
-     * @param moveData   打ち手のデータ
-     * @param expected   期待する値
+     * @param actual   実際の値
+     * @param expected 期待する値
      */
-    private void getCellState(final int rowData, final int columnData, final Moves moveData, final Moves expected) {
-        this.board.putMoves(rowData, columnData, moveData);
-        Moves actual = this.board.getCellState(rowData, columnData);
+    private void getCellState(Moves actual, Moves expected) {
 
         assertThat(actual, is(expected));
     }
@@ -68,9 +70,9 @@ public class GomokuBoardTest {
      * @param expected 期待する値
      */
     private void getGameBoardStateHelper(Moves data, Moves expected) {
-        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> this.board.putMoves(row, column, data)));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> this.gomokuBoard.putMoves(row, column, data)));
 
-        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> assertThat(this.board.getGameBoardState()[row][column], is(expected))));
+        IntStream.range(0, 9).forEach(row -> IntStream.range(0, 9).forEach(column -> assertThat(this.gomokuBoard.getGameBoardState()[row][column], is(expected))));
     }
 
     /**
@@ -78,7 +80,7 @@ public class GomokuBoardTest {
      */
     @Test
     public void getRowSize() {
-        int actual = this.board.getRowSize();
+        int actual = this.gomokuBoard.getRowSize();
         assertThat(actual, is(9));
     }
 
@@ -87,7 +89,7 @@ public class GomokuBoardTest {
      */
     @Test
     public void getColumnSize() {
-        int actual = this.board.getColumnSize();
+        int actual = this.gomokuBoard.getColumnSize();
         assertThat(actual, is(9));
     }
 

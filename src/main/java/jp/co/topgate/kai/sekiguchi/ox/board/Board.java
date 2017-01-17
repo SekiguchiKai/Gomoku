@@ -14,6 +14,7 @@ public abstract class Board {
      * ゲーム盤の列を表す
      */
     private int column;
+
     /**
      * ゲーム盤の行を表す
      */

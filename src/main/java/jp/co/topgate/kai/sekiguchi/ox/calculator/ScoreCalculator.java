@@ -80,6 +80,7 @@ public abstract class ScoreCalculator {
 
         Counter.upCount();
 
+
         return score;
 
 
