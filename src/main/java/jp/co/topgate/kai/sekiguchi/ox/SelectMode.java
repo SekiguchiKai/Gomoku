@@ -64,10 +64,15 @@ public class SelectMode {
      * @return ゲームのロジック
      */
     private GameLogic getGameLogic(final int id) {
-        Map<Integer, GameLogic> logicMap = new HashMap<>();
-        logicMap.put(1, new TicTacToeGameLogic());
-        logicMap.put(2, new GomokuGameLogic());
 
-        return logicMap.get(id);
+        switch (id) {
+            case 1:
+                return new TicTacToeGameLogic();
+            case 2:
+                return new GomokuGameLogic();
+        }
+
+        return null;
+
     }
 }
