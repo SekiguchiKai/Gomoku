@@ -70,7 +70,7 @@ public class GomokuJudge implements Judge {
 
         for (int row = 0; row < maxLength; row++) {
             for (int column = 0; column < maxLength; column++) {
-                if ((this.judgeWin(gameBoard)) || (this.judgeLose(gameBoard)) || (gameBoard[row][column] == Moves.NO_MOVE)) {
+                if (this.judgeWin(gameBoard) || this.judgeLose(gameBoard) || gameBoard[row][column] == Moves.NO_MOVE) {
                     return false;
                 }
             }
@@ -87,10 +87,15 @@ public class GomokuJudge implements Judge {
      * @return 勝敗が決定したか真偽値
      */
     private boolean judgeRow(final Moves[][] gameBoard, final Moves moves) {
+        final int differenceOne = 1;
+        final int differenceTwo = 2;
+        final int differenceThree = 3;
+        final int differenceFour = 4;
+
         for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 5; column++) {
                 Moves[][] target = gameBoard;
-                if (gameBoard[row][column] == moves && gameBoard[row][column + 1] == moves && gameBoard[row][column + 2] == moves && gameBoard[row][column + 3] == moves && gameBoard[row][column + 4] == moves) {
+                if (gameBoard[row][column] == moves && gameBoard[row][column + differenceOne] == moves && gameBoard[row][column + differenceTwo] == moves && gameBoard[row][column + differenceThree] == moves && gameBoard[row][column + differenceFour] == moves) {
                     return true;
                 }
             }
@@ -107,10 +112,15 @@ public class GomokuJudge implements Judge {
      * @return 勝敗が決定したか真偽値
      */
     private boolean judgeColumn(final Moves[][] gameBoard, final Moves moves) {
+        final int differenceOne = 1;
+        final int differenceTwo = 2;
+        final int differenceThree = 3;
+        final int differenceFour = 4;
+
         for (int column = 0; column < 9; column++) {
             for (int row = 0; row < 5; row++) {
                 Moves[][] target = gameBoard;
-                if (gameBoard[row][column] == moves && gameBoard[row + 1][column] == moves && gameBoard[row + 2][column] == moves && gameBoard[row + 3][column] == moves && gameBoard[row + 4][column] == moves) {
+                if (gameBoard[row][column] == moves && gameBoard[row + differenceOne][column] == moves && gameBoard[row + differenceTwo][column] == moves && gameBoard[row + differenceThree][column] == moves && gameBoard[row + differenceFour][column] == moves) {
                     return true;
                 }
             }
@@ -127,17 +137,19 @@ public class GomokuJudge implements Judge {
      * @return 勝敗が決定したか真偽値
      */
     private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
+        final int differenceOne = 1;
+        final int differenceTwo = 2;
+        final int differenceThree = 3;
+        final int differenceFour = 4;
 
         for (int index = 0; index < 5; index++) {
-            if (gameBoard[index][index] == moves && gameBoard[index + 1][index + 1] == moves && gameBoard[index + 2][index + 2] == moves && gameBoard[index + 3][index + 3] == moves && gameBoard[index + 4][index + 4] == moves) {
+            if (gameBoard[index][index] == moves && gameBoard[index + differenceOne][index + differenceOne] == moves && gameBoard[index + differenceTwo][index + differenceTwo] == moves && gameBoard[index + differenceThree][index + differenceThree] == moves && gameBoard[index + differenceFour][index + differenceFour] == moves) {
                 return true;
             }
         }
         return false;
 
     }
-
-
 
 
     /**
@@ -149,12 +161,17 @@ public class GomokuJudge implements Judge {
      */
     private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves) {
 
+        final int differenceOne = 1;
+        final int differenceTwo = 2;
+        final int differenceThree = 3;
+        final int differenceFour = 4;
+
         int column = 8;
 
 
         // for文1回で、1つの連を表す
         for (int row = 0; row < 5; row++) {
-            if (gameBoard[row][column] == moves && gameBoard[row + 1][column - 1] == moves && gameBoard[row + 2][column - 2] == moves && gameBoard[row + 3][column - 3] == moves && gameBoard[row + 4][column - 4] == moves) {
+            if (gameBoard[row][column] == moves && gameBoard[row + differenceOne][column - differenceOne] == moves && gameBoard[row + differenceTwo][column - differenceTwo] == moves && gameBoard[row + differenceThree][column - differenceThree] == moves && gameBoard[row + differenceFour][column - differenceFour] == moves) {
                 return true;
             }
             column--;
