@@ -4,8 +4,6 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
-import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 
 import java.io.IOException;
 import java.util.Scanner;

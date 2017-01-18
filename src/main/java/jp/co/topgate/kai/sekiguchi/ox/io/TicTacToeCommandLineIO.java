@@ -4,7 +4,6 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
 import java.io.*;
 import java.util.*;
@@ -54,22 +53,6 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
 
     }
 
-
-    /**
-     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
-     *
-     * @param moves プレーヤーの打ち手
-     * @return 打ち手を表す印の文字列
-     */
-    String changeMovesToSignal(final Moves moves) {
-        if (moves == Moves.CIRCLE) {
-            return Signal.CIRCLE.getSignal();
-        } else if (moves == Moves.CROSS) {
-            return Signal.CROSS.getSignal();
-        }
-        return ("|");
-
-    }
 
     /**
      * 勝敗結果をコマンドライン上に描くためのメソッド

@@ -1,6 +1,10 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 /**
  * 順番を扱うクラス
  * Created by sekiguchikai on 2017/01/06.
@@ -19,61 +23,45 @@ public class Order {
     private Player secondPlayer;
 
     /**
-     * 先攻の打ち手となるプレーヤーを設定するためのメソッド
-     *
-     * @param firstPlayer 先行の打ち手となるプレーヤー
+     * 開始の打ち手から、終了の打ち手までをランダムに決定してその順番を保持するためのリスト
      */
-    public void setFirstPlayer(final Player firstPlayer) {
-        this.firstPlayer = firstPlayer;
-
-    }
+    private List<Player> sequentialRandomList = new ArrayList<>();
 
     /**
-     * 後攻の打ち手となるプレーヤーを設定するためのメソッド
-     *
-     * @param secondPlayer 先行の打ち手となるプレーヤー
+     * getNextPlayerメソッドが呼ばれた回数を数えるためのカウンター
      */
-    public void setSecondPlayer(final Player secondPlayer) {
-        this.secondPlayer = secondPlayer;
-    }
-
-    /**
-     * 各プレーヤーの打ち手の順番を決める
-     *
-     * @param user Userクラスのインスタンス
-     * @param cpu  Cpuクラスのインスタンス
-     */
-    public void setRandomOrder(final Player user, final Player cpu) {
-        int userOrder = (int) (Math.random() * 2) + 1;
-
-        if (userOrder == 1) {
-            this.firstPlayer = user;
-            this.secondPlayer = cpu;
-        } else {
-            this.firstPlayer = cpu;
-            this.secondPlayer = user;
-        }
-
-    }
+    private int counter;
 
 
     /**
-     * firstPlayerを取得するためのメソッド
+     * 1回ごとに打ち手順を決定するのではなく、ゲーム開始時から終了時までの打ち手順を一気に決定するためのメソッド
+     *
+     * @param movesMaxNumber 打ち手の最大回数
+     * @param user           User
+     * @param cpu            Cpu
+     */
+    public void setSequentialRandomList(final int movesMaxNumber, final Player user, final Player cpu) {
+
+        final int playerOrderMax = 2;
+
+        IntStream.range(1, movesMaxNumber).forEach(i -> {
+            int userOrder = (int) (Math.random() * playerOrderMax);
+            if (userOrder == 1) {
+                this.sequentialRandomList.add(user);
+            } else {
+                this.sequentialRandomList.add(cpu);
+            }
+        });
+    }
+
+    /**
+     * 次の打ち手のプレーヤーを返すためのメソッド
      *
      * @return Playerクラスのインスタンス
      */
-    public Player getFirstPlayer() {
-        return this.firstPlayer;
+    public Player getNextPlayer() {
+        this.counter++;
+        return this.sequentialRandomList.get(this.counter);
     }
-
-    /**
-     * secondPlayerを取得するためのメソッド
-     *
-     * @return Playerクラスのインスタンス
-     */
-    public Player getSecondPlayer() {
-        return this.secondPlayer;
-    }
-
 
 }

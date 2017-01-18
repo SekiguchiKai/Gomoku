@@ -32,71 +32,21 @@ public class OrderTest {
     Player cpu = new Cpu(board, miniMax, commandLineIO, "cpu");
 
 
-    /**
-     * setFirstPlayerメソッドをテストするためのメソッド
-     */
     @Test
-    public void setFirstPlayer() {
-        this.order.setFirstPlayer(user);
-        this.getFirstPlayer(user);
+    public void setSequentialRandomList() {
+        List<Player> nextPlayerList = new ArrayList<>();
 
-        this.order.setFirstPlayer(cpu);
-        this.getFirstPlayer(cpu);
-    }
+        final int moveMaxNumber = 83;
 
-    /**
-     * setSecondPlayerメソッドをテストするためのメソッド
-     */
-    @Test
-    public void setSecondPlayer() {
-        this.order.setSecondPlayer(user);
-        this.getSecondPlayer(user);
-
-        this.order.setSecondPlayer(cpu);
-        this.getSecondPlayer(cpu);
-
-    }
+        order.setSequentialRandomList(moveMaxNumber, user, cpu);
 
 
-    @Test
-    public void setRandomOrder() {
-        List<Player> firstPlayerList = new ArrayList<>();
-        List<Player> secondPlayerList = new ArrayList<>();
+        IntStream.range(0, 81).forEach(i -> {
+            Player nextPlayer = order.getNextPlayer();
 
-        final int maxLength = 100;
-        IntStream.range(0, maxLength).forEach(i -> {
-            order.setRandomOrder(user, cpu);
-            Player firstPlayer = order.getFirstPlayer();
-            Player secondPlayer = order.getSecondPlayer();
-            firstPlayerList.add(firstPlayer);
-            secondPlayerList.add(secondPlayer);
+            nextPlayerList.add(nextPlayer);
         });
 
-        assertThat(firstPlayerList, hasItems(user, cpu));
-        assertThat(secondPlayerList, hasItems(user, cpu));
-
-
+        assertThat(nextPlayerList, hasItems(user, cpu));
     }
-
-    /**
-     * getFirstPlayerメソッドをテストし、 setFirstPlayerメソッドをテストするためのメソッドを補助する
-     *
-     * @param expected
-     */
-    private void getFirstPlayer(Player expected) {
-        Player actual = order.getFirstPlayer();
-        assertThat(actual, is(expected));
-    }
-
-
-    /**
-     * getSecondPlayerメソッドをテストし、 setSecondPlayerメソッドをテストするためのメソッドを補助する
-     *
-     * @param expected
-     */
-    private void getSecondPlayer(Player expected) {
-        Player actual = order.getSecondPlayer();
-        assertThat(actual, is(expected));
-    }
-
 }

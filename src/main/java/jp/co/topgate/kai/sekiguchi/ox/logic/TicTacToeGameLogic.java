@@ -4,11 +4,10 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.judge.TicTacToeJudge;
+import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 import jp.co.topgate.kai.sekiguchi.ox.player.User;
@@ -31,6 +30,7 @@ public class TicTacToeGameLogic extends GameLogic {
 
         final int rowSize = 3;
         final int columnSize = 3;
+        final int judgeCriteriaSequence = 3;
 
         final Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
         final TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
@@ -40,7 +40,7 @@ public class TicTacToeGameLogic extends GameLogic {
         final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
         final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
         final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
-        final Judge ticTacToeJudge = new TicTacToeJudge();
+        final Judge ticTacToeJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
 
 
         ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
@@ -52,9 +52,11 @@ public class TicTacToeGameLogic extends GameLogic {
             user.doMove(depthCount);
 
             if (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
-                cpu.doMove(depthCount);
+//                cpu.doMove(depthCount);
+                user.doMove(depthCount);
             }
         }
         ticTacToeCommandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
     }
 }
+
