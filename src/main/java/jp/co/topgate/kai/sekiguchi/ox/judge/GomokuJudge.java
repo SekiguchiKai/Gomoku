@@ -41,7 +41,7 @@ public class GomokuJudge implements Judge {
      * @return ユーザーが勝利したかどうかの真偽値
      */
     private boolean judgeWin(final Moves[][] gameBoard) {
-        return this.judgeRow(gameBoard, Moves.USER_MOVE) || this.judgeColumn(gameBoard, Moves.USER_MOVE) || this.judgeLeftSlanting(gameBoard, Moves.USER_MOVE) || this.judgeRightSlanting(gameBoard, Moves.USER_MOVE);
+        return this.judgeRow(gameBoard, Moves.CIRCLE) || this.judgeColumn(gameBoard, Moves.CIRCLE) || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE) || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
 
     }
 
@@ -54,7 +54,7 @@ public class GomokuJudge implements Judge {
      * @return ユーザーが敗北したかどうかの真偽値
      */
     private boolean judgeLose(final Moves[][] gameBoard) {
-        return this.judgeRow(gameBoard, Moves.CPU_MOVE) || this.judgeColumn(gameBoard, Moves.CPU_MOVE) || this.judgeLeftSlanting(gameBoard, Moves.CPU_MOVE) || this.judgeRightSlanting(gameBoard, Moves.CPU_MOVE);
+        return this.judgeRow(gameBoard, Moves.CROSS) || this.judgeColumn(gameBoard, Moves.CROSS) || this.judgeLeftSlanting(gameBoard, Moves.CROSS) || this.judgeRightSlanting(gameBoard, Moves.CROSS);
 
     }
 

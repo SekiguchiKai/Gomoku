@@ -1,23 +1,5 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
-import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.util.BoardInitializer;
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -40,10 +22,10 @@ public class MiniMaxTest {
 //
 //
 //        // 勝つ時の一手
-//        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-//        ticTacToeBoard.putMoves(0, 1, Moves.CPU_MOVE);
+//        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+//        ticTacToeBoard.putMoves(0, 1, Moves.CROSS);
 //
-//        Cell calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        Cell calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        int actualRow = calcResult.getCellRow();
 //        int actualColumn = calcResult.getCellColumn();
 //
@@ -53,10 +35,10 @@ public class MiniMaxTest {
 //
 //        BoardInitializer.initGameBoard(ticTacToeBoard);
 //
-//        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-//        ticTacToeBoard.putMoves(1, 0, Moves.CPU_MOVE);
+//        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+//        ticTacToeBoard.putMoves(1, 0, Moves.CROSS);
 //
-//        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        actualRow = calcResult.getCellRow();
 //        actualColumn = calcResult.getCellColumn();
 //
@@ -67,10 +49,10 @@ public class MiniMaxTest {
 //        BoardInitializer.initGameBoard(ticTacToeBoard);
 //
 //
-//        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-//        ticTacToeBoard.putMoves(1, 1, Moves.CPU_MOVE);
+//        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+//        ticTacToeBoard.putMoves(1, 1, Moves.CROSS);
 //
-//        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        actualRow = calcResult.getCellRow();
 //        actualColumn = calcResult.getCellColumn();
 //
@@ -95,8 +77,8 @@ public class MiniMaxTest {
 //        // 勝つ時の一手
 //        int maxLength = 4;
 //
-//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(0, i, Moves.CPU_MOVE));
-//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(0, i, Moves.CROSS));
+//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        actualRow = calcResult.getCellRow();
 //        actualColumn = calcResult.getCellColumn();
 //
@@ -106,8 +88,8 @@ public class MiniMaxTest {
 //        BoardInitializer.initGameBoard(gomokuGameBoard);
 //
 //
-//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(i, i, Moves.CPU_MOVE));
-//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(i, i, Moves.CROSS));
+//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        actualRow = calcResult.getCellRow();
 //        actualColumn = calcResult.getCellColumn();
 //
@@ -116,8 +98,8 @@ public class MiniMaxTest {
 //
 //        BoardInitializer.initGameBoard(gomokuGameBoard);
 //
-//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(i, 0, Moves.CPU_MOVE));
-//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        IntStream.range(0, maxLength).forEach(i -> gomokuGameBoard.putMoves(i, 0, Moves.CROSS));
+//        calcResult = miniMax.calcMinMax(3, gomokuGameBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //        actualRow = calcResult.getCellRow();
 //        actualColumn = calcResult.getCellColumn();
 //
@@ -135,12 +117,12 @@ public class MiniMaxTest {
 //     */
 //    @Test
 //    public void calcMinMax() {
-//        this.CalcMinMaxTicTacToeTest(Moves.CPU_MOVE);
-////        this.CalcMinMaxTicTacToeTest(Moves.USER_MOVE);
+//        this.CalcMinMaxTicTacToeTest(Moves.CROSS);
+////        this.CalcMinMaxTicTacToeTest(Moves.CIRCLE);
 //
 //
-//        this.CalcMinMaxGomokuTest(Moves.CPU_MOVE);
-////        this.CalcMinMaxGomokuTest(Moves.USER_MOVE);
+//        this.CalcMinMaxGomokuTest(Moves.CROSS);
+////        this.CalcMinMaxGomokuTest(Moves.CIRCLE);
 //    }
 
 //
@@ -165,7 +147,7 @@ public class MiniMaxTest {
 //
 //        cornerList.forEach(corner ->
 //        {
-//            ticTacToeBoard.putMoves(corner[0], corner[1], Moves.USER_MOVE);
+//            ticTacToeBoard.putMoves(corner[0], corner[1], Moves.CIRCLE);
 //            this.assertMinMaxLogic(2, ticTacToeBoard, ticTacToeScoreCalculator, expectedRow, expectedColumn);
 //            BoardInitializer.initGameBoard(ticTacToeBoard);
 //        });
@@ -242,7 +224,7 @@ public class MiniMaxTest {
 //     * doMoveメソッドが適切に実行されているかテストするためのメソッド
 //     */
 //    private void assertMinMaxLogic(int depth, Board board, ScoreCalculator scoreCalculator, int expectedRow, int expectedColumn) {
-//        final Moves playerMove = Moves.CPU_MOVE;
+//        final Moves playerMove = Moves.CROSS;
 //        final int alpha = Integer.MIN_VALUE;
 //        final int beta = Integer.MAX_VALUE;
 //

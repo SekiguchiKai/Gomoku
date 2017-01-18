@@ -39,20 +39,20 @@ public class GomokuJudgeTest {
      * 現在のゲーム盤において、ユーザーが勝利しているかをテストするためのメソッド
      */
     private void isWin() {
-        this.judgeRow(Moves.USER_MOVE, Result.WIN);
-        this.judgeColumn(Moves.USER_MOVE, Result.WIN);
-        this.judgeLeftSlanting(Moves.USER_MOVE, Result.WIN);
-        this.judgeRightSlanting(Moves.USER_MOVE, Result.WIN);
+        this.judgeRow(Moves.CIRCLE, Result.WIN);
+        this.judgeColumn(Moves.CIRCLE, Result.WIN);
+        this.judgeLeftSlanting(Moves.CIRCLE, Result.WIN);
+        this.judgeRightSlanting(Moves.CIRCLE, Result.WIN);
     }
 
     /**
      * 現在のゲーム盤において、ユーザーが敗北しているかをテストするためのメソッド
      */
     private void isLose() {
-        this.judgeRow(Moves.CPU_MOVE, Result.LOSE);
-        this.judgeColumn(Moves.CPU_MOVE, Result.LOSE);
-        this.judgeLeftSlanting(Moves.CPU_MOVE, Result.LOSE);
-        this.judgeRightSlanting(Moves.CPU_MOVE, Result.LOSE);
+        this.judgeRow(Moves.CROSS, Result.LOSE);
+        this.judgeColumn(Moves.CROSS, Result.LOSE);
+        this.judgeLeftSlanting(Moves.CROSS, Result.LOSE);
+        this.judgeRightSlanting(Moves.CROSS, Result.LOSE);
     }
 
     /**
@@ -185,21 +185,21 @@ public class GomokuJudgeTest {
 
 //
 //
-//       gomokuBoard.putMoves(0,8,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(1,7,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(2,6,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(3,5,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(4,4,Moves.USER_MOVE);
+//       gomokuBoard.putMoves(0,8,Moves.CIRCLE);
+//        gomokuBoard.putMoves(1,7,Moves.CIRCLE);
+//        gomokuBoard.putMoves(2,6,Moves.CIRCLE);
+//        gomokuBoard.putMoves(3,5,Moves.CIRCLE);
+//        gomokuBoard.putMoves(4,4,Moves.CIRCLE);
 //
 //    assertThat(gomokuJudge.judgeResult(gomokuBoard),is(Result.WIN));
 //        BoardInitializer.initGameBoard(gomokuBoard);
 //
 //
-//        gomokuBoard.putMoves(1,7,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(2,6,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(3,5,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(4,4,Moves.USER_MOVE);
-//        gomokuBoard.putMoves(5,3,Moves.USER_MOVE);
+//        gomokuBoard.putMoves(1,7,Moves.CIRCLE);
+//        gomokuBoard.putMoves(2,6,Moves.CIRCLE);
+//        gomokuBoard.putMoves(3,5,Moves.CIRCLE);
+//        gomokuBoard.putMoves(4,4,Moves.CIRCLE);
+//        gomokuBoard.putMoves(5,3,Moves.CIRCLE);
 //
 //    assertThat(gomokuJudge.judgeResult(gomokuBoard),is(Result.WIN));
 //        BoardInitializer.initGameBoard(gomokuBoard);

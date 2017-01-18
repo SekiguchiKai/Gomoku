@@ -15,9 +15,7 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-//
-//        // ログを取得するための準備をする
-//        Log.doLogging();
+
 
         // 最初の選択画面を選択させる
         SelectGameMode selectGameMode = new SelectGameMode();
@@ -31,6 +29,7 @@ public class Main {
         } catch (IOException e) {
             System.err.println("エラーが発生しました" + e.getMessage());
             e.printStackTrace();
+            System.exit(1);
         }
 
 

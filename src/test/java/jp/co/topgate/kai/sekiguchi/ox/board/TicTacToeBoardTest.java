@@ -24,12 +24,12 @@ public class TicTacToeBoardTest {
     public void putMoves() {
 
         Moves[] movesArray = new Moves[3];
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.USER_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.USER_MOVE, Moves.USER_MOVE));
+        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.CIRCLE);
+        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.CIRCLE, Moves.CIRCLE));
 
 
-        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.CPU_MOVE);
-        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.CPU_MOVE, Moves.CPU_MOVE));
+        IntStream.range(0, 3).forEach(i -> movesArray[i] = Moves.CROSS);
+        IntStream.range(0, 3).forEach(i -> this.getCellState(i, i, Moves.CROSS, Moves.CROSS));
 
     }
 
@@ -56,8 +56,8 @@ public class TicTacToeBoardTest {
     @Test
     public void getGameBoardState() {
 
-        this.getGameBoardStateHelper(Moves.CPU_MOVE, Moves.CPU_MOVE);
-        this.getGameBoardStateHelper(Moves.USER_MOVE, Moves.USER_MOVE);
+        this.getGameBoardStateHelper(Moves.CROSS, Moves.CROSS);
+        this.getGameBoardStateHelper(Moves.CIRCLE, Moves.CIRCLE);
         this.getGameBoardStateHelper(Moves.NO_MOVE, Moves.NO_MOVE);
     }
 

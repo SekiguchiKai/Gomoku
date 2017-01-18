@@ -1,7 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import org.hamcrest.CoreMatchers;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -54,8 +54,8 @@ public class CellTest {
      */
     @Test
     public void setMoves() {
-        this.getMoves(Moves.CPU_MOVE, Moves.CPU_MOVE);
-        this.getMoves(Moves.USER_MOVE, Moves.USER_MOVE);
+        this.getMoves(Moves.CROSS, Moves.CROSS);
+        this.getMoves(Moves.CIRCLE, Moves.CIRCLE);
     }
 
 

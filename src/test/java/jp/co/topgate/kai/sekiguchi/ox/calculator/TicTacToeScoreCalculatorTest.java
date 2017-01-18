@@ -24,15 +24,15 @@ public class TicTacToeScoreCalculatorTest {
 //    @Test
 //    public void calcScore() {
 //
-//        this.helper(Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 999950950);
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, -999950150);
+//        this.helper(Moves.CROSS, Moves.CROSS, Moves.CROSS, 999950950);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, -999950150);
 //        this.helper(Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, 0);
-//        this.helper(Moves.USER_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 20);
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.CPU_MOVE, -20);
-//        this.helper(Moves.NO_MOVE, Moves.USER_MOVE, Moves.CPU_MOVE, 10);
-//        this.helper(Moves.NO_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, -50);
-//        this.helper(Moves.NO_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 50);
-//        this.helper(Moves.NO_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 50);
+//        this.helper(Moves.CIRCLE, Moves.CROSS, Moves.CROSS, 20);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CROSS, -20);
+//        this.helper(Moves.NO_MOVE, Moves.CIRCLE, Moves.CROSS, 10);
+//        this.helper(Moves.NO_MOVE, Moves.CIRCLE, Moves.CIRCLE, -50);
+//        this.helper(Moves.NO_MOVE, Moves.CROSS, Moves.CROSS, 50);
+//        this.helper(Moves.NO_MOVE, Moves.CROSS, Moves.CROSS, 50);
 //
 //    }
 //

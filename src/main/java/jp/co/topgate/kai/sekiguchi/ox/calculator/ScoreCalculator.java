@@ -53,9 +53,9 @@ public abstract class ScoreCalculator {
 
         for (Moves moves : movesArray) {
 
-            if (moves == Moves.CPU_MOVE) {
+            if (moves == Moves.CROSS) {
                 score += perTernPoint;
-            } else if (moves == Moves.USER_MOVE) {
+            } else if (moves == Moves.CIRCLE) {
                 score -= perTernPoint;
             }
         }

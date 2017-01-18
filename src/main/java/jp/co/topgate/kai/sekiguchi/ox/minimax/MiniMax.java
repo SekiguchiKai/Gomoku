@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
@@ -75,15 +74,15 @@ public class MiniMax {
 
                 board.putMoves(cellY, cellX, playerMove);
 
-                if (playerMove == Moves.CPU_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.USER_MOVE, alpha, beta).getBestScore();
+                if (playerMove == Moves.CROSS) {
+                    score = calcMinMax(depth - 1, board, Moves.CIRCLE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
                         x = cellX;
                         y = cellY;
                     }
-                } else if (playerMove == Moves.USER_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.CPU_MOVE, alpha, beta).getBestScore();
+                } else if (playerMove == Moves.CIRCLE) {
+                    score = calcMinMax(depth - 1, board, Moves.CROSS, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
                         x = cellX;
@@ -96,7 +95,7 @@ public class MiniMax {
                 if (alpha >= beta) break;
             }
             Cell cell = new Cell(y, x);
-            cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+            cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
             return cell;
         }
     }

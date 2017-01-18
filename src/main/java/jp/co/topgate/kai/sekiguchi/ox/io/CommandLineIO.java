@@ -1,13 +1,9 @@
 package jp.co.topgate.kai.sekiguchi.ox.io;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 
 /**

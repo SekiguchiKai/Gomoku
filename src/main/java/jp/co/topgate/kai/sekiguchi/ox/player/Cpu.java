@@ -32,11 +32,11 @@ public class Cpu extends Player {
      */
     @Override
     public void doMove(final int depth) {
-        final int row = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellRow();
-        final int column = super.miniMax.calcMinMax(depth, board, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellColumn();
+        final int row = super.miniMax.calcMinMax(depth, board, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellRow();
+        final int column = super.miniMax.calcMinMax(depth, board, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE).getCellColumn();
 
         System.out.println("CPUの打ち手は、Y: " + row + "X:" + column);
-        board.putMoves(row, column, Moves.CPU_MOVE);
+        board.putMoves(row, column, Moves.CROSS);
 
         commandLineIO.drawUI(board);
     }

@@ -24,15 +24,15 @@ public class GomokuScoreCalculatorTest {
 //    @Test
 //    public void calcScore() {
 //
-//        this.helper(Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 1000000060);
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, -999993060);
+//        this.helper(Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, 1000000060);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, -999993060);
 //        this.helper(Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, Moves.NO_MOVE, 0);
 //
 //
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.CPU_MOVE, -90);
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.USER_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 10);
-//        this.helper(Moves.USER_MOVE, Moves.USER_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 90);
-//        this.helper(Moves.USER_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, Moves.CPU_MOVE, 150);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CROSS, -90);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CROSS, Moves.CROSS, 10);
+//        this.helper(Moves.CIRCLE, Moves.CIRCLE, Moves.CROSS, Moves.CROSS, Moves.CROSS, 90);
+//        this.helper(Moves.CIRCLE, Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, 150);
 //
 //    }
 //

@@ -1,4 +1,4 @@
-package jp.co.topgate.kai.sekiguchi.ox.board;
+package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 

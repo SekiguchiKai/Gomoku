@@ -49,14 +49,14 @@ public class TicTacToeJudge implements Judge {
 
     boolean judgeLose(Moves[][] gameBoard) {
 
-        return (gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[0][2] == Moves.CPU_MOVE ||
-                gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE ||
-                gameBoard[2][0] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][0] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE ||
-                gameBoard[0][1] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][1] == Moves.CPU_MOVE ||
-                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][2] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-                gameBoard[0][0] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][2] == Moves.CPU_MOVE ||
-                gameBoard[0][2] == Moves.CPU_MOVE && gameBoard[1][1] == Moves.CPU_MOVE && gameBoard[2][0] == Moves.CPU_MOVE
+        return (gameBoard[0][0] == Moves.CROSS && gameBoard[0][1] == Moves.CROSS && gameBoard[0][2] == Moves.CROSS ||
+                gameBoard[1][0] == Moves.CROSS && gameBoard[1][1] == Moves.CROSS && gameBoard[1][2] == Moves.CROSS ||
+                gameBoard[2][0] == Moves.CROSS && gameBoard[2][1] == Moves.CROSS && gameBoard[2][2] == Moves.CROSS ||
+                gameBoard[0][0] == Moves.CROSS && gameBoard[1][0] == Moves.CROSS && gameBoard[2][0] == Moves.CROSS ||
+                gameBoard[0][1] == Moves.CROSS && gameBoard[1][1] == Moves.CROSS && gameBoard[2][1] == Moves.CROSS ||
+                gameBoard[0][2] == Moves.CROSS && gameBoard[1][2] == Moves.CROSS && gameBoard[2][2] == Moves.CROSS ||
+                gameBoard[0][0] == Moves.CROSS && gameBoard[1][1] == Moves.CROSS && gameBoard[2][2] == Moves.CROSS ||
+                gameBoard[0][2] == Moves.CROSS && gameBoard[1][1] == Moves.CROSS && gameBoard[2][0] == Moves.CROSS
         );
     }
 
@@ -69,14 +69,14 @@ public class TicTacToeJudge implements Judge {
 
     private boolean judgeWin(Moves[][] gameBoard) {
 
-        return (gameBoard[0][0] == Moves.USER_MOVE && gameBoard[0][1] == Moves.USER_MOVE && gameBoard[0][2] == Moves.USER_MOVE ||
-                gameBoard[1][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE ||
-                gameBoard[2][0] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][0] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE ||
-                gameBoard[0][1] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][1] == Moves.USER_MOVE ||
-                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][2] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-                gameBoard[0][0] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][2] == Moves.USER_MOVE ||
-                gameBoard[0][2] == Moves.USER_MOVE && gameBoard[1][1] == Moves.USER_MOVE && gameBoard[2][0] == Moves.USER_MOVE
+        return (gameBoard[0][0] == Moves.CIRCLE && gameBoard[0][1] == Moves.CIRCLE && gameBoard[0][2] == Moves.CIRCLE ||
+                gameBoard[1][0] == Moves.CIRCLE && gameBoard[1][1] == Moves.CIRCLE && gameBoard[1][2] == Moves.CIRCLE ||
+                gameBoard[2][0] == Moves.CIRCLE && gameBoard[2][1] == Moves.CIRCLE && gameBoard[2][2] == Moves.CIRCLE ||
+                gameBoard[0][0] == Moves.CIRCLE && gameBoard[1][0] == Moves.CIRCLE && gameBoard[2][0] == Moves.CIRCLE ||
+                gameBoard[0][1] == Moves.CIRCLE && gameBoard[1][1] == Moves.CIRCLE && gameBoard[2][1] == Moves.CIRCLE ||
+                gameBoard[0][2] == Moves.CIRCLE && gameBoard[1][2] == Moves.CIRCLE && gameBoard[2][2] == Moves.CIRCLE ||
+                gameBoard[0][0] == Moves.CIRCLE && gameBoard[1][1] == Moves.CIRCLE && gameBoard[2][2] == Moves.CIRCLE ||
+                gameBoard[0][2] == Moves.CIRCLE && gameBoard[1][1] == Moves.CIRCLE && gameBoard[2][0] == Moves.CIRCLE
         );
 
     }

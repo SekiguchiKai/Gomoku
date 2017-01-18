@@ -1,10 +1,9 @@
 package jp.co.topgate.kai.sekiguchi.ox.io;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,7 +36,10 @@ public class GomokuCommandLineIO extends CommandLineIO {
         for (int row = 0; row < rowSize; row++) {
             System.out.print(row + "-");
             for (int column = 0; column < columnSize; column++) {
-                System.out.print(this.changeMovesToSignal(gomokuBoard.getCellState(row, column)));
+
+                Moves moves = gomokuBoard.getCellState(row, column);
+                String movesString  = moves.getMoves();
+                System.out.print(movesString);
                 if (column == limitNumber) {
                     break;
                 }
@@ -54,22 +56,22 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
     }
 
-
-    /**
-     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
-     *
-     * @param moves      プレーヤーの打ち手
-     * @return 打ち手を表す印の文字列
-     */
-    String changeMovesToSignal(final Moves moves) {
-        if (moves == Moves.USER_MOVE) {
-            return Signal.CIRCLE.getSignal();
-        } else if (moves == Moves.CPU_MOVE) {
-            return Signal.CROSS.getSignal();
-        }
-        return ("|");
-
-    }
+//
+//    /**
+//     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
+//     *
+//     * @param moves      プレーヤーの打ち手
+//     * @return 打ち手を表す印の文字列
+//     */
+//    String changeMovesToSignal(final Moves moves) {
+//        if (moves == Moves.CIRCLE) {
+//            return Signal.CIRCLE.getMoves();
+//        } else if (moves == Moves.CROSS) {
+//            return Signal.CROSS.getMoves();
+//        }
+//        return ("|");
+//
+//    }
 
     /**
      * 勝敗結果をコマンドライン上に描くためのメソッド
