@@ -15,12 +15,12 @@ public class TicTacToeBoard extends Board {
      * コンストラクタ
      * ゲーム盤のマス数を設定する
      *
-     * @param row    行
-     * @param column 列
+     * @param rowSize    rowのサイズ
+     * @param columnSize 列のサイズ
      */
-    public TicTacToeBoard(final int row, final int column) {
-        super(row, column);
-        IntStream.range(0, super.getColumnSize()).forEach(y -> IntStream.range(0, super.getRowSize()).forEach(x -> super.putMoves(y, x, Moves.NO_MOVE)));
+    public TicTacToeBoard(final int rowSize, final int columnSize) {
+        super(rowSize, columnSize);
+        super.initGameBoard();
     }
 
 

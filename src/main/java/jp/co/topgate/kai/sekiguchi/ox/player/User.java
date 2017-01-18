@@ -6,6 +6,7 @@ import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 
+
 import java.io.IOException;
 
 /**
@@ -48,6 +49,7 @@ public class User extends Player {
             e.printStackTrace();
         }
         commandLineIO.drawUI(board);
+
 
     }
 

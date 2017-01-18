@@ -16,7 +16,8 @@ public enum Moves {
     /**
      * 打ち手がない場合
      */
-    NO_MOVE("|");
+    EMPTY("|");
+
 
     /**
      * 印を表す
@@ -27,10 +28,9 @@ public enum Moves {
      * コンストラクタ
      * 初期化を行う
      *
-     *
      * @param moves 打ち手の印
      */
-   Moves(final String moves) {
+    Moves(final String moves) {
         this.moves = moves;
     }
 

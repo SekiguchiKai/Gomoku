@@ -4,6 +4,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
+import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
 
 import java.io.*;
 import java.util.*;
@@ -24,20 +25,20 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
      */
     public void drawUI(final Board ticTacToeBoard) {
 
-        final int rowSize = ticTacToeBoard.getRowSize();
-        final int columnSize = ticTacToeBoard.getColumnSize();
 
-        IntStream.range(0, columnSize - 1).forEach(x -> System.out.print("  " + x));
+        IntStream.range(0, ticTacToeBoard.getColumnSize() - 1).forEach(x -> System.out.print("  " + x));
         System.out.println("  2");
 
 
-        for (int column = 0; column < rowSize; column++) {
-            System.out.print(column + "-");
-            for (int row = 0; row < columnSize; row++) {
-                Moves moves = ticTacToeBoard.getCellState(row, column);
-                String movesString  = moves.getMoves();
+        for (int y = 0; y < ticTacToeBoard.getRowSize(); y++) {
+            System.out.print(y + "-");
+            for (int x = 0; x < ticTacToeBoard.getColumnSize(); x++) {
+
+                Moves moves = ticTacToeBoard.getCellState(y, x);
+                String movesString = moves.getMoves();
+
                 System.out.print(movesString);
-                if (row == 2) {
+                if (x == 2) {
                     break;
                 }
                 System.out.print("--");
@@ -54,21 +55,21 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
     }
 
 
-//    /**
-//     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
-//     *
-//     * @param moves プレーヤーの打ち手
-//     * @return 打ち手を表す印の文字列
-//     */
-//    String changeMovesToSignal(final Moves moves) {
-//        if (moves == Moves.CIRCLE) {
-//            return Signal.CIRCLE.getSignal();
-//        } else if (moves == Moves.CROSS) {
-//            return Signal.CROSS.getSignal();
-//        }
-//        return ("|");
-//
-//    }
+    /**
+     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
+     *
+     * @param moves プレーヤーの打ち手
+     * @return 打ち手を表す印の文字列
+     */
+    String changeMovesToSignal(final Moves moves) {
+        if (moves == Moves.CIRCLE) {
+            return Signal.CIRCLE.getSignal();
+        } else if (moves == Moves.CROSS) {
+            return Signal.CROSS.getSignal();
+        }
+        return ("|");
+
+    }
 
     /**
      * 勝敗結果をコマンドライン上に描くためのメソッド
@@ -96,7 +97,7 @@ public class TicTacToeCommandLineIO extends CommandLineIO {
         if (!(Pattern.matches("^[.0-2]$", userInputY)) || !(Pattern.matches("^[.0-2]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.NO_MOVE)) {
+        } else if (!(gameBoard[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] == Moves.EMPTY)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 

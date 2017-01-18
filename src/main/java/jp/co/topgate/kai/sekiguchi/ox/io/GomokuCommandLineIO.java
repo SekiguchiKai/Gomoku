@@ -4,17 +4,21 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
+import jp.co.topgate.kai.sekiguchi.ox.constantset.Signal;
+import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
+
 /**
  * 五目並べのゲーム盤を並べる
  * Created by sekiguchikai on 2017/01/05.
  */
 public class GomokuCommandLineIO extends CommandLineIO {
+
 
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
@@ -23,22 +27,22 @@ public class GomokuCommandLineIO extends CommandLineIO {
      */
     public void drawUI(final Board gomokuBoard) {
 
+        final int columnSize = gomokuBoard.getColumnSize();
+        final int rowSize = gomokuBoard.getRowSize();
 
-        IntStream.range(0, gomokuBoard.getColumnSize() - 1).forEach(x -> System.out.print("  " + x));
+
+        IntStream.range(0, columnSize- 1).forEach(column -> System.out.print("  " + column));
         System.out.println("  8");
 
 
-        final int rowSize = gomokuBoard.getRowSize();
-        final int columnSize = gomokuBoard.getColumnSize();
-
         final int limitNumber = 8;
-
         for (int row = 0; row < rowSize; row++) {
             System.out.print(row + "-");
             for (int column = 0; column < columnSize; column++) {
 
                 Moves moves = gomokuBoard.getCellState(row, column);
-                String movesString  = moves.getMoves();
+                String movesString = moves.getMoves();
+
                 System.out.print(movesString);
                 if (column == limitNumber) {
                     break;
@@ -56,22 +60,8 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
     }
 
-//
-//    /**
-//     * 列挙型MOVESの各要素を○や×の記号に変換するためのメソッド
-//     *
-//     * @param moves      プレーヤーの打ち手
-//     * @return 打ち手を表す印の文字列
-//     */
-//    String changeMovesToSignal(final Moves moves) {
-//        if (moves == Moves.CIRCLE) {
-//            return Signal.CIRCLE.getMoves();
-//        } else if (moves == Moves.CROSS) {
-//            return Signal.CROSS.getMoves();
-//        }
-//        return ("|");
-//
-//    }
+
+
 
     /**
      * 勝敗結果をコマンドライン上に描くためのメソッド
@@ -96,13 +86,11 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
         System.out.println("スタート");
 
-        Moves[][] gameBoard = board.getGameBoardState();
-
 
         if (!(Pattern.matches("^[.0-8]$", userInputY)) || !(Pattern.matches("^[.0-8]$", userInputX))) {
             return new Cell(Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] != Moves.NO_MOVE)) {
+        } else if ((board.getGameBoardState()[Integer.parseInt(userInputY)][Integer.parseInt(userInputX)] != Moves.EMPTY)) {
             return new Cell(Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
@@ -111,8 +99,6 @@ public class GomokuCommandLineIO extends CommandLineIO {
 
         return new Cell(Integer.parseInt(userInputY), Integer.parseInt(userInputX));
     }
-
-
 
 
 }

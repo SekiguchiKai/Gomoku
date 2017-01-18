@@ -29,10 +29,10 @@ public class TicTacToeGameLogic extends GameLogic {
     @Override
     public void playGame() {
 
-        final int row = 3;
-        final int column = 3;
+        final int rowSize = 3;
+        final int columnSize = 3;
 
-        final Board ticTacToeBoard = new TicTacToeBoard(row, column);
+        final Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
         final TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
 
         final ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();

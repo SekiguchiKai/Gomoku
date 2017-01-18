@@ -13,11 +13,12 @@ public abstract class Board {
     /**
      * ゲーム盤の列を表す
      */
-    private int column;
+    private int columnSize;
+
     /**
      * ゲーム盤の行を表す
      */
-    private int row;
+    private int rowSize;
 
     /**
      * ゲーム盤を表す二次元配列
@@ -26,15 +27,22 @@ public abstract class Board {
 
     /**
      * コンストラクタ
-     * column、row、配列の大きさを初期化する
+     * columnSize、rowSize、配列の大きさを初期化する
      *
-     * @param column columnの長さ
-     * @param row    rowの長さ
+     * @param columnSize columnの長さ
+     * @param rowSize    rowの長さ
      */
-    public Board(final int column, final int row) {
-        this.column = column;
-        this.row = row;
-        this.gameBoard = new Moves[row][column];
+    public Board(final int columnSize, final int rowSize) {
+        this.columnSize = columnSize;
+        this.rowSize = rowSize;
+        this.gameBoard = new Moves[rowSize][columnSize];
+    }
+
+    /**
+     * インスタンス変数であるgameBoard(ゲーム盤)を初期化する
+     */
+    protected void initGameBoard() {
+        IntStream.range(0, this.rowSize).forEach(y -> IntStream.range(0, this.columnSize).forEach(x -> this.putMoves(y, x, Moves.EMPTY)));
     }
 
     /**
@@ -66,8 +74,8 @@ public abstract class Board {
      * @return ゲーム盤のコピー
      */
     public Moves[][] getGameBoardState() {
-        final Moves[][] copyArray = new Moves[row][column];
-        IntStream.range(0, row).forEach(i -> IntStream.range(0, column).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
+        final Moves[][] copyArray = new Moves[rowSize][columnSize];
+        IntStream.range(0, rowSize).forEach(i -> IntStream.range(0, columnSize).forEach(j -> copyArray[i][j] = gameBoard[i][j]));
         return copyArray;
 
     }
@@ -78,7 +86,7 @@ public abstract class Board {
      * @return ゲーム盤の行の長さ
      */
     public int getRowSize() {
-        return this.row;
+        return this.rowSize;
     }
 
     /**
@@ -87,6 +95,6 @@ public abstract class Board {
      * @return ゲーム盤の列の長さ
      */
     public int getColumnSize() {
-        return this.column;
+        return this.columnSize;
     }
 }

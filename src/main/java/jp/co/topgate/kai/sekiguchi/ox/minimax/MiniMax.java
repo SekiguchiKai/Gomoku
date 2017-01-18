@@ -4,6 +4,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 
+
 import java.util.*;
 
 /**
@@ -11,6 +12,7 @@ import java.util.*;
  * Created by sekiguchikai on 2016/12/22.
  */
 public class MiniMax {
+
 
     /**
      * ScoreCalculatorクラスのインスタンス
@@ -64,6 +66,7 @@ public class MiniMax {
             Cell cell = new Cell(y, x);
             cell.setBestScore(score);
 
+
             return cell;
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
@@ -90,12 +93,13 @@ public class MiniMax {
                     }
                 }
 
-                board.putMoves(cellY, cellX, Moves.NO_MOVE);
+                board.putMoves(cellY, cellX, Moves.EMPTY);
 
                 if (alpha >= beta) break;
             }
             Cell cell = new Cell(y, x);
             cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
+
             return cell;
         }
     }
@@ -107,13 +111,13 @@ public class MiniMax {
      * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-  List<Cell> makeCapableMOveList(final Board board) {
+    List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
         for (int y = 0; y < board.getRowSize(); y++) {
             for (int x = 0; x < board.getColumnSize(); x++) {
-                if (board.getCellState(y, x) == Moves.NO_MOVE) {
+                if (board.getCellState(y, x) == Moves.EMPTY) {
                     capableMoveList.add(new Cell(y, x));
                 }
             }

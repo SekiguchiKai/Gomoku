@@ -31,7 +31,7 @@ public abstract class CommandLineIO {
 
 
     /**
-     * ユーザーが不適切な数字(0未満、10以上)を入力した場合に、その旨を表示するためのメソッド
+     * ユーザーが不適切な数字を入力した場合に、その旨を表示するためのメソッド
      */
     public void drawInappropriateCaution() {
         System.out.println("不適切な入力です");

@@ -16,20 +16,18 @@ public class Main {
      */
     public static void main(String[] args) {
 
-
         // 最初の選択画面を選択させる
-        SelectGameMode selectGameMode = new SelectGameMode();
-        selectGameMode.showGameTitle();
+        SelectMode selectMode = new SelectMode();
+        selectMode.showMode();
 
         // 実行するゲームのロジック
-        GameLogic gameLogic = selectGameMode.selectGame();
+        GameLogic gameLogic = selectMode.selectMode();
 
         try {
             gameLogic.playGame();
         } catch (IOException e) {
             System.err.println("エラーが発生しました" + e.getMessage());
             e.printStackTrace();
-            System.exit(1);
         }
 
 

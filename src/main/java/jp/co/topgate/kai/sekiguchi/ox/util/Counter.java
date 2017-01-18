@@ -25,4 +25,11 @@ public class Counter {
     public static int getCount() {
         return count;
     }
+
+    /**
+     * カウンターを初期化するためのメソッド
+     */
+    public static void resetCount() {
+        Counter.count = 0;
+    }
 }

@@ -17,6 +17,6 @@ public class BoardInitializer {
         final int rowSize = board.getRowSize();
         final int columnSize = board.getColumnSize();
 
-        IntStream.range(0, rowSize).forEach(y -> IntStream.range(0, columnSize).forEach(x -> board.putMoves(y, x, Moves.NO_MOVE)));
+        IntStream.range(0, rowSize).forEach(y -> IntStream.range(0, columnSize).forEach(x -> board.putMoves(y, x, Moves.EMPTY)));
     }
 }

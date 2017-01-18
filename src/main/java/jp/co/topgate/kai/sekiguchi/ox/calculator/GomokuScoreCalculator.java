@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
 
 
 import java.util.stream.IntStream;
@@ -24,17 +25,17 @@ public class GomokuScoreCalculator extends ScoreCalculator {
         final int arraySize = 5;
         final Moves[] movesArray = new Moves[arraySize];
 
-        // row
-        totalScore += calcRow(movesArray, gameBoard);
 
-        // Column
-        totalScore += calcColumn(movesArray, gameBoard);
+        totalScore += this.calcRow(movesArray, gameBoard);
 
-        // leftSlanting
-        totalScore += calcLeftSlanting(movesArray, gameBoard);
+        totalScore += this.calcColumn(movesArray, gameBoard);
 
-        // rightSlanting
-        totalScore += calcRightSlanting(movesArray, gameBoard);
+        totalScore += this.calcLeftSlanting(movesArray, gameBoard);
+
+        totalScore += this.calcRightSlanting(movesArray, gameBoard);
+
+
+        Counter.resetCount();
 
         return totalScore;
     }
@@ -51,23 +52,21 @@ public class GomokuScoreCalculator extends ScoreCalculator {
 
         final int maxPoint = 50;
         final int minPoint = -50;
-        final int maxLength = 9;
-        int index = 0;
 
-        int subTotal = 0;
+        int score = 0;
 
-        for (int row = 0; row < maxLength; row++) {
+        for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 5; column++) {
-                movesArray[index] = gameBoard[row][column];
-                movesArray[index + 1] = gameBoard[row][column + 1];
-                movesArray[index + 2] = gameBoard[row][column + 2];
-                movesArray[index + 3] = gameBoard[row][column + 3];
-                movesArray[index + 4] = gameBoard[row][column + 4];
 
-                subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+                for (int i = 0; i < 5; i++) {
+                    movesArray[i] = gameBoard[row][column + i];
+                }
+                score += super.calcLineScore(movesArray, maxPoint, minPoint);
+
             }
         }
-        return subTotal;
+
+        return score;
     }
 
     /**
@@ -78,27 +77,26 @@ public class GomokuScoreCalculator extends ScoreCalculator {
      * @return columnの合計点数
      */
     private int calcColumn(final Moves[] movesArray, final Moves[][] gameBoard) {
+
         final int maxPoint = 50;
         final int minPoint = -50;
-        final int maxLength = 9;
-        int index = 0;
 
-        int subTotal = 0;
+        int score = 0;
 
-        for (int column = 0; column < maxLength; column++) {
+        for (int column = 0; column < 9; column++) {
             for (int row = 0; row < 5; row++) {
-                movesArray[index] = gameBoard[row][column];
-                movesArray[index + 1] = gameBoard[row + 1][column];
-                movesArray[index + 2] = gameBoard[row + 2][column];
-                movesArray[index + 3] = gameBoard[row + 3][column];
-                movesArray[index + 4] = gameBoard[row + 4][column];
 
-                subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+                for (int i = 0; i < 5; i++) {
+                    movesArray[i] = gameBoard[row + i][column];
+                }
+                score += super.calcLineScore(movesArray, maxPoint, minPoint);
+
             }
         }
-        return subTotal;
+        return score;
 
     }
+
 
     /**
      * 左斜めのラインの点数を計算するためのメソッド
@@ -107,29 +105,25 @@ public class GomokuScoreCalculator extends ScoreCalculator {
      * @param gameBoard  ゲーム盤
      * @return columnの合計点数
      */
-
     private int calcLeftSlanting(final Moves[] movesArray, final Moves[][] gameBoard) {
 
         final int maxPoint = 50;
         final int minPoint = -50;
 
-        int arrayIndex = 0;
-        int subTotal = 0;
+        int score = 0;
 
         for (int index = 0; index < 5; index++) {
-            movesArray[arrayIndex] = gameBoard[index][index];
-            movesArray[arrayIndex + 1] = gameBoard[index + 1][index + 1];
-            movesArray[arrayIndex + 2] = gameBoard[index + 2][index + 2];
-            movesArray[arrayIndex + 3] = gameBoard[index + 3][index + 3];
-            movesArray[arrayIndex + 4] = gameBoard[index + 4][index + 4];
 
-            subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
+            for (int i = 0; i < 5; i++) {
+                movesArray[i] = gameBoard[index + i][index + i];
+            }
+            score += super.calcLineScore(movesArray, maxPoint, minPoint);
+
         }
 
-        return subTotal;
+        return score;
 
     }
-
 
     /**
      * 右斜めのラインの点数を計算するためのメソッド
@@ -139,24 +133,25 @@ public class GomokuScoreCalculator extends ScoreCalculator {
      * @return columnの合計点数
      */
     private int calcRightSlanting(final Moves[] movesArray, final Moves[][] gameBoard) {
+
         final int maxPoint = 50;
         final int minPoint = -50;
 
+        int score = 0;
+
         int column = 8;
-        int index = 0;
-        int subTotal = 0;
+
 
         // for文1回で、1つの連を表す
         for (int row = 0; row < 5; row++) {
-            movesArray[index] = gameBoard[row][column];
-            movesArray[index + 1] = gameBoard[row + 1][column - 1];
-            movesArray[index + 2] = gameBoard[row + 2][column - 2];
-            movesArray[index + 3] = gameBoard[row + 3][column - 3];
-            movesArray[index + 4] = gameBoard[row + 4][column - 4];
+            for (int i = 0; i < 5; i++) {
+                movesArray[i] = gameBoard[row + i][column - i];
+            }
+            score += super.calcLineScore(movesArray, maxPoint, minPoint);
 
-            subTotal += super.calcLineScore(movesArray, maxPoint, minPoint);
             column--;
         }
-        return subTotal;
+
+        return score;
     }
 }

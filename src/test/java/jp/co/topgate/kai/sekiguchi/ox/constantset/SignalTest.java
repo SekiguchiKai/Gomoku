@@ -9,25 +9,22 @@ import static org.junit.Assert.*;
  * 列挙型SIGNALをテストするためのクラス
  * Created by sekiguchikai on 2016/12/27.
  */
-public class MovesTest {
+public class SignalTest {
     /**
      * getSignalメソッドをテストするためのメソッド
      */
     @Test
-    public void getMoves() {
-        this.helper(Moves.CIRCLE, "○");
-        this.helper(Moves.CROSS, "×");
-        this.helper(Moves.NO_MOVE, "|");
+    public void getSignal() {
+        this.helper(Signal.CIRCLE, "○");
+        this.helper(Signal.CROSS, "×");
+        this.helper(Signal.EMPTY, " ");
     }
 
     /**
      * getSignalメソッドをテストするためのメソッドの補助メソッド
      */
-    private void helper(Moves data, String expected) {
-
-        String actual = data.getMoves();
-
-        assertThat(actual, is(expected));
+    private void helper(Signal data, String expected) {
+        assertThat(data.getSignal(), is(expected));
     }
 
 }
