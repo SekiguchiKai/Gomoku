@@ -81,7 +81,7 @@ public class Judge {
         return this.judgeRow(gameBoard, Moves.CIRCLE)
                 || this.judgeColumn(gameBoard, Moves.CIRCLE)
                 || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
-                || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
+                || this.checkARightSlanting(gameBoard, Moves.CIRCLE);
     }
 
 
@@ -96,7 +96,7 @@ public class Judge {
         return this.judgeRow(gameBoard, Moves.CROSS)
                 || this.judgeColumn(gameBoard, Moves.CROSS)
                 || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
-                || this.judgeRightSlanting(gameBoard, Moves.CROSS);
+                || this.checkARightSlanting(gameBoard, Moves.CROSS);
 
     }
 
@@ -240,19 +240,65 @@ public class Judge {
      * @param moves     検査対象のプレーヤーの打ち手
      * @return 勝敗が決定したか真偽値
      */
-    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves) {
+    private boolean checkARightSlanting(final Moves[][] gameBoard, final Moves moves) {
         int column = columnSize - 1;
 
         // for文1回で、1つの連を表す
         for (int row = 0; row < rowMax; row++) {
-            if (this.judgeRightSlanting(gameBoard, moves, row, column)) {
+            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
                 return true;
             }
             column--;
         }
+
+        if (this.judgeRightSlantingRowSlide(gameBoard, moves)) {
+            return true;
+        } else if (this.judgeRightSlantingColumnSlide(gameBoard, moves)) {
+            return true;
+        }
+
+
         return false;
 
     }
+
+    /**
+     * 右ラインのROWがスライドした時の審査を行うためのメソッド
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private boolean judgeRightSlantingRowSlide(final Moves[][] gameBoard, final Moves moves) {
+        int column = columnSize - 1;
+
+        // for文1回で、1つの連を表す
+        for (int row = 1; row < rowMax; row++) {
+            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 左ラインのROWがスライドした時の審査を行うためのメソッド
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private boolean judgeRightSlantingColumnSlide(final Moves[][] gameBoard, final Moves moves) {
+        final int columnMax = columnSize - 1;
+        final int row = 0;
+
+        // for文1回で、1つの連を表す
+        for (int column = 1; column < columnMax; column++) {
+            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * 右斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
@@ -263,7 +309,7 @@ public class Judge {
      * @param column    columnのインデックス
      * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
      */
-    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
+    private boolean checkARightSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
         for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
             if (gameBoard[row + difference][column - difference] != moves) {
                 return false;
