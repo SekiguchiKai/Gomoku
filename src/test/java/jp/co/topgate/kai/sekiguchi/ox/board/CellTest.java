@@ -2,6 +2,7 @@ package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -12,8 +13,13 @@ import static org.junit.Assert.*;
  * Created by sekiguchikai on 2017/01/10.
  */
 public class CellTest {
+    Cell cell;
 
-    Cell cell = new Cell(3, 3);
+    @Before
+    public void createCell() {
+        this.cell = new Cell();
+    }
+
 
     /**
      * setBestScoreメソッドをテストするためのメソッド
@@ -34,19 +40,23 @@ public class CellTest {
     }
 
     /**
-     * getCellRowメソッドをテストするためのメソッド
+     * getCellRowメソッドgetCellRowメソッドをテストするためのメソッド
      */
     @Test
-    public void getCellRow() {
-        assertThat(this.cell.getCellRow(), is(3));
+    public void setAndGetCellRow() {
+        final int row = 3;
+        this.cell.setCellRow(row);
+        assertThat(this.cell.getCellRow(), is(row));
     }
 
     /**
-     * getCellColumnメソッドをテストするためのメソッド
+     * setCellColumnメソッドとgetCellColumnメソッドをテストするためのメソッド
      */
     @Test
-    public void getCellColumn() {
-        assertThat(this.cell.getCellColumn(), is(3));
+    public void setAndGetCellColumn() {
+        final int column = 3;
+        this.cell.setCellColumn(column);
+        assertThat(this.cell.getCellColumn(), is(column));
     }
 
     /**

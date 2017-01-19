@@ -5,7 +5,6 @@ import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class OrderTest {
     Board board = new GomokuBoard(9, 9);
     ScoreCalculator scoreCalculator = new GomokuScoreCalculator();
     MiniMax miniMax = new MiniMax(scoreCalculator);
-    CommandLineIO commandLineIO = new GomokuCommandLineIO();
+    CommandLineIO commandLineIO = new CommandLineIO();
 
 
     Player user = new User(board, miniMax, commandLineIO, "user");

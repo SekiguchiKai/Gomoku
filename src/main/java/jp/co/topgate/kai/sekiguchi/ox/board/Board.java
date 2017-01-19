@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.player.IoCaution;
 
 import java.util.stream.IntStream;
 
@@ -97,4 +98,53 @@ public abstract class Board {
     public int getColumnSize() {
         return this.columnSize;
     }
+
+
+    /**
+     * 指定されたrowとcolumnの数字が、gameBoardの内で有効な範囲にあるかどうかを返すためのメソッド
+     *
+     * @param specifiedRow    指定されたrow
+     * @param specifiedColumn 指定されたcolumn
+     * @return 指定されたrowとcolumnの数字が、gameBoardの内で有効な範囲にあるかどうか
+     */
+    public IoCaution checkInputRange(final int specifiedRow, final int specifiedColumn) {
+        if (!checkInputRangeHelper(specifiedRow, rowSize)) {
+            return IoCaution.INAPPROPRIATE_NUMBER;
+        } else if (!checkInputRangeHelper(specifiedColumn, columnSize)) {
+            return IoCaution.INAPPROPRIATE_NUMBER;
+        }
+        return IoCaution.APPROPRIATE;
+    }
+
+
+    /**
+     * 0 <= 指定された数字 < 実際のサイズかどうかの真偽値を返すためのメソッド
+     *
+     * @param specifiedNum 指定された数字
+     * @param numSize      実際のサイズ
+     * @return0 <= 指定された数字 < 実際のサイズかどうかの真偽値
+     */
+    private boolean checkInputRangeHelper(final int specifiedNum, final int numSize) {
+        if (0 > specifiedNum) {
+            return false;
+        } else if (specifiedNum >= numSize) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 指定されたrowとcolumnのせるの中に打ち手が入っているかどうかを確認するためのメソッド
+     *
+     * @param specifiedRow    指定されたrow
+     * @param specifiedColumn 指定されたcolumn
+     * @return 指定されたrowとcolumnのせるの中に打ち手が入っているかどうか
+     */
+    public IoCaution checkInputEmpty(final int specifiedRow, final int specifiedColumn) {
+        if (this.gameBoard[specifiedRow][specifiedColumn] != Moves.EMPTY) {
+            return IoCaution.NOT_EMPTY;
+        }
+        return IoCaution.APPROPRIATE;
+    }
+
 }

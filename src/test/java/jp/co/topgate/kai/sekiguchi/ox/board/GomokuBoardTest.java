@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
 public class GomokuBoardTest {
 
     Board gomokuBoard = new GomokuBoard(9, 9);
+    
 
 
     /**

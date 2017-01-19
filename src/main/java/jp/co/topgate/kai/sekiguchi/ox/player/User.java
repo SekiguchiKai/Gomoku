@@ -1,10 +1,10 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 
 
 import java.io.IOException;
@@ -59,10 +59,15 @@ public class User extends Player {
      * @param userInput ユーザの入力の値
      */
     private void choiceDO(final Cell userInput) {
-        if (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE) {
+
+        IoCaution specifiedValidity = userInput.getInvalidSpecified();
+
+        if (specifiedValidity == IoCaution.NOT_EMPTY) {
             commandLineIO.drawExistingCaution();
-        } else if (userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
+        } else if (specifiedValidity == IoCaution.INAPPROPRIATE_NUMBER) {
             commandLineIO.drawInappropriateCaution();
+        } else if (specifiedValidity == IoCaution.NOT_NUMBER) {
+            commandLineIO.drawhalfWidthDigitCaution();
         } else {
             board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.CIRCLE);
         }

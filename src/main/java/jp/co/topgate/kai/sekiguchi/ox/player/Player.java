@@ -2,8 +2,8 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 
-import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 
 
 /**

@@ -54,8 +54,8 @@ public class MiniMax {
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
         int score;
-        int y = -1;
-        int x = -1;
+        int row = -1;
+        int column = -1;
 
 
         // 試合が終了か、深さが0の場合は、スコアを
@@ -63,7 +63,9 @@ public class MiniMax {
 
             score = scoreCalculator.calcScore(board.getGameBoardState());
 
-            Cell cell = new Cell(y, x);
+            Cell cell = new Cell();
+            cell.setCellRow(row);
+            cell.setCellColumn(column);
             cell.setBestScore(score);
 
 
@@ -81,15 +83,15 @@ public class MiniMax {
                     score = calcMinMax(depth - 1, board, Moves.CIRCLE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellX;
+                        row = cellY;
                     }
                 } else if (playerMove == Moves.CIRCLE) {
                     score = calcMinMax(depth - 1, board, Moves.CROSS, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellX;
+                        row = cellY;
                     }
                 }
 
@@ -97,7 +99,9 @@ public class MiniMax {
 
                 if (alpha >= beta) break;
             }
-            Cell cell = new Cell(y, x);
+            Cell cell = new Cell();
+            cell.setCellRow(row);
+            cell.setCellColumn(column);
             cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
 
             return cell;
@@ -115,10 +119,13 @@ public class MiniMax {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
-        for (int y = 0; y < board.getRowSize(); y++) {
-            for (int x = 0; x < board.getColumnSize(); x++) {
-                if (board.getCellState(y, x) == Moves.EMPTY) {
-                    capableMoveList.add(new Cell(y, x));
+        for (int row = 0; row < board.getRowSize(); row++) {
+            for (int column = 0; column < board.getColumnSize(); column++) {
+                if (board.getCellState(row, column) == Moves.EMPTY) {
+                    Cell cell = new Cell();
+                    cell.setCellRow(row);
+                    cell.setCellColumn(column);
+                    capableMoveList.add(cell);
                 }
             }
         }

@@ -4,10 +4,10 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Order;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
@@ -29,7 +29,7 @@ public class GomokuGameLogic extends GameLogic {
     public void playGame() throws IOException {
         System.out.println("五目並べ");
 
-        GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
+        CommandLineIO commandLineIO = new CommandLineIO();
 
         final int rowSize = 9;
         final int columnSize = 9;
@@ -37,13 +37,13 @@ public class GomokuGameLogic extends GameLogic {
 
         final Board gomokuGameBoard = new GomokuBoard(rowSize, columnSize);
 
-        gomokuCommandLineIO.drawUI(gomokuGameBoard);
+        commandLineIO.drawUI(gomokuGameBoard);
 
         final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 
         final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
-        final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
+        final Player user = new User(gomokuGameBoard, miniMax, commandLineIO, "あなた");
+        final Player cpu = new Cpu(gomokuGameBoard, miniMax, commandLineIO, "AI");
 
 
         final Judge gomokuJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
@@ -69,7 +69,7 @@ public class GomokuGameLogic extends GameLogic {
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
+       commandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
     }
 
 }

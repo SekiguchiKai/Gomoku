@@ -1,6 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+import jp.co.topgate.kai.sekiguchi.ox.player.IoCaution;
 
 /**
  * 打ち手にとって、最適なゲーム盤上の場所とそこに打ち手を打った時の得点を格納するためのクラス
@@ -27,17 +28,13 @@ public class Cell {
      */
     private int bestScore;
 
-
     /**
-     * コンストラクタ
-     *
-     * @param cellRow 　打ち手を打つのに最適なゲーム盤上の行の位置
-     * @param cellColumn 打ち手を打つのに最適なゲーム盤上の列の位置
+     * 指定されたマス目が不正な場合の状態を表す
      */
-    public Cell(final int cellRow, final int cellColumn) {
-        this.cellRow = cellRow;
-        this.cellColumn = cellColumn;
-    }
+    private IoCaution invalidSpecified;
+
+
+
 
     /**
      * 最適な場所に打ち手を打った時に得られる得点を取得するためのメソッド
@@ -46,6 +43,24 @@ public class Cell {
      */
     public void setBestScore(final int bestScore) {
         this.bestScore = bestScore;
+    }
+
+    /**
+     * 打ち手を打つのに最適なゲーム盤上の列の位置を設定するためのメソッド
+     *
+     * @param cellRow 　最適なゲーム盤上の列の位置
+     */
+    public void setCellRow(final int cellRow) {
+        this.cellRow = cellRow;
+    }
+
+    /**
+     * 打ち手を打つのに最適なゲーム盤上の行の位置を設定するためのメソッド
+     *
+     * @param cellColumn 　最適なゲーム盤上の行の位置
+     */
+    public void setCellColumn(final int cellColumn) {
+        this.cellColumn = cellColumn;
     }
 
     /**
@@ -88,5 +103,24 @@ public class Cell {
      */
     public Moves getMoves() {
         return this.moves;
+    }
+
+
+    /**
+     * 指定されたマス目が不正な場合の状態を設定する
+     *
+     * @param invalidSpecified 指定されたマス目が不正な場合の状態
+     */
+    public void setInvalidSpecified(final IoCaution invalidSpecified) {
+        this.invalidSpecified = invalidSpecified;
+    }
+
+    /**
+     * マス目が不正な場合の状態を取得する
+     *
+     * @return マス目が不正な場合の状態
+     */
+    public IoCaution getInvalidSpecified() {
+        return this.invalidSpecified;
     }
 }

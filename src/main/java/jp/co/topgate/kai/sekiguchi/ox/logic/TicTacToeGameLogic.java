@@ -7,7 +7,7 @@ import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.io.TicTacToeCommandLineIO;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
 import jp.co.topgate.kai.sekiguchi.ox.player.User;
@@ -33,17 +33,17 @@ public class TicTacToeGameLogic extends GameLogic {
         final int judgeCriteriaSequence = 3;
 
         final Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
-        final TicTacToeCommandLineIO ticTacToeCommandLineIO = new TicTacToeCommandLineIO();
+        final CommandLineIO commandLineIO = new CommandLineIO();
 
         final ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
         final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
-        final Player user = new User(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "あなた");
-        final Player cpu = new Cpu(ticTacToeBoard, miniMax, ticTacToeCommandLineIO, "AI");
+        final Player user = new User(ticTacToeBoard, miniMax, commandLineIO, "あなた");
+        final Player cpu = new Cpu(ticTacToeBoard, miniMax, commandLineIO, "AI");
         final Judge ticTacToeJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
 
 
-        ticTacToeCommandLineIO.drawUI(ticTacToeBoard);
+        commandLineIO.drawUI(ticTacToeBoard);
 
         final int depthCount = 2;
 
@@ -56,7 +56,7 @@ public class TicTacToeGameLogic extends GameLogic {
                 user.doMove(depthCount);
             }
         }
-        ticTacToeCommandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
+        commandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
     }
 }
 
