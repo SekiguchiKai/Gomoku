@@ -34,8 +34,6 @@ public class Cell {
     private IoCaution invalidSpecified;
 
 
-
-
     /**
      * 最適な場所に打ち手を打った時に得られる得点を取得するためのメソッド
      *

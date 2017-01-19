@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
@@ -32,31 +31,31 @@ public class TicTacToeGameLogic extends GameLogic {
         final int columnSize = 3;
         final int judgeCriteriaSequence = 3;
 
-        final Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
+        final Board board = new Board(rowSize, columnSize);
         final CommandLineIO commandLineIO = new CommandLineIO();
 
         final ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
         final MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
-        final Player user = new User(ticTacToeBoard, miniMax, commandLineIO, "あなた");
-        final Player cpu = new Cpu(ticTacToeBoard, miniMax, commandLineIO, "AI");
+        final Player user = new User(board, miniMax, commandLineIO, "あなた");
+        final Player cpu = new Cpu(board, miniMax, commandLineIO, "AI");
         final Judge ticTacToeJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
 
 
-        commandLineIO.drawUI(ticTacToeBoard);
+        commandLineIO.drawUI(board);
 
         final int depthCount = 2;
 
 
-        while (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
+        while (ticTacToeJudge.judgeResult(board) == Result.PENDING) {
             user.doMove(depthCount);
 
-            if (ticTacToeJudge.judgeResult(ticTacToeBoard) == Result.PENDING) {
-//                cpu.doMove(depthCount);
-                user.doMove(depthCount);
+            if (ticTacToeJudge.judgeResult(board) == Result.PENDING) {
+                cpu.doMove(depthCount);
+//                user.doMove(depthCount);
             }
         }
-        commandLineIO.drawResult(ticTacToeJudge.judgeResult(ticTacToeBoard));
+        commandLineIO.drawResult(ticTacToeJudge.judgeResult(board));
     }
 }
 

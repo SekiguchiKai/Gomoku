@@ -1,13 +1,11 @@
 package jp.co.topgate.kai.sekiguchi.ox.judge;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 
+
 import jp.co.topgate.kai.sekiguchi.ox.util.BoardInitializer;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
@@ -28,9 +26,6 @@ public class JudgeTest {
     public void judgeResult() {
     this.ticTacToeJudgeResult();
     this.gomokuJudgeResult();
-
-
-
     }
 
     /**
@@ -39,14 +34,10 @@ public class JudgeTest {
     private void ticTacToeJudgeResult() {
         final int row = 3;
         final int column = 3;
-        final int judgeCriteriaSequence = 3;
-
-
-        Board ticTacToeBoard = new TicTacToeBoard(row, column);
-        Judge judge = new Judge(row, column, judgeCriteriaSequence);
+        Board ticTacToeBoard = new Board(row, column);
 
         this.ticTacToeIsWin(ticTacToeBoard);
-        this.ticTacToeIsWin(ticTacToeBoard);
+        this.ticTacToeIsLose(ticTacToeBoard);
     }
 
     /**
@@ -146,7 +137,6 @@ public class JudgeTest {
          * @param expected 期待する値
          */
         private void checkRightSlanting(Board ticTacToeBoard,Moves moves, Result expected) {
-
             final int rowSize = ticTacToeBoard.getRowSize();
 
             int column = 2;
@@ -187,7 +177,7 @@ public class JudgeTest {
         final int judgeCriteriaSequence = 5;
 
 
-        Board gomokuBoard = new GomokuBoard(row, column);
+        Board gomokuBoard = new Board(row, column);
         Judge judge = new Judge(row, column, judgeCriteriaSequence);
 
         this.gomokuIsWin(gomokuBoard);

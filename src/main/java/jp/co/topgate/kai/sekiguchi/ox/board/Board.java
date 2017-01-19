@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * ゲーム盤
  * Created brow sekiguchikai on 2017/01/05.
  */
-public abstract class Board {
+public class Board {
 
     /**
      * ゲーム盤の列を表す
@@ -37,14 +37,9 @@ public abstract class Board {
         this.columnSize = columnSize;
         this.rowSize = rowSize;
         this.gameBoard = new Moves[rowSize][columnSize];
+        IntStream.range(0, rowSize).forEach(row -> IntStream.range(0, columnSize).forEach(column -> gameBoard[row][column] = Moves.EMPTY));
     }
 
-    /**
-     * インスタンス変数であるgameBoard(ゲーム盤)を初期化する
-     */
-    protected void initGameBoard() {
-        IntStream.range(0, this.rowSize).forEach(y -> IntStream.range(0, this.columnSize).forEach(x -> this.putMoves(y, x, Moves.EMPTY)));
-    }
 
     /**
      * ゲーム盤の指定した場所に打ち手を打つためのメソッド

@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
@@ -25,7 +24,7 @@ public class MiniMaxTest {
     @Test
     public void calcMinMax() {
 
-        Board ticTacToeBoard = new TicTacToeBoard(3, 3);
+        Board ticTacToeBoard = new Board(3, 3);
         ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
 
         MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);

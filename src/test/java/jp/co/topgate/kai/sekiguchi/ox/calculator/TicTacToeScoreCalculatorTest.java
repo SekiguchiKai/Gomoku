@@ -1,9 +1,11 @@
 package jp.co.topgate.kai.sekiguchi.ox.calculator;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+
+
 import jp.co.topgate.kai.sekiguchi.ox.util.BoardInitializer;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -15,11 +17,16 @@ import static org.junit.Assert.*;
  * Created by sekiguchikai on 2016/12/27.
  */
 public class TicTacToeScoreCalculatorTest {
-
     private final int rowSize = 3;
     private final int columnSize = 3;
-    private Board ticTacToeBoard = new TicTacToeBoard(rowSize, columnSize);
-    ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
+    private Board ticTacToeBoard;
+    private ScoreCalculator ticTacToeScoreCalculator;
+
+    @Before
+    public void createInstances() {
+        ticTacToeBoard = new Board(rowSize, columnSize);
+        ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
+    }
 
 
     /**
@@ -27,8 +34,8 @@ public class TicTacToeScoreCalculatorTest {
      */
     @Test
     public void calcScore() {
-        this.checkRow1(Moves.CROSS, 99950);
-        this.checkRow1(Moves.CIRCLE, -99150);
+        this.checkRow1(Moves.CROSS, 100050);
+        this.checkRow1(Moves.CIRCLE, -100050);
 
         this.checkRow2(Moves.CROSS, 99950);
         this.checkRow2(Moves.CIRCLE, -99950);
@@ -70,7 +77,7 @@ public class TicTacToeScoreCalculatorTest {
         Moves[][] gameBoard = ticTacToeBoard.getGameBoardState();
         int actual = ticTacToeScoreCalculator.calcScore(gameBoard);
 
-//        assertThat(actual, is(expected));
+        assertThat(actual, is(expected));
 
         BoardInitializer.initGameBoard(ticTacToeBoard);
     }

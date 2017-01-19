@@ -20,7 +20,6 @@ public class GomokuScoreCalculator extends ScoreCalculator {
      */
     @Override
     public int calcScore(final Moves[][] gameBoard) {
-
         int totalScore = 0;
         final int arraySize = 5;
         final Moves[] movesArray = new Moves[arraySize];
@@ -49,7 +48,6 @@ public class GomokuScoreCalculator extends ScoreCalculator {
      * @return rowの合計点数
      */
     private int calcRow(final Moves[] movesArray, final Moves[][] gameBoard) {
-
         final int maxPoint = 50;
         final int minPoint = -50;
 

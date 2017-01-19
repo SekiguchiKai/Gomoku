@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
@@ -35,15 +34,15 @@ public class GomokuGameLogic extends GameLogic {
         final int columnSize = 9;
         final int judgeCriteriaSequence = 5;
 
-        final Board gomokuGameBoard = new GomokuBoard(rowSize, columnSize);
+        final Board board = new Board(rowSize, columnSize);
 
-        commandLineIO.drawUI(gomokuGameBoard);
+        commandLineIO.drawUI(board);
 
         final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
 
         final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        final Player user = new User(gomokuGameBoard, miniMax, commandLineIO, "あなた");
-        final Player cpu = new Cpu(gomokuGameBoard, miniMax, commandLineIO, "AI");
+        final Player user = new User(board, miniMax, commandLineIO, "あなた");
+        final Player cpu = new Cpu(board, miniMax, commandLineIO, "AI");
 
 
         final Judge gomokuJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
@@ -54,7 +53,7 @@ public class GomokuGameLogic extends GameLogic {
 
         order.setSequentialRandomList(movesMaxNumber, user, cpu);
 
-        while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+        while (gomokuJudge.judgeResult(board) == Result.PENDING) {
 
 
             Player firstPlayer = order.getNextPlayer();
@@ -64,12 +63,12 @@ public class GomokuGameLogic extends GameLogic {
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+            if (gomokuJudge.judgeResult(board) == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-       commandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
+       commandLineIO.drawResult(gomokuJudge.judgeResult(board));
     }
 
 }

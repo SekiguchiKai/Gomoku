@@ -20,17 +20,13 @@ public class TicTacToeScoreCalculator extends ScoreCalculator {
      */
     @Override
     public int calcScore(final Moves[][] gameBoard) {
-
         int totalScore = 0;
-
         final int arraySize = 3;
 
         final Moves[] movesArray = new Moves[arraySize];
 
         final int maxPoint = 30;
         final int minPoint = -30;
-
-
         final int maxLength = 3;
 
 

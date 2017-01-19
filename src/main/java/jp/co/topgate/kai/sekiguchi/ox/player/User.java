@@ -37,11 +37,11 @@ public class User extends Player {
     public void doMove(final int depth) {
         try {
             Cell userInput = commandLineIO.receiveCommand(board);
-            this.choiceDO(userInput);
+            this.choiceDo(userInput);
 
             while (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE || userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
                 userInput = commandLineIO.receiveCommand(board);
-                this.choiceDO(userInput);
+                this.choiceDo(userInput);
             }
 
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class User extends Player {
      *
      * @param userInput ユーザの入力の値
      */
-    private void choiceDO(final Cell userInput) {
+    private void choiceDo(final Cell userInput) {
 
         IoCaution specifiedValidity = userInput.getInvalidSpecified();
 
