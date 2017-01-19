@@ -18,21 +18,6 @@ import java.util.stream.IntStream;
 public class CommandLineIO {
 
     /**
-     * ユーザーの入力によって、Userが行うことを決める
-     *
-     * @param userInput ユーザの入力の値
-     */
-    private void choiceDO(final Cell userInput) {
-        if (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE) {
-            this.drawExistingCaution();
-        } else if (userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
-            this.drawInappropriateCaution();
-        }
-
-    }
-
-
-    /**
      * コマンドライン上にゲーム盤を描くためのメソッド
      *
      * @param board Boardクラスのインスタンス
@@ -98,6 +83,7 @@ public class CommandLineIO {
             cell.setInvalidSpecified(IoCaution.NOT_NUMBER);
             return cell;
         } else if (!Pattern.matches("^\\d$", userInputColumnString)) {
+            cell.setInvalidSpecified(IoCaution.NOT_NUMBER);
             return cell;
         }
 

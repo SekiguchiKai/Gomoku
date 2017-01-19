@@ -68,7 +68,6 @@ public class MiniMax {
             cell.setCellColumn(column);
             cell.setBestScore(score);
 
-
             return cell;
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る

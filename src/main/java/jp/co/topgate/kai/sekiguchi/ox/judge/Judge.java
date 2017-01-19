@@ -67,8 +67,6 @@ public class Judge {
         } else if (this.judgeDraw(gameBoard)) {
             return Result.DRAW;
         }
-
-
         return Result.PENDING;
     }
 
@@ -80,8 +78,10 @@ public class Judge {
      * @return ユーザーが勝利したかどうかの真偽値
      */
     private boolean judgeWin(final Moves[][] gameBoard) {
-        return this.judgeRow(gameBoard, Moves.CIRCLE) || this.judgeColumn(gameBoard, Moves.CIRCLE) || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE) || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
-
+        return this.judgeRow(gameBoard, Moves.CIRCLE)
+                || this.judgeColumn(gameBoard, Moves.CIRCLE)
+                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
+                || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
     }
 
 
@@ -93,7 +93,10 @@ public class Judge {
      * @return ユーザーが敗北したかどうかの真偽値
      */
     private boolean judgeLose(final Moves[][] gameBoard) {
-        return this.judgeRow(gameBoard, Moves.CROSS) || this.judgeColumn(gameBoard, Moves.CROSS) || this.judgeLeftSlanting(gameBoard, Moves.CROSS) || this.judgeRightSlanting(gameBoard, Moves.CROSS);
+        return this.judgeRow(gameBoard, Moves.CROSS)
+                || this.judgeColumn(gameBoard, Moves.CROSS)
+                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
+                || this.judgeRightSlanting(gameBoard, Moves.CROSS);
 
     }
 
@@ -107,7 +110,11 @@ public class Judge {
     private boolean judgeDraw(final Moves[][] gameBoard) {
         for (int row = 0; row < this.rowSize; row++) {
             for (int column = 0; column < this.columnSize; column++) {
-                if (this.judgeWin(gameBoard) || this.judgeLose(gameBoard) || gameBoard[row][column] == Moves.EMPTY) {
+                if (this.judgeWin(gameBoard)) {
+                    return false;
+                } else if (this.judgeLose(gameBoard)) {
+                    return false;
+                } else if (gameBoard[row][column] == Moves.EMPTY) {
                     return false;
                 }
             }

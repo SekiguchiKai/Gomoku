@@ -5,7 +5,6 @@ import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
 
 
-import jp.co.topgate.kai.sekiguchi.ox.util.BoardInitializer;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
@@ -19,13 +18,22 @@ import static org.junit.Assert.*;
  */
 public class JudgeTest {
 
+
+    /**
+     * Boardクラスのインスタンスを初期化するためのメソッド
+     */
+    public void initGameBoard(Board board) {
+        IntStream.range(0, board.getRowSize()).forEach(y -> IntStream.range(0, board.getColumnSize()).forEach(x -> board.putMoves(y, x, Moves.EMPTY)));
+    }
+
+
     /**
      * judgeResultメソッドをテストするためんおメソッド
      */
     @Test
     public void judgeResult() {
-    this.ticTacToeJudgeResult();
-    this.gomokuJudgeResult();
+        this.ticTacToeJudgeResult();
+        this.gomokuJudgeResult();
     }
 
     /**
@@ -45,114 +53,116 @@ public class JudgeTest {
      */
     private void ticTacToeIsWin(Board ticTacToeBoard) {
         this.checkRow(ticTacToeBoard, Moves.CIRCLE, Result.WIN);
-        this.checkColumn(ticTacToeBoard,Moves.CIRCLE, Result.WIN);
-        this.checkLeftSlanting(ticTacToeBoard,Moves.CIRCLE, Result.WIN);
-        this.checkRightSlanting(ticTacToeBoard,Moves.CIRCLE, Result.WIN);
+        this.checkColumn(ticTacToeBoard, Moves.CIRCLE, Result.WIN);
+        this.checkLeftSlanting(ticTacToeBoard, Moves.CIRCLE, Result.WIN);
+        this.checkRightSlanting(ticTacToeBoard, Moves.CIRCLE, Result.WIN);
     }
 
     /**
      * 現在のゲーム盤において、ユーザーが敗北しているかをテストするためのメソッド
      */
     private void ticTacToeIsLose(Board ticTacToeBoard) {
-        this.checkRow(ticTacToeBoard,Moves.CROSS, Result.LOSE);
-        this.checkColumn(ticTacToeBoard,Moves.CROSS, Result.LOSE);
-        this.checkLeftSlanting(ticTacToeBoard,Moves.CROSS, Result.LOSE);
-        this.checkRightSlanting(ticTacToeBoard,Moves.CROSS, Result.LOSE);
+        this.checkRow(ticTacToeBoard, Moves.CROSS, Result.LOSE);
+        this.checkColumn(ticTacToeBoard, Moves.CROSS, Result.LOSE);
+        this.checkLeftSlanting(ticTacToeBoard, Moves.CROSS, Result.LOSE);
+        this.checkRightSlanting(ticTacToeBoard, Moves.CROSS, Result.LOSE);
     }
 
 
+    /**
+     * rowについてした下準備をし、assertするためのメソッド
+     *
+     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param moves          打ち手
+     * @param expected       期待する値
+     */
+    private void checkRow(Board ticTacToeBoard, Moves moves, Result expected) {
+        final int rowSize = ticTacToeBoard.getRowSize();
+        final int columnSize = ticTacToeBoard.getColumnSize();
 
-
-        /**
-         * rowについてした下準備をし、assertするためのメソッド
-         * @param ticTacToeBoard Boardクラスのインスタンス
-         * @param moves    打ち手
-         * @param expected 期待する値
-         */
-        private void checkRow(Board ticTacToeBoard, Moves moves, Result expected) {
-            final int rowSize = ticTacToeBoard.getRowSize();
-            final int columnSize = ticTacToeBoard.getColumnSize();
-
-            for (int row = 0; row < rowSize; row++) {
-                for (int column = 0; column < columnSize; column++) {
-                    ticTacToeBoard.putMoves(row, column, moves);
-                }
-
-                Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
-                Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
-
-                assertThat(actual, is(expected));
-                BoardInitializer.initGameBoard(ticTacToeBoard);
-            }
-        }
-
-        /**
-         * rowについて下準備をし、assertするためのメソッド
-         * @param ticTacToeBoard Boardクラスのインスタンス
-         * @param moves    打ち手
-         * @param expected 期待する値
-         */
-        private void checkColumn(Board ticTacToeBoard,Moves moves, Result expected) {
-            final int rowSize = ticTacToeBoard.getRowSize();
-            final int columnSize = ticTacToeBoard.getColumnSize();
-
+        for (int row = 0; row < rowSize; row++) {
             for (int column = 0; column < columnSize; column++) {
-                for (int row = 0; row < rowSize; row++) {
-                    ticTacToeBoard.putMoves(row, column, moves);
-                }
-
-                Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
-                Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
-
-                assertThat(actual, is(expected));
-                BoardInitializer.initGameBoard(ticTacToeBoard);
-            }
-        }
-
-        /**
-         * 左斜めのラインについて下準備をし、assertするためのメソッド
-         * @param ticTacToeBoard Boardクラスのインスタンス
-         * @param moves    打ち手
-         * @param expected 期待する値
-         */
-        private void checkLeftSlanting(Board ticTacToeBoard,Moves moves, Result expected) {
-            final int indexSize = 3;
-
-            for (int index = 0; index < indexSize; index++) {
-                ticTacToeBoard.putMoves(index, index, moves);
+                ticTacToeBoard.putMoves(row, column, moves);
             }
 
             Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
             Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
 
             assertThat(actual, is(expected));
-            BoardInitializer.initGameBoard(ticTacToeBoard);
-
+            this.initGameBoard(ticTacToeBoard);
         }
+    }
 
-        /**
-         * 右斜めのラインについて下準備をし、assertするためのメソッド
-         * @param ticTacToeBoard Boardクラスのインスタンス
-         * @param moves    打ち手
-         * @param expected 期待する値
-         */
-        private void checkRightSlanting(Board ticTacToeBoard,Moves moves, Result expected) {
-            final int rowSize = ticTacToeBoard.getRowSize();
+    /**
+     * rowについて下準備をし、assertするためのメソッド
+     *
+     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param moves          打ち手
+     * @param expected       期待する値
+     */
+    private void checkColumn(Board ticTacToeBoard, Moves moves, Result expected) {
+        final int rowSize = ticTacToeBoard.getRowSize();
+        final int columnSize = ticTacToeBoard.getColumnSize();
 
-            int column = 2;
-
+        for (int column = 0; column < columnSize; column++) {
             for (int row = 0; row < rowSize; row++) {
                 ticTacToeBoard.putMoves(row, column, moves);
-                column--;
             }
 
             Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
             Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
 
             assertThat(actual, is(expected));
-            BoardInitializer.initGameBoard(ticTacToeBoard);
-
+            this.initGameBoard(ticTacToeBoard);
         }
+    }
+
+    /**
+     * 左斜めのラインについて下準備をし、assertするためのメソッド
+     *
+     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param moves          打ち手
+     * @param expected       期待する値
+     */
+    private void checkLeftSlanting(Board ticTacToeBoard, Moves moves, Result expected) {
+        final int indexSize = 3;
+
+        for (int index = 0; index < indexSize; index++) {
+            ticTacToeBoard.putMoves(index, index, moves);
+        }
+
+        Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
+        Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
+
+        assertThat(actual, is(expected));
+        this.initGameBoard(ticTacToeBoard);
+
+    }
+
+    /**
+     * 右斜めのラインについて下準備をし、assertするためのメソッド
+     *
+     * @param ticTacToeBoard Boardクラスのインスタンス
+     * @param moves          打ち手
+     * @param expected       期待する値
+     */
+    private void checkRightSlanting(Board ticTacToeBoard, Moves moves, Result expected) {
+        final int rowSize = ticTacToeBoard.getRowSize();
+
+        int column = 2;
+
+        for (int row = 0; row < rowSize; row++) {
+            ticTacToeBoard.putMoves(row, column, moves);
+            column--;
+        }
+
+        Judge ticTacToeJudge = this.ticTacToeCreateJudgeInstance();
+        Result actual = ticTacToeJudge.judgeResult(ticTacToeBoard);
+
+        assertThat(actual, is(expected));
+        this.initGameBoard(ticTacToeBoard);
+
+    }
 
 
     /**
@@ -187,6 +197,7 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、ユーザーが勝利しているかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
      */
     private void gomokuIsWin(Board gomokuBoard) {
@@ -198,6 +209,7 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、ユーザーが敗北しているかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
      */
     private void gomokuIsLose(Board gomokuBoard) {
@@ -209,9 +221,10 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、row(横のライン)について勝敗が決定しているかどうかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
-     * @param moves    プレーヤーの打ち手
-     * @param expected 期待する値
+     * @param moves       プレーヤーの打ち手
+     * @param expected    期待する値
      */
     private void gomokuJudgeRow(Board gomokuBoard, Moves moves, Result expected) {
         int columnEndNum = 5;
@@ -225,7 +238,8 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、指定された各row(横のライン)について勝敗が決定しているかどうかをテストするためのメソッド
-     * @param gomokuBoard Boardクラスのインスタンス
+     *
+     * @param gomokuBoard    Boardクラスのインスタンス
      * @param columnStartNum columnの走査開始値
      * @param columnEndNum   columnの走査終了値
      * @param moves          プレーヤーの打ち手
@@ -238,15 +252,16 @@ public class JudgeTest {
         IntStream.range(0, rowSize).forEach(y -> IntStream.range(columnStartNum, columnEndNum).forEach(x -> gomokuBoard.putMoves(y, x, moves)));
         assertThat(judge.judgeResult(gomokuBoard), is(expected));
 
-        BoardInitializer.initGameBoard(gomokuBoard);
+        this.initGameBoard(gomokuBoard);
     }
 
 
     /**
      * 現在のゲーム盤において、column(縦のライン)について勝敗が決定しているかどうかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
-     * @param moves    プレーヤーの打ち手
-     * @param expected 期待する値
+     * @param moves       プレーヤーの打ち手
+     * @param expected    期待する値
      */
     private void gomokuJudgeColumn(Board gomokuBoard, Moves moves, Result expected) {
         int rowEndNum = 5;
@@ -260,6 +275,7 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、指定された各column(縦のライン)について勝敗が決定しているかどうかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
      * @param rowStartNum rowの走査開始値
      * @param rowEndNum   rowの走査終了値
@@ -272,15 +288,16 @@ public class JudgeTest {
         IntStream.range(0, rowEndNum).forEach(x -> IntStream.range(rowStartNum, rowEndNum).forEach(y -> gomokuBoard.putMoves(y, x, moves)));
         assertThat(judge.judgeResult(gomokuBoard), is(expected));
 
-        BoardInitializer.initGameBoard(gomokuBoard);
+        this.initGameBoard(gomokuBoard);
     }
 
 
     /**
      * 現在のゲーム盤において、左斜めのラインについて勝敗が決定しているかどうかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
-     * @param moves    プレーヤーの打ち手
-     * @param expected 期待する値
+     * @param moves       プレーヤーの打ち手
+     * @param expected    期待する値
      */
     private void gomokuJudgeLeftSlanting(Board gomokuBoard, Moves moves, Result expected) {
         int endIndexNum = 5;
@@ -295,7 +312,8 @@ public class JudgeTest {
 
     /**
      * 現在のゲーム盤において、指定された各column(縦のライン)について勝敗が決定しているかどうかをテストするためのメソッド
-     * @param gomokuBoard Boardクラスのインスタンス
+     *
+     * @param gomokuBoard   Boardクラスのインスタンス
      * @param startIndexNum rowとcolumnの走査開始値
      * @param endIndexNum   rowとcolumnの走査終了値
      * @param moves         プレーヤーの打ち手
@@ -308,15 +326,16 @@ public class JudgeTest {
 
         assertThat(judge.judgeResult(gomokuBoard), is(expected));
 
-        BoardInitializer.initGameBoard(gomokuBoard);
+        this.initGameBoard(gomokuBoard);
 
     }
 
     /**
      * 現在のゲーム盤において、左斜めのラインについて勝敗が決定しているかどうかをテストするためのメソッド
+     *
      * @param gomokuBoard Boardクラスのインスタンス
-     * @param moves    プレーヤーの打ち手
-     * @param expected 期待する値
+     * @param moves       プレーヤーの打ち手
+     * @param expected    期待する値
      */
     private void gomokuJudgeRightSlanting(Board gomokuBoard, Moves moves, Result expected) {
 

@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
@@ -21,9 +20,17 @@ import static org.junit.Assert.*;
 public class OrderTest {
     @Test
     public void setSequentialRandomList() {
+        final int rowSize = 9;
+        final int columnSize = 9;
+        final int judgeCriteriaSequence = 5;
+
+        final int maxPoint = 50;
+        final int minPoint = -50;
+
+
         Order order = new Order();
         Board board = new Board(9, 9);
-        ScoreCalculator scoreCalculator = new GomokuScoreCalculator();
+        ScoreCalculator scoreCalculator = new ScoreCalculator(rowSize, columnSize, judgeCriteriaSequence, maxPoint, minPoint);
         MiniMax miniMax = new MiniMax(scoreCalculator);
         CommandLineIO commandLineIO = new CommandLineIO();
 
