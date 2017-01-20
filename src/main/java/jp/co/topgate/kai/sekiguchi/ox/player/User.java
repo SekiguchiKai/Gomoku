@@ -1,10 +1,11 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
+import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
+
 
 import java.io.IOException;
 
@@ -35,34 +36,45 @@ public class User extends Player {
     @Override
     public void doMove(final int depth) {
         try {
-            Cell userInput = commandLineIO.receiveCommand(board);
-            this.choiceDO(userInput);
+            InputState userInputState = commandLineIO.receiveCommand(board);
+            Cell userInput = commandLineIO.getCell();
+            this.choiceDo(userInputState, userInput);
 
-            while (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE || userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
-                userInput = commandLineIO.receiveCommand(board);
-                this.choiceDO(userInput);
+
+            commandLineIO.drawUI(board);
+
+            while (userInputState != InputState.APPROPRIATE) {
+                userInputState = commandLineIO.receiveCommand(board);
+                userInput = commandLineIO.getCell();
+                this.choiceDo(userInputState, userInput);
+
+                commandLineIO.drawUI(board);
             }
 
         } catch (IOException e) {
             System.err.println("エラー:" + e.getMessage());
             e.printStackTrace();
         }
-        commandLineIO.drawUI(board);
+
 
     }
 
     /**
      * ユーザーの入力によって、Userが行うことを決める
      *
-     * @param userInput ユーザの入力の値
+     * @param userInputState ユーザーの入力の状態
+     * @param userInput      ユーザの入力の値
      */
-    private void choiceDO(final Cell userInput) {
-        if (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE) {
+    private void choiceDo(final InputState userInputState, final Cell userInput) {
+
+        if (userInputState == InputState.NOT_EMPTY) {
             commandLineIO.drawExistingCaution();
-        } else if (userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
+        } else if (userInputState == InputState.INAPPROPRIATE_NUMBER) {
             commandLineIO.drawInappropriateCaution();
+        } else if (userInputState == InputState.NOT_NUMBER) {
+            commandLineIO.drawhalfWidthDigitCaution();
         } else {
-            board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.USER_MOVE);
+            board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.CIRCLE);
         }
     }
 }

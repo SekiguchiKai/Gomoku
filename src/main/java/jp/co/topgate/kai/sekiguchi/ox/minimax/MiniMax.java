@@ -1,9 +1,9 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
+
 
 import java.util.*;
 
@@ -12,6 +12,7 @@ import java.util.*;
  * Created by sekiguchikai on 2016/12/22.
  */
 public class MiniMax {
+
 
     /**
      * ScoreCalculatorクラスのインスタンス
@@ -53,8 +54,8 @@ public class MiniMax {
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
         int score;
-        int y = -1;
-        int x = -1;
+        int row = -1;
+        int column = -1;
 
 
         // 試合が終了か、深さが0の場合は、スコアを
@@ -62,7 +63,7 @@ public class MiniMax {
 
             score = scoreCalculator.calcScore(board.getGameBoardState());
 
-            Cell cell = new Cell(y, x);
+            Cell cell = new Cell(row, column);
             cell.setBestScore(score);
 
             return cell;
@@ -75,28 +76,29 @@ public class MiniMax {
 
                 board.putMoves(cellY, cellX, playerMove);
 
-                if (playerMove == Moves.CPU_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.USER_MOVE, alpha, beta).getBestScore();
+                if (playerMove == Moves.CROSS) {
+                    score = calcMinMax(depth - 1, board, Moves.CIRCLE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellX;
+                        row = cellY;
                     }
-                } else if (playerMove == Moves.USER_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.CPU_MOVE, alpha, beta).getBestScore();
+                } else if (playerMove == Moves.CIRCLE) {
+                    score = calcMinMax(depth - 1, board, Moves.CROSS, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellX;
+                        row = cellY;
                     }
                 }
 
-                board.putMoves(cellY, cellX, Moves.NO_MOVE);
+                board.putMoves(cellY, cellX, Moves.EMPTY);
 
                 if (alpha >= beta) break;
             }
-            Cell cell = new Cell(y, x);
-            cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+            Cell cell = new Cell(row, column);
+            cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
+
             return cell;
         }
     }
@@ -108,14 +110,15 @@ public class MiniMax {
      * @param board Boardクラスのインスタンス
      * @return NO_MOVEが存在するGameBoard上の場所の一覧を格納したList
      */
-  List<Cell> makeCapableMOveList(final Board board) {
+    List<Cell> makeCapableMOveList(final Board board) {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
-        for (int y = 0; y < board.getRowSize(); y++) {
-            for (int x = 0; x < board.getColumnSize(); x++) {
-                if (board.getCellState(y, x) == Moves.NO_MOVE) {
-                    capableMoveList.add(new Cell(y, x));
+        for (int row = 0; row < board.getRowSize(); row++) {
+            for (int column = 0; column < board.getColumnSize(); column++) {
+                if (board.getCellState(row, column) == Moves.EMPTY) {
+                    Cell cell = new Cell(row, column);
+                    capableMoveList.add(cell);
                 }
             }
         }
