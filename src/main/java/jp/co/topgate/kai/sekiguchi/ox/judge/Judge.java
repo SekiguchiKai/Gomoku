@@ -80,7 +80,7 @@ public class Judge {
     private boolean judgeWin(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CIRCLE)
                 || this.judgeColumn(gameBoard, Moves.CIRCLE)
-//                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
+                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
                 || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
     }
 
@@ -95,8 +95,7 @@ public class Judge {
     private boolean judgeLose(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CROSS)
                 || this.judgeColumn(gameBoard, Moves.CROSS)
-
-//                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
+                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
                 || this.judgeRightSlanting(gameBoard, Moves.CROSS);
 
 
@@ -198,6 +197,55 @@ public class Judge {
         return true;
     }
 
+    // ↓未解決
+
+    /**
+     * 左斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     打ち手
+     * @return 右斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     */
+    public boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
+
+        // centerAxis
+        int column = 0;
+
+        for (int row = 0; row < rowMax; row++) {
+            // 1回あたりの5連
+            boolean oneTermCheck = this.checkOneTermLeftSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+            column++;
+        }
+        return false;
+    }
+
+    /**
+     * 左斜めのラインの1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     打ち手
+     * @param row       rowのインデックス
+     * @param column    columnのインデックス
+     * @return 1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値
+     */
+    public boolean checkOneTermLeftSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
+
+        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
+            if (gameBoard[row + difference][column + difference] != moves) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
+// ↑未解決
+
+
     /**
      * 右斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
      *
@@ -290,7 +338,7 @@ public class Judge {
 
 
     /**
-     * 1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     * 右斜めのライン1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
      *
      * @param gameBoard ゲーム盤
      * @param moves     打ち手
