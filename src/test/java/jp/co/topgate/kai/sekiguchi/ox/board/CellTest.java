@@ -17,7 +17,9 @@ public class CellTest {
 
     @Before
     public void createCell() {
-        this.cell = new Cell();
+        final int row = 3;
+        final int column = 3;
+        this.cell = new Cell(row, column);
     }
 
 

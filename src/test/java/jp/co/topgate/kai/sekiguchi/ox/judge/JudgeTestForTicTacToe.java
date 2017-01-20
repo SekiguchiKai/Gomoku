@@ -106,39 +106,39 @@ public class JudgeTestForTicTacToe {
     }
 
 
-    /**
-     * 左斜めのラインにCircleの打ち手を3つ打つとCircleのユーザーの勝利が決定するかどうかを確認するためのメソッド
-     * 左斜めのラインは、0~2行目まで全てを網羅している
-     */
-    @Test
-    public void puttingThreeCircleMovesInALeftSlantingDecideCirCleUserWin() {
-        this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
-    }
-
-    /**
-     * 左斜めのラインにCrossの打ち手を3つ打つとCircleのユーザーの敗北が決定するかどうかを確認するためのメソッド
-     * 左斜めのラインは、0~2行目まで全てを網羅している
-     */
-    @Test
-    public void puttingThreeCrossMovesInALeftSlantingDecideCirCleUserLose() {
-        this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
-    }
-
-
-    /**
-     * 左斜めのラインに同じの打ち手を3つ打つと勝敗が決定するかどうかを確認するためのメソッド
-     * 左斜めのラインは、0~2行目まで全てを網羅している
-     *
-     * @param moves    打ち手
-     * @param expected 期待する結果
-     */
-    public void puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves moves, Result expected) {
-        final int indexSize = 3;
-        IntStream.range(0, indexSize).forEach(idx -> board.putMoves(idx, idx, moves));
-
-        Result actual = judge.judgeResult(board);
-        assertThat(actual, is(expected));
-    }
+//    /**
+//     * 左斜めのラインにCircleの打ち手を3つ打つとCircleのユーザーの勝利が決定するかどうかを確認するためのメソッド
+//     * 左斜めのラインは、0~2行目まで全てを網羅している
+//     */
+//    @Test
+//    public void puttingThreeCircleMovesInALeftSlantingDecideCirCleUserWin() {
+//        this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
+//    }
+//
+//    /**
+//     * 左斜めのラインにCrossの打ち手を3つ打つとCircleのユーザーの敗北が決定するかどうかを確認するためのメソッド
+//     * 左斜めのラインは、0~2行目まで全てを網羅している
+//     */
+//    @Test
+//    public void puttingThreeCrossMovesInALeftSlantingDecideCirCleUserLose() {
+//        this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
+//    }
+//
+//
+//    /**
+//     * 左斜めのラインに同じの打ち手を3つ打つと勝敗が決定するかどうかを確認するためのメソッド
+//     * 左斜めのラインは、0~2行目まで全てを網羅している
+//     *
+//     * @param moves    打ち手
+//     * @param expected 期待する結果
+//     */
+//    public void puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves moves, Result expected) {
+//        final int indexSize = 3;
+//        IntStream.range(0, indexSize).forEach(idx -> board.putMoves(idx, idx, moves));
+//
+//        Result actual = judge.judgeResult(board);
+//        assertThat(actual, is(expected));
+//    }
 
     /**
      * 右斜めのラインにCircleの打ち手を3つ打つとCircleのユーザーの勝利が決定するかどうかを確認するためのメソッド

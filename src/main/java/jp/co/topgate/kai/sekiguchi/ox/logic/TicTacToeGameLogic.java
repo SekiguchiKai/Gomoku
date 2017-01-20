@@ -53,7 +53,8 @@ public class TicTacToeGameLogic extends GameLogic {
             user.doMove(depthCount);
 
             if (ticTacToeJudge.judgeResult(board) == Result.PENDING) {
-                cpu.doMove(depthCount);
+//                cpu.doMove(depthCount);
+                user.doMove(depthCount);
             }
         }
         commandLineIO.drawResult(ticTacToeJudge.judgeResult(board));
