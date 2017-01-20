@@ -207,17 +207,10 @@ public class Judge {
     private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
         final int indexMax = rowMax;
         for (int index = 0; index < indexMax; index++) {
-            if (this.checkALeftSlanting(gameBoard, moves, index, index)) {
+            if (this.checkALeftSlanting(gameBoard, moves, index)) {
                 return true;
             }
         }
-
-        if (this.judgeLeftSlantingRowSlide(gameBoard, moves)) {
-            return true;
-        } else if (this.judgeLeftSlantingColumnSlide(gameBoard, moves)) {
-            return true;
-        }
-
         return false;
     }
 
@@ -226,58 +219,17 @@ public class Judge {
      * 左斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
      *
      * @param gameBoard ゲーム盤
-     * @param row       rowのインデックス
-     * @param column    columnのインデックス
+     * @param index     rowとcolumnのインデックス
      * @param moves     打ち手
      * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
      */
-    private boolean checkALeftSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
+    private boolean checkALeftSlanting(final Moves[][] gameBoard, final Moves moves, final int index) {
         for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
-            if (gameBoard[row + difference][column + difference] != moves) {
+            if (gameBoard[index + difference][index + difference] != moves) {
                 return false;
             }
         }
         return true;
-    }
-
-
-    /**
-     * 左ラインのROWがスライドした時の審査を行うためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeLeftSlantingRowSlide(final Moves[][] gameBoard, final Moves moves) {
-        final int column = 0;
-
-        // for文1回で、1つの連を表す
-        for (int row = 0; row < rowMax; row++) {
-            if (this.checkALeftSlanting(gameBoard, moves, row, column)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * 左ラインのROWがスライドした時の審査を行うためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeLeftSlantingColumnSlide(final Moves[][] gameBoard, final Moves moves) {
-        final int row = 0;
-
-        // for文1回で、1つの連を表す
-        for (int column = 1; column < columnMax; column++) {
-            if (this.checkALeftSlanting(gameBoard, moves, row, column)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 
@@ -293,62 +245,14 @@ public class Judge {
 
         // for文1回で、1つの連を表す
         for (int row = 0; row < rowMax; row++) {
-            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
+            if (this.judgeRightSlanting(gameBoard, moves, row, column)) {
                 return true;
             }
             column--;
         }
-
-        if (this.judgeRightSlantingRowSlide(gameBoard, moves)) {
-            return true;
-        } else if (this.judgeRightSlantingColumnSlide(gameBoard, moves)) {
-            return true;
-        }
-
         return false;
 
     }
-
-
-    /**
-     * 右ラインのROWがスライドした時の審査を行うためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeRightSlantingRowSlide(final Moves[][] gameBoard, final Moves moves) {
-        int column = columnSize - 1;
-
-        // for文1回で、1つの連を表す
-        for (int row = 1; row < rowMax; row++) {
-            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 左ラインのROWがスライドした時の審査を行うためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeRightSlantingColumnSlide(final Moves[][] gameBoard, final Moves moves) {
-        final int columnMax = columnSize - 1;
-        final int row = 0;
-
-        // for文1回で、1つの連を表す
-        for (int column = 1; column < columnMax; column++) {
-            if (this.checkARightSlanting(gameBoard, moves, row, column)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     /**
      * 右斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
@@ -359,7 +263,7 @@ public class Judge {
      * @param column    columnのインデックス
      * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
      */
-    private boolean checkARightSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
+    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
         for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
             if (gameBoard[row + difference][column - difference] != moves) {
                 return false;
@@ -370,4 +274,3 @@ public class Judge {
 
 
 }
-

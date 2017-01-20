@@ -50,11 +50,11 @@ public class ScoreCalculator {
     /**
      * コンストラクタ
      *
-     * @param rowSize rowのサイズ
-     * @param columnSize columnのサイズ
+     * @param rowSize               rowのサイズ
+     * @param columnSize            columnのサイズ
      * @param judgeCriteriaSequence 勝敗が決定する連続する打ち手の長さ
-     * @param maxPoint 補正前の最大得点
-     * @param minPoint 補正前の最小得点
+     * @param maxPoint              補正前の最大得点
+     * @param minPoint              補正前の最小得点
      */
     public ScoreCalculator(final int rowSize, final int columnSize, final int judgeCriteriaSequence, final int maxPoint, final int minPoint) {
         this.rowSize = rowSize;
@@ -155,22 +155,94 @@ public class ScoreCalculator {
             }
             score += this.calcLineScore(movesArray, maxPoint, minPoint);
         }
+
+
+        score += calcLeftSlantingRowSlide(gameBoard, movesArray);
+        score += calcLeftSlantingColumnSlide(gameBoard, movesArray);
+
+
         return score;
     }
+
+
+//
+
+
+    /**
+     * 左ラインのROWがスライドした時の審査を行うためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private int calcLeftSlantingRowSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
+        final int column = 0;
+        int score = 0;
+
+        // for文1回で、1つの連を表す
+        for (int row = 1; row < rowMax; row++) {
+            score = this.calcLeftSlantingSlideHelper(gameBoard, movesArray, row, column);
+        }
+        return score;
+    }
+
+
+    /**
+     * 左ラインのROWがスライドした時の審査を行うためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private int calcLeftSlantingColumnSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
+        final int row = 0;
+        int score = 0;
+
+        // for文1回で、1つの連を表す
+        for (int column = 1; column < columnMax; column++) {
+            score = this.calcLeftSlantingSlideHelper(gameBoard, movesArray, row, column);
+        }
+        return score;
+    }
+
+
+    /**
+     * 左斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param row       rowのインデックス
+     * @param column    columnのインデックス
+     * @param moves     打ち手
+     * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
+     */
+    private int calcLeftSlantingSlideHelper(final Moves[][] gameBoard, final Moves[] movesArray, final int row, final int column) {
+
+        int score = 0;
+
+        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
+            movesArray[difference] = gameBoard[row + difference][column + difference];
+        }
+        score += this.calcLineScore(movesArray, maxPoint, minPoint);
+
+        return score;
+    }
+
+
+    //
+
 
     /**
      * 右斜めのラインの点数を計算するためのメソッド
      *
      * @param movesArray Movesを格納するための配列
      * @param gameBoard  ゲーム盤
-     * @return columnの合計点数
+     * @return 右斜めの合計点数
      */
     private int calcRightSlanting(final Moves[] movesArray, final Moves[][] gameBoard) {
         int score = 0;
 
         final int columnLastIndex = columnSize - 1;
         int column = columnLastIndex;
-
 
         // for文1回で、1つの連を表す
         for (int row = 0; row < rowMax; row++) {
@@ -181,8 +253,76 @@ public class ScoreCalculator {
 
             column--;
         }
+
+
+        score += this.calcRightSlantingRowSlide(gameBoard, movesArray);
+
+        score += this.calcRightSlantingColumnSlide(gameBoard, movesArray);
+
+
         return score;
     }
+
+    /**
+     * 右ラインのROWがスライドした時の得点を換算するをためのメソッド
+     *
+     * @param gameBoard  ゲーム盤
+     * @param movesArray Movesを格納するための配列
+     * @return スライド分の合計点
+     */
+    private int calcRightSlantingRowSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
+        int column = columnSize - 1;
+
+        int score = 0;
+
+        // for文1回で、1つの連を表す
+        for (int row = 1; row < rowMax; row++) {
+            score = this.calcRightSlantingSlideHelper(gameBoard, movesArray, row, column);
+        }
+        return score;
+    }
+
+    /**
+     * 右ラインのcolumnがスライドした時の得点を換算するをためのメソッド
+     *
+     * @param gameBoard  ゲーム盤
+     * @param movesArray Movesを格納するための配列
+     * @return スライド分の合計点
+     */
+    private int calcRightSlantingColumnSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
+        final int localColumnMax = columnSize - 1;
+        final int row = 0;
+
+        int score = 0;
+
+        // for文1回で、1つの連を表す
+        for (int column = judgeCriteriaSequence - 1; column < localColumnMax; column++) {
+            score = this.calcRightSlantingSlideHelper(gameBoard, movesArray, row, column);
+        }
+        return score;
+    }
+
+
+    /**
+     * udgeRightSlanting~Slideメソッドを補助するためのメソッド
+     *
+     * @param gameBoard  ゲーム盤
+     * @param movesArray Movesを格納するための配列
+     * @param row        rowのインデックス
+     * @param column     columnのインデックス
+     * @return スライド分の合計点
+     */
+    private int calcRightSlantingSlideHelper(final Moves[][] gameBoard, final Moves[] movesArray, final int row, final int column) {
+        int score = 0;
+
+        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
+            movesArray[difference] = gameBoard[row + difference][column - difference];
+        }
+        score += this.calcLineScore(movesArray, maxPoint, minPoint);
+
+        return score;
+    }
+
 
     /**
      * 引数として受け取った3つの打ち手の点数の合計を求める

@@ -55,15 +55,10 @@ public class GomokuGameLogic extends GameLogic {
 
         order.setSequentialRandomList(movesMaxNumber, user, cpu);
 
+
         while (gomokuJudge.judgeResult(board) == Result.PENDING) {
-
-
-//            Player firstPlayer = order.getNextPlayer();
-//            Player secondPlayer = order.getNextPlayer();
-
-            Player firstPlayer = user;
-            Player secondPlayer = user;
-
+            Player firstPlayer = order.getNextPlayer();
+            Player secondPlayer = order.getNextPlayer();
 
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);

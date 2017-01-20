@@ -91,18 +91,22 @@ public class CommandLineIO {
         int userInputColumn = Integer.parseInt(userInputColumnString);
 
         IoCaution ioCautionRange = board.checkInputRange(userInputRow, userInputColumn);
-        IoCaution ioCautionEmpty = board.checkInputEmpty(userInputRow, userInputColumn);
 
         if (ioCautionRange != IoCaution.APPROPRIATE) {
             cell.setInvalidSpecified(ioCautionRange);
             return cell;
-        } else if (ioCautionEmpty != IoCaution.APPROPRIATE) {
+        }
+
+
+        IoCaution ioCautionEmpty = board.checkInputEmpty(userInputRow, userInputColumn);
+        if (ioCautionEmpty != IoCaution.APPROPRIATE) {
             cell.setInvalidSpecified(ioCautionEmpty);
             return cell;
         }
 
         cell.setCellRow(userInputRow);
         cell.setCellColumn(userInputColumn);
+        cell.setInvalidSpecified(IoCaution.APPROPRIATE);
 
         return cell;
     }

@@ -39,17 +39,22 @@ public class User extends Player {
             Cell userInput = commandLineIO.receiveCommand(board);
             this.choiceDo(userInput);
 
-            while (userInput.getCellRow() == Integer.MAX_VALUE && userInput.getCellColumn() == Integer.MAX_VALUE || userInput.getCellRow() == Integer.MIN_VALUE && userInput.getCellColumn() == Integer.MIN_VALUE) {
+            IoCaution invalidSpecified = userInput.getInvalidSpecified();
+
+            commandLineIO.drawUI(board);
+
+            while (invalidSpecified != IoCaution.APPROPRIATE) {
                 userInput = commandLineIO.receiveCommand(board);
                 this.choiceDo(userInput);
+                commandLineIO.drawUI(board);
             }
 
         } catch (IOException e) {
             System.err.println("エラー:" + e.getMessage());
             e.printStackTrace();
         }
-        commandLineIO.drawUI(board);
 
+//        commandLineIO.drawUI(board);
 
     }
 
