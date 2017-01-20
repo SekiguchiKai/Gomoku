@@ -79,9 +79,9 @@ public class Judge {
      */
     private boolean judgeWin(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CIRCLE)
-                || this.judgeColumn(gameBoard, Moves.CIRCLE)
-                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
-                || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
+                || this.judgeColumn(gameBoard, Moves.CIRCLE);
+//                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
+//                || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
     }
 
 
@@ -94,9 +94,9 @@ public class Judge {
      */
     private boolean judgeLose(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CROSS)
-                || this.judgeColumn(gameBoard, Moves.CROSS)
-                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
-                || this.judgeRightSlanting(gameBoard, Moves.CROSS);
+                || this.judgeColumn(gameBoard, Moves.CROSS);
+//                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
+//                || this.judgeRightSlanting(gameBoard, Moves.CROSS);
 
     }
 
@@ -197,80 +197,6 @@ public class Judge {
     }
 
 
-    /**
-     * 左斜めのラインが引数で指定されたMoveで5連が達成されているか確認するためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
-        final int indexMax = rowMax;
-        for (int index = 0; index < indexMax; index++) {
-            if (this.checkALeftSlanting(gameBoard, moves, index)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * 左斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param index     rowとcolumnのインデックス
-     * @param moves     打ち手
-     * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
-     */
-    private boolean checkALeftSlanting(final Moves[][] gameBoard, final Moves moves, final int index) {
-        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
-            if (gameBoard[index + difference][index + difference] != moves) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    /**
-     * 右斜めのラインが引数で指定されたMoveで5連が達成されているか確認するためのメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
-     * @return 勝敗が決定したか真偽値
-     */
-    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves) {
-        int column = columnSize - 1;
-
-        // for文1回で、1つの連を表す
-        for (int row = 0; row < rowMax; row++) {
-            if (this.judgeRightSlanting(gameBoard, moves, row, column)) {
-                return true;
-            }
-            column--;
-        }
-        return false;
-
-    }
-
-    /**
-     * 右斜めのラインにおいて、指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値を返すメソッド
-     *
-     * @param gameBoard ゲーム盤
-     * @param moves     打ち手
-     * @param row       rowのインデックス
-     * @param column    columnのインデックス
-     * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
-     */
-    private boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
-        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
-            if (gameBoard[row + difference][column - difference] != moves) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 
 }

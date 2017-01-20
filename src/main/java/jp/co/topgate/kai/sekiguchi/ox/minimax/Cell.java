@@ -1,7 +1,6 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.player.IoCaution;
 
 /**
  * 打ち手にとって、最適なゲーム盤上の場所とそこに打ち手を打った時の得点を格納するためのクラス
@@ -28,10 +27,18 @@ public class Cell {
      */
     private int bestScore;
 
+
     /**
-     * 指定されたマス目が不正な場合の状態を表す
+     * コンストラクタ
+     * cellRowとcellColumnを初期化する
+     * @param cellRow rowの位置
+     * @param cellColumn columnの位置
      */
-    private IoCaution invalidSpecified;
+   public Cell(final int cellRow, final int cellColumn) {
+        this.cellRow = cellRow;
+       this.cellColumn = cellColumn;
+    }
+
 
 
     /**
@@ -104,21 +111,4 @@ public class Cell {
     }
 
 
-    /**
-     * 指定されたマス目が不正な場合の状態を設定する
-     *
-     * @param invalidSpecified 指定されたマス目が不正な場合の状態
-     */
-    public void setInvalidSpecified(final IoCaution invalidSpecified) {
-        this.invalidSpecified = invalidSpecified;
-    }
-
-    /**
-     * マス目が不正な場合の状態を取得する
-     *
-     * @return マス目が不正な場合の状態
-     */
-    public IoCaution getInvalidSpecified() {
-        return this.invalidSpecified;
-    }
 }

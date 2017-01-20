@@ -1,7 +1,7 @@
 package jp.co.topgate.kai.sekiguchi.ox.board;
 
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.player.IoCaution;
+import jp.co.topgate.kai.sekiguchi.ox.player.InputState;
 
 import java.util.stream.IntStream;
 
@@ -102,13 +102,13 @@ public class Board {
      * @param specifiedColumn 指定されたcolumn
      * @return 指定されたrowとcolumnの数字が、gameBoardの内で有効な範囲にあるかどうか
      */
-    public IoCaution checkInputRange(final int specifiedRow, final int specifiedColumn) {
+    public InputState checkInputRange(final int specifiedRow, final int specifiedColumn) {
         if (!checkInputRangeHelper(specifiedRow, rowSize)) {
-            return IoCaution.INAPPROPRIATE_NUMBER;
+            return InputState.INAPPROPRIATE_NUMBER;
         } else if (!checkInputRangeHelper(specifiedColumn, columnSize)) {
-            return IoCaution.INAPPROPRIATE_NUMBER;
+            return InputState.INAPPROPRIATE_NUMBER;
         }
-        return IoCaution.APPROPRIATE;
+        return InputState.APPROPRIATE;
     }
 
 
@@ -135,11 +135,11 @@ public class Board {
      * @param specifiedColumn 指定されたcolumn
      * @return 指定されたrowとcolumnのせるの中に打ち手が入っているかどうか
      */
-    public IoCaution checkInputEmpty(final int specifiedRow, final int specifiedColumn) {
+    public InputState checkInputEmpty(final int specifiedRow, final int specifiedColumn) {
         if (this.gameBoard[specifiedRow][specifiedColumn] != Moves.EMPTY) {
-            return IoCaution.NOT_EMPTY;
+            return InputState.NOT_EMPTY;
         }
-        return IoCaution.APPROPRIATE;
+        return InputState.APPROPRIATE;
     }
 
 }

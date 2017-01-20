@@ -4,7 +4,7 @@ package jp.co.topgate.kai.sekiguchi.ox.player;
  * インターフェース部分での注意を表す列挙型
  * Created by sekiguchikai on 2017/01/19.
  */
-public enum IoCaution {
+public enum InputState {
 
     /**
      * 数字以外の文字が入力されたことを表す
@@ -33,7 +33,7 @@ public enum IoCaution {
      *
      * @param caution 注意書き
      */
-    IoCaution(final String caution) {
+    InputState(final String caution) {
         this.caution = caution;
     }
 

@@ -4,7 +4,7 @@ import jp.co.topgate.kai.sekiguchi.ox.board.Board;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.player.IoCaution;
+import jp.co.topgate.kai.sekiguchi.ox.player.InputState;
 
 import java.io.*;
 import java.util.*;
@@ -16,6 +16,9 @@ import java.util.stream.IntStream;
  * Created by sekiguchikai on 2016/12/20.
  */
 public class CommandLineIO {
+
+
+    private Cell cell;
 
     /**
      * コマンドライン上にゲーム盤を描くためのメソッド
@@ -71,44 +74,37 @@ public class CommandLineIO {
      * @return 盤の場所（ユーザーからの入力がすでに石が置いてある場合場所だった場合:MAX_VALUE、ユーザーからの入力が不適切な数字だった場合 : MIN_VALUEを返す)
      * @throws java.io.IOException コンソールからの入力を正常に受けてれませんでした
      */
-    public Cell receiveCommand(final Board board) throws IOException {
+    public InputState receiveCommand(final Board board) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         String userInputRowString = scanner.next();
         String userInputColumnString = scanner.next();
 
-        Cell cell = new Cell();
 
         if (!Pattern.matches("^\\d$", userInputRowString)) {
-            cell.setInvalidSpecified(IoCaution.NOT_NUMBER);
-            return cell;
+            return InputState.NOT_NUMBER;
         } else if (!Pattern.matches("^\\d$", userInputColumnString)) {
-            cell.setInvalidSpecified(IoCaution.NOT_NUMBER);
-            return cell;
+            return InputState.NOT_NUMBER;
         }
 
         int userInputRow = Integer.parseInt(userInputRowString);
         int userInputColumn = Integer.parseInt(userInputColumnString);
 
-        IoCaution ioCautionRange = board.checkInputRange(userInputRow, userInputColumn);
+        InputState inputStateRange = board.checkInputRange(userInputRow, userInputColumn);
 
-        if (ioCautionRange != IoCaution.APPROPRIATE) {
-            cell.setInvalidSpecified(ioCautionRange);
-            return cell;
+        if (inputStateRange != InputState.APPROPRIATE) {
+            return inputStateRange;
         }
 
-
-        IoCaution ioCautionEmpty = board.checkInputEmpty(userInputRow, userInputColumn);
-        if (ioCautionEmpty != IoCaution.APPROPRIATE) {
-            cell.setInvalidSpecified(ioCautionEmpty);
-            return cell;
+        InputState inputStateEmpty = board.checkInputEmpty(userInputRow, userInputColumn);
+        if (inputStateEmpty != InputState.APPROPRIATE) {
+            return inputStateEmpty;
         }
 
-        cell.setCellRow(userInputRow);
-        cell.setCellColumn(userInputColumn);
-        cell.setInvalidSpecified(IoCaution.APPROPRIATE);
+        this.cell = new Cell(userInputRow, userInputColumn);
 
-        return cell;
+        return InputState.APPROPRIATE;
+
     }
 
     /**
@@ -133,6 +129,15 @@ public class CommandLineIO {
     public void drawhalfWidthDigitCaution() {
         System.out.println("半角数字以外の文字が入力されています");
         System.out.println("半角数字を入力してください");
+    }
+
+    /**
+     * 本クラスのフィールド変数であるCellを取得するためのメソッド
+     *
+     * @return Cellクラスのインスタンス
+     */
+    public Cell getCell() {
+        return this.cell;
     }
 
 

@@ -36,16 +36,18 @@ public class User extends Player {
     @Override
     public void doMove(final int depth) {
         try {
-            Cell userInput = commandLineIO.receiveCommand(board);
-            this.choiceDo(userInput);
+            InputState userInputState = commandLineIO.receiveCommand(board);
+            Cell userInput = commandLineIO.getCell();
+            this.choiceDo(userInputState, userInput);
 
-            IoCaution invalidSpecified = userInput.getInvalidSpecified();
 
             commandLineIO.drawUI(board);
 
-            while (invalidSpecified != IoCaution.APPROPRIATE) {
-                userInput = commandLineIO.receiveCommand(board);
-                this.choiceDo(userInput);
+            while (userInputState != InputState.APPROPRIATE) {
+                userInputState = commandLineIO.receiveCommand(board);
+                userInput = commandLineIO.getCell();
+                this.choiceDo(userInputState, userInput);
+
                 commandLineIO.drawUI(board);
             }
 
@@ -54,24 +56,22 @@ public class User extends Player {
             e.printStackTrace();
         }
 
-//        commandLineIO.drawUI(board);
 
     }
 
     /**
      * ユーザーの入力によって、Userが行うことを決める
      *
-     * @param userInput ユーザの入力の値
+     * @param userInputState ユーザーの入力の状態
+     * @param userInput      ユーザの入力の値
      */
-    private void choiceDo(final Cell userInput) {
+    private void choiceDo(final InputState userInputState, final Cell userInput) {
 
-        IoCaution specifiedValidity = userInput.getInvalidSpecified();
-
-        if (specifiedValidity == IoCaution.NOT_EMPTY) {
+        if (userInputState == InputState.NOT_EMPTY) {
             commandLineIO.drawExistingCaution();
-        } else if (specifiedValidity == IoCaution.INAPPROPRIATE_NUMBER) {
+        } else if (userInputState == InputState.INAPPROPRIATE_NUMBER) {
             commandLineIO.drawInappropriateCaution();
-        } else if (specifiedValidity == IoCaution.NOT_NUMBER) {
+        } else if (userInputState == InputState.NOT_NUMBER) {
             commandLineIO.drawhalfWidthDigitCaution();
         } else {
             board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.CIRCLE);

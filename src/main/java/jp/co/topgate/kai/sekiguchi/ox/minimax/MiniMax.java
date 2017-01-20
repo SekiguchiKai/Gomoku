@@ -63,9 +63,7 @@ public class MiniMax {
 
             score = scoreCalculator.calcScore(board.getGameBoardState());
 
-            Cell cell = new Cell();
-            cell.setCellRow(row);
-            cell.setCellColumn(column);
+            Cell cell = new Cell(row, column);
             cell.setBestScore(score);
 
             return cell;
@@ -98,9 +96,7 @@ public class MiniMax {
 
                 if (alpha >= beta) break;
             }
-            Cell cell = new Cell();
-            cell.setCellRow(row);
-            cell.setCellColumn(column);
+            Cell cell = new Cell(row, column);
             cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
 
             return cell;
@@ -121,9 +117,7 @@ public class MiniMax {
         for (int row = 0; row < board.getRowSize(); row++) {
             for (int column = 0; column < board.getColumnSize(); column++) {
                 if (board.getCellState(row, column) == Moves.EMPTY) {
-                    Cell cell = new Cell();
-                    cell.setCellRow(row);
-                    cell.setCellColumn(column);
+                    Cell cell = new Cell(row, column);
                     capableMoveList.add(cell);
                 }
             }
