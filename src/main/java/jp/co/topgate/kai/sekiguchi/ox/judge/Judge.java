@@ -207,6 +207,7 @@ public class Judge {
      */
     public boolean judgeRightSlanting(final Moves[][] gameBoard, final Moves moves) {
 
+        // centerAxis
         int column = columnSize - 1;
 
         for (int row = 0; row < rowMax; row++) {
@@ -218,10 +219,42 @@ public class Judge {
             column--;
         }
 
+        for (int rowStart = 1; rowStart < this.judgeCriteriaSequence; rowStart++) {
+            boolean rowShiftCheck = this.rowShift(gameBoard, moves, rowStart);
+            if (rowShiftCheck) {
+                return true;
+            }
+        }
+
+
         return false;
 
 
     }
+    
+    /**
+     * 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     * @param gameBoard ゲーム盤
+     * @param moves 打ち手
+     * @param rowStart rowの調査開始値
+     * @return  右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
+     */
+    private boolean rowShift(final Moves[][] gameBoard, final Moves moves, final int rowStart) {
+        // centerAxis
+        int column = columnSize - 1;
+
+        for (int row = rowStart; row < rowMax; row++) {
+            // 1回あたりの5連
+            boolean oneTermCheck = this.checkOneTermRightSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+            column--;
+        }
+
+        return false;
+    }
+
 
     /**
      * 1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド

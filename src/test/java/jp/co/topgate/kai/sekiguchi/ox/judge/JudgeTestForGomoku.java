@@ -31,6 +31,11 @@ public class JudgeTestForGomoku {
         this.judge = new Judge(this.rowSize, this.columnSize, this.judgeCriteriaSequence);
     }
 
+    private void init() {
+        this.board = new Board(this.rowSize, this.columnSize);
+        this.judge = new Judge(this.rowSize, this.columnSize, this.judgeCriteriaSequence);
+    }
+
     /**
      * rowにCircleの打ち手を5つ打つとCircleのユーザーの勝利が決定するかどうかを確認するためのメソッド
      * rowは、0~9行目まで全てを網羅している
@@ -137,6 +142,8 @@ public class JudgeTestForGomoku {
     @Test
     public void puttingFiveCircleMovesInARightSlantingDecideCirCleUserWin() {
         this.puttingFiveSameMovesInARightSlantingDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
+        this.init();
+        this.puttingFiveSameMovesInARightSlantingRowSlideDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
     /**
@@ -146,6 +153,8 @@ public class JudgeTestForGomoku {
     @Test
     public void puttingFiveCrossMovesInARightSlantingDecideCirCleUserLose() {
         this.puttingFiveSameMovesInARightSlantingDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
+        this.init();
+        this.puttingFiveSameMovesInARightSlantingRowSlideDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
 
@@ -167,5 +176,58 @@ public class JudgeTestForGomoku {
 
     }
 
+    /**
+     * 右斜めのラインに同じの打ち手を5つ打つと勝敗が決定するかどうかを確認するためのメソッド
+     * 右斜めのラインは、0~2行目まで全てを網羅している
+     *
+     * @param moves    打ち手
+     * @param expected 期待する結果
+     */
+    public void puttingFiveSameMovesInARightSlantingRowSlideDecideUserWinOrLose(Moves moves, Result expected) {
 
+        // row:1~5, column:8~4
+        for (int row = 1; row < 6; row++) {
+            for (int column = 8; column > 3; column--) {
+                board.putMoves(row, column, moves);
+            }
+        }
+
+        Result actual = judge.judgeResult(board);
+        assertThat(actual, is(expected));
+
+
+        // row:2~6, column:7~3
+        for (int row = 2; row < 7; row++) {
+            for (int column = 7; column > 2; column--) {
+                board.putMoves(row, column, moves);
+            }
+        }
+
+        actual = judge.judgeResult(board);
+        assertThat(actual, is(expected));
+
+
+        // row:3~7, column:6~2
+        for (int row = 3; row < 8; row++) {
+            for (int column = 6; column > 1; column--) {
+                board.putMoves(row, column, moves);
+            }
+        }
+
+        actual = judge.judgeResult(board);
+        assertThat(actual, is(expected));
+
+
+        // row:4~8, column:5~1
+        for (int row = 4; row < 9; row++) {
+            for (int column = 5; column > 0; column--) {
+                board.putMoves(row, column, moves);
+            }
+        }
+
+        actual = judge.judgeResult(board);
+        assertThat(actual, is(expected));
+
+
+    }
 }
