@@ -219,9 +219,18 @@ public class Judge {
             column--;
         }
 
+        // rowシフト
         for (int rowStart = 1; rowStart < this.judgeCriteriaSequence; rowStart++) {
-            boolean rowShiftCheck = this.rowShift(gameBoard, moves, rowStart);
+            boolean rowShiftCheck = this.rightSlantingRowShift(gameBoard, moves, rowStart);
             if (rowShiftCheck) {
+                return true;
+            }
+        }
+        // columnシフト
+        final int start = gameBoard.length - 1;
+        for (int columnStart = start; columnStart > this.rowSize - this.judgeCriteriaSequence - 1; columnStart--) {
+            boolean columnShiftCheck = this.rightSlantingColumnShift(gameBoard, moves, columnStart);
+            if (columnShiftCheck) {
                 return true;
             }
         }
@@ -231,15 +240,16 @@ public class Judge {
 
 
     }
-    
+
     /**
      * 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
      * @param gameBoard ゲーム盤
-     * @param moves 打ち手
-     * @param rowStart rowの調査開始値
-     * @return  右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
+     * @param moves     打ち手
+     * @param rowStart  rowの調査開始値
+     * @return 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
      */
-    private boolean rowShift(final Moves[][] gameBoard, final Moves moves, final int rowStart) {
+    private boolean rightSlantingRowShift(final Moves[][] gameBoard, final Moves moves, final int rowStart) {
         // centerAxis
         int column = columnSize - 1;
 
@@ -251,7 +261,30 @@ public class Judge {
             }
             column--;
         }
+        return false;
+    }
 
+    /**
+     * 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
+     * @param gameBoard   ゲーム盤
+     * @param moves       打ち手
+     * @param columnStart rowの調査開始値
+     * @return 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
+     */
+    private boolean rightSlantingColumnShift(final Moves[][] gameBoard, final Moves moves, final int columnStart) {
+        // centerAxis
+        int row = 0;
+
+        final int columnEnd = this.judgeCriteriaSequence - 2;
+        for (int column = columnStart; column > columnEnd; column--) {
+            // 1回あたりの5連
+            boolean oneTermCheck = this.checkOneTermRightSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+            row++;
+        }
         return false;
     }
 
@@ -271,10 +304,7 @@ public class Judge {
             if (gameBoard[row + difference][column - difference] != moves) {
                 return false;
             }
-
-
         }
-
         return true;
 
     }
