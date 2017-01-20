@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Judgeクラスをテストするためのメソッド
+ * JudgeクラスをTicTacToeゲーム向けにテストするためのメソッド
  * Created by sekiguchikai on 2017/01/18.
  */
 public class JudgeTestForTicTacToe {
@@ -48,6 +48,7 @@ public class JudgeTestForTicTacToe {
     public void puttingThreeCrossMovesInARowDecideCirCleUserLose() {
         this.puttingThreeSameMovesInARowDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
+
 
 
     /**
@@ -177,6 +178,16 @@ public class JudgeTestForTicTacToe {
         Result actual = judge.judgeResult(board);
         assertThat(actual, is(expected));
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }
