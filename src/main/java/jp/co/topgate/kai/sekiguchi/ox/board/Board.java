@@ -3,6 +3,8 @@ package jp.co.topgate.kai.sekiguchi.ox.board;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
 import jp.co.topgate.kai.sekiguchi.ox.player.InputState;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 /**
@@ -15,6 +17,11 @@ public class Board {
      * ゲーム盤の列を表す
      */
     private int columnSize;
+
+    /**
+     * columnを表すアルファベットを表す
+     */
+    private List<String> columnAlphabetList = Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i");
 
     /**
      * ゲーム盤の行を表す
@@ -94,6 +101,25 @@ public class Board {
         return this.columnSize;
     }
 
+    /**
+     * 指定されたインデックスのcolumnのアルファベットを返す
+     * @param index アルファベットのリストのインデックス
+     * @return アルファベット
+     */
+    public String getColumnAlphabet(final int index) {
+        return this.columnAlphabetList.get(index);
+    }
+
+    /**
+     * 指定されたアルファベットのインデックスを返す
+     * @param alphabet アルファベット
+     * @return アルファベットのインデックス
+     */
+    public int getAlphabetindex(final String alphabet) {
+        return this.columnAlphabetList.indexOf(alphabet);
+    }
+
+
 
     /**
      * 指定されたrowとcolumnの数字が、gameBoardの内で有効な範囲にあるかどうかを返すためのメソッド
@@ -104,9 +130,9 @@ public class Board {
      */
     public InputState checkInputRange(final int specifiedRow, final int specifiedColumn) {
         if (!checkInputRangeHelper(specifiedRow, rowSize)) {
-            return InputState.INAPPROPRIATE_NUMBER;
+            return InputState.OUT_OF_RANGE;
         } else if (!checkInputRangeHelper(specifiedColumn, columnSize)) {
-            return InputState.INAPPROPRIATE_NUMBER;
+            return InputState.OUT_OF_RANGE;
         }
         return InputState.APPROPRIATE;
     }

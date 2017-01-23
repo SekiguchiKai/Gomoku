@@ -66,15 +66,10 @@ public class User extends Player {
      * @param userInput      ユーザの入力の値
      */
     private void choiceDo(final InputState userInputState, final Cell userInput) {
-
-        if (userInputState == InputState.NOT_EMPTY) {
-            commandLineIO.drawExistingCaution();
-        } else if (userInputState == InputState.INAPPROPRIATE_NUMBER) {
-            commandLineIO.drawInappropriateCaution();
-        } else if (userInputState == InputState.NOT_NUMBER) {
-            commandLineIO.drawhalfWidthDigitCaution();
-        } else {
+        if (userInputState == InputState.APPROPRIATE) {
             board.putMoves(userInput.getCellRow(), userInput.getCellColumn(), Moves.CIRCLE);
+        } else {
+            commandLineIO.drawInappropriateCaution(userInputState);
         }
     }
 }

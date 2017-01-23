@@ -32,7 +32,8 @@ public class CommandLineIO {
         final int rowSize = board.getRowSize();
         final int columnSize = board.getColumnSize();
 
-        IntStream.range(0, columnSize).forEach(column -> System.out.print("  " + column));
+
+        IntStream.range(0, columnSize).forEach(column -> System.out.print("  " + board.getColumnAlphabet(column)));
         System.out.println("  ");
 
 
@@ -79,18 +80,17 @@ public class CommandLineIO {
     public InputState receiveCommand(final Board board) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        String userInputRowString = scanner.next();
         String userInputColumnString = scanner.next();
+        String userInputRowString = scanner.next();
 
-
-        if (!Pattern.matches("^\\d$", userInputRowString)) {
-            return InputState.NOT_NUMBER;
-        } else if (!Pattern.matches("^\\d$", userInputColumnString)) {
+        if (!Pattern.matches("^[a-z]$", userInputColumnString)) {
+            return InputState.NOT_ALPHABET;
+        } else if (!Pattern.matches("^\\d+$", userInputRowString)) {
             return InputState.NOT_NUMBER;
         }
 
         int userInputRow = Integer.parseInt(userInputRowString);
-        int userInputColumn = Integer.parseInt(userInputColumnString);
+        int userInputColumn = board.getAlphabetindex(userInputColumnString);
 
         InputState inputStateRange = board.checkInputRange(userInputRow, userInputColumn);
 
@@ -111,27 +111,14 @@ public class CommandLineIO {
 
     /**
      * ユーザーが不適切な数字を入力した場合に、その旨を表示するためのメソッド
+     *
+     * @param cation 列挙型InputStateの要素
      */
-    public void drawInappropriateCaution() {
-        System.out.println("不適切な入力です");
-        System.out.println("再度数字を入力してください");
+    public void drawInappropriateCaution(final InputState cation) {
+        String cautionString = cation.getCautionString();
+        System.out.println(cautionString);
     }
 
-    /**
-     * ユーザーが既に打ち手の存在する場所選択した場合に、その旨を表示するためのメソッド
-     */
-    public void drawExistingCaution() {
-        System.out.println("すでに打ち手が入力されています");
-        System.out.println("再度数字を入力してください");
-    }
-
-    /**
-     * ユーザーが半角数字以外を入力した場合に、その旨を表示するためのメソッド
-     */
-    public void drawhalfWidthDigitCaution() {
-        System.out.println("半角数字以外の文字が入力されています");
-        System.out.println("半角数字を入力してください");
-    }
 
     /**
      * 本クラスのフィールド変数であるCellを取得するためのメソッド
