@@ -13,6 +13,7 @@ public enum InputState {
 
     /**
      *
+     *
      */
     NOT_ALPHABET("columnは1文字の半角英字で入力してください"),
 

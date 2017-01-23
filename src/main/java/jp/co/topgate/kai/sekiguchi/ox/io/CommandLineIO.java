@@ -56,9 +56,7 @@ public class CommandLineIO {
 
         System.out.println("\n");
 
-        System.out.println("自分の打ち手を入力するにはゲーム盤上に表示されている数字を入力し、Enterキーを押してください");
-        System.out.println("縦の数字を入力しEnterキーを押してください。　その次に横の数字を入力しEnterキーを押してください。");
-
+        System.out.println("横の値をアルファベットで入力し、縦の値を数字で入力してEnterキーを押してください");
     }
 
 
