@@ -30,7 +30,5 @@ public class Main {
             e.printStackTrace();
             System.exit(1);
         }
-
-
     }
 }

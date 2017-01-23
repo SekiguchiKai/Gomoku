@@ -25,8 +25,6 @@ public class CounterTest {
         final int expected = 3;
 
         assertThat(count, is(expected));
-
-
     }
 
     /**

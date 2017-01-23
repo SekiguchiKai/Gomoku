@@ -222,10 +222,6 @@ public class ScoreCalculator {
         return score;
     }
 
-
-    //
-
-
     /**
      * 右斜めのラインの点数を計算するためのメソッド
      *
