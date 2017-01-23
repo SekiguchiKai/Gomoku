@@ -1,14 +1,11 @@
 package jp.co.topgate.kai.sekiguchi.ox.logic;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.judge.GomokuJudge;
+import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.judge.Judge;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Result;
-import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.player.Cpu;
 import jp.co.topgate.kai.sekiguchi.ox.player.Order;
 import jp.co.topgate.kai.sekiguchi.ox.player.Player;
@@ -30,42 +27,51 @@ public class GomokuGameLogic extends GameLogic {
     public void playGame() throws IOException {
         System.out.println("五目並べ");
 
-        GomokuCommandLineIO gomokuCommandLineIO = new GomokuCommandLineIO();
+        CommandLineIO commandLineIO = new CommandLineIO();
 
         final int rowSize = 9;
         final int columnSize = 9;
+        final int judgeCriteriaSequence = 5;
 
-        final Board gomokuGameBoard = new GomokuBoard(rowSize, columnSize);
+        final int maxPoint = 50;
+        final int minPoint = -50;
 
-        gomokuCommandLineIO.drawUI(gomokuGameBoard);
+        final Board board = new Board(rowSize, columnSize);
 
-        final ScoreCalculator gomokuScoreCalculator = new GomokuScoreCalculator();
+        commandLineIO.drawUI(board);
 
-        final MiniMax miniMax = new MiniMax(gomokuScoreCalculator);
-        final Player user = new User(gomokuGameBoard, miniMax, gomokuCommandLineIO, "あなた");
-        final Player cpu = new Cpu(gomokuGameBoard, miniMax, gomokuCommandLineIO, "AI");
+        final ScoreCalculator scoreCalculator = new ScoreCalculator(rowSize, columnSize, judgeCriteriaSequence, maxPoint, minPoint);
 
-        final Judge gomokuJudge = new GomokuJudge();
+        final MiniMax miniMax = new MiniMax(scoreCalculator);
+        final Player user = new User(board, miniMax, commandLineIO, "あなた");
+        final Player cpu = new Cpu(board, miniMax, commandLineIO, "AI");
+
+
+        final Judge gomokuJudge = new Judge(rowSize, columnSize, judgeCriteriaSequence);
         final int depthCount = 3;
         Order order = new Order();
 
-        while (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
-            order.setRandomOrder(user, cpu);
+        final int movesMaxNumber = 83;
+
+        order.setSequentialRandomList(movesMaxNumber, user, cpu);
 
 
-            Player firstPlayer = order.getFirstPlayer();
-            Player secondPlayer = order.getSecondPlayer();
-
+        while (gomokuJudge.judgeResult(board) == Result.PENDING) {
+//            Player firstPlayer = order.getNextPlayer();
+//            Player secondPlayer = order.getNextPlayer();
+            
+            Player firstPlayer = user;
+            Player secondPlayer = user;
 
             System.out.println(firstPlayer.getName() + "の番です");
             firstPlayer.doMove(depthCount);
 
-            if (gomokuJudge.judgeResult(gomokuGameBoard) == Result.PENDING) {
+            if (gomokuJudge.judgeResult(board) == Result.PENDING) {
                 System.out.println(secondPlayer.getName() + "の番です");
                 secondPlayer.doMove(depthCount);
             }
         }
-        gomokuCommandLineIO.drawResult(gomokuJudge.judgeResult(gomokuGameBoard));
+        commandLineIO.drawResult(gomokuJudge.judgeResult(board));
     }
 
 }

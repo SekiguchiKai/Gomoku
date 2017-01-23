@@ -12,6 +12,7 @@ mainClassName = 'jp.co.topgate.kai.sekiguchi.ox.Main'
 
 defaultTasks 'wrapper', 'build', 'run', 'test'
 
+
 task wrapper(type: Wrapper) {
     gradleVersion = '3.1'
 }

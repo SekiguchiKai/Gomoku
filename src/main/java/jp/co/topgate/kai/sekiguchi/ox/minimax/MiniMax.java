@@ -1,10 +1,8 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.util.Counter;
 
 
 import java.util.*;
@@ -56,8 +54,8 @@ public class MiniMax {
         // 石を置くことが可能な全てのゲーム盤の場所を格納したListを作成
         List<Cell> capableMove = this.makeCapableMOveList(board);
         int score;
-        int y = -1;
-        int x = -1;
+        int row = -1;
+        int column = -1;
 
 
         // 試合が終了か、深さが0の場合は、スコアを
@@ -65,42 +63,41 @@ public class MiniMax {
 
             score = scoreCalculator.calcScore(board.getGameBoardState());
 
-            Cell cell = new Cell(y, x);
+            Cell cell = new Cell(row, column);
             cell.setBestScore(score);
-
 
             return cell;
         } else {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
             for (Cell cell : capableMove) {
 
-                int cellY = cell.getCellRow();
-                int cellX = cell.getCellColumn();
+                int cellRow = cell.getCellRow();
+                int cellColumn = cell.getCellColumn();
 
-                board.putMoves(cellY, cellX, playerMove);
+                board.putMoves(cellRow, cellColumn, playerMove);
 
-                if (playerMove == Moves.CPU_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.USER_MOVE, alpha, beta).getBestScore();
+                if (playerMove == Moves.CROSS) {
+                    score = calcMinMax(depth - 1, board, Moves.CIRCLE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellColumn;
+                        row = cellRow;
                     }
-                } else if (playerMove == Moves.USER_MOVE) {
-                    score = calcMinMax(depth - 1, board, Moves.CPU_MOVE, alpha, beta).getBestScore();
+                } else if (playerMove == Moves.CIRCLE) {
+                    score = calcMinMax(depth - 1, board, Moves.CROSS, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
-                        x = cellX;
-                        y = cellY;
+                        column = cellColumn;
+                        row = cellRow;
                     }
                 }
 
-                board.putMoves(cellY, cellX, Moves.NO_MOVE);
+                board.putMoves(cellRow, cellColumn, Moves.EMPTY);
 
                 if (alpha >= beta) break;
             }
-            Cell cell = new Cell(y, x);
-            cell.setBestScore((playerMove == Moves.CPU_MOVE) ? alpha : beta);
+            Cell cell = new Cell(row, column);
+            cell.setBestScore((playerMove == Moves.CROSS) ? alpha : beta);
 
             return cell;
         }
@@ -117,10 +114,11 @@ public class MiniMax {
 
         List<Cell> capableMoveList = new ArrayList<>();
 
-        for (int y = 0; y < board.getRowSize(); y++) {
-            for (int x = 0; x < board.getColumnSize(); x++) {
-                if (board.getCellState(y, x) == Moves.NO_MOVE) {
-                    capableMoveList.add(new Cell(y, x));
+        for (int row = 0; row < board.getRowSize(); row++) {
+            for (int column = 0; column < board.getColumnSize(); column++) {
+                if (board.getCellState(row, column) == Moves.EMPTY) {
+                    Cell cell = new Cell(row, column);
+                    capableMoveList.add(cell);
                 }
             }
         }

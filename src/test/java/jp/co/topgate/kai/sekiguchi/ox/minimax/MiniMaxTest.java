@@ -1,21 +1,12 @@
 package jp.co.topgate.kai.sekiguchi.ox.minimax;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.Cell;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
-import jp.co.topgate.kai.sekiguchi.ox.board.TicTacToeBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.TicTacToeScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.constantset.Moves;
-import jp.co.topgate.kai.sekiguchi.ox.util.BoardInitializer;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.IntStream;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 
@@ -28,22 +19,39 @@ import static org.hamcrest.CoreMatchers.is;
 public class MiniMaxTest {
 
     /**
+     * Boardクラスのインスタンスを初期化するためのメソッド
+     */
+    public void initGameBoard(Board board) {
+        final int rowSize = board.getRowSize();
+        final int columnSize = board.getColumnSize();
+
+        IntStream.range(0, rowSize).forEach(y -> IntStream.range(0, columnSize).forEach(x -> board.putMoves(y, x, Moves.EMPTY)));
+    }
+
+    /**
      * calcMinMaxメソッドをテストするためのメソッド
      */
     @Test
     public void calcMinMax() {
+        final int rowSize = 3;
+        final int columnSize = 3;
+        final int judgeCriteriaSequence = 3;
+        final int maxPoint = 30;
+        final int minPoint = -30;
 
-        Board ticTacToeBoard = new TicTacToeBoard(3, 3);
-        ScoreCalculator ticTacToeScoreCalculator = new TicTacToeScoreCalculator();
+
+        Board ticTacToeBoard = new Board(3, 3);
+
+        ScoreCalculator ticTacToeScoreCalculator = new ScoreCalculator(rowSize, columnSize, judgeCriteriaSequence, maxPoint, minPoint);
 
         MiniMax miniMax = new MiniMax(ticTacToeScoreCalculator);
 
 
         // 勝つ時の一手
-        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-        ticTacToeBoard.putMoves(0, 1, Moves.CPU_MOVE);
+        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+        ticTacToeBoard.putMoves(0, 1, Moves.CROSS);
 
-        Cell calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        Cell calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
         int actualRow = calcResult.getCellRow();
         int actualColumn = calcResult.getCellColumn();
 
@@ -51,12 +59,12 @@ public class MiniMaxTest {
         assertThat(actualColumn, is(2));
 
 
-        BoardInitializer.initGameBoard(ticTacToeBoard);
+        this.initGameBoard(ticTacToeBoard);
 
-        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-        ticTacToeBoard.putMoves(1, 0, Moves.CPU_MOVE);
+        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+        ticTacToeBoard.putMoves(1, 0, Moves.CROSS);
 
-        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
         actualRow = calcResult.getCellRow();
         actualColumn = calcResult.getCellColumn();
 
@@ -64,13 +72,13 @@ public class MiniMaxTest {
         assertThat(actualColumn, is(0));
 
 
-        BoardInitializer.initGameBoard(ticTacToeBoard);
+        this.initGameBoard(ticTacToeBoard);
 
 
-        ticTacToeBoard.putMoves(0, 0, Moves.CPU_MOVE);
-        ticTacToeBoard.putMoves(1, 1, Moves.CPU_MOVE);
+        ticTacToeBoard.putMoves(0, 0, Moves.CROSS);
+        ticTacToeBoard.putMoves(1, 1, Moves.CROSS);
 
-        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CPU_MOVE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        calcResult = miniMax.calcMinMax(2, ticTacToeBoard, Moves.CROSS, Integer.MIN_VALUE, Integer.MAX_VALUE);
         actualRow = calcResult.getCellRow();
         actualColumn = calcResult.getCellColumn();
 
@@ -78,7 +86,7 @@ public class MiniMaxTest {
         assertThat(actualColumn, is(2));
 
 
-        BoardInitializer.initGameBoard(ticTacToeBoard);
+        this.initGameBoard(ticTacToeBoard);
 
     }
 

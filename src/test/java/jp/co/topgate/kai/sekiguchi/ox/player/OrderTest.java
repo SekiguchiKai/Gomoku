@@ -1,11 +1,8 @@
 package jp.co.topgate.kai.sekiguchi.ox.player;
 
 import jp.co.topgate.kai.sekiguchi.ox.board.Board;
-import jp.co.topgate.kai.sekiguchi.ox.board.GomokuBoard;
-import jp.co.topgate.kai.sekiguchi.ox.calculator.GomokuScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.calculator.ScoreCalculator;
 import jp.co.topgate.kai.sekiguchi.ox.io.CommandLineIO;
-import jp.co.topgate.kai.sekiguchi.ox.io.GomokuCommandLineIO;
 import jp.co.topgate.kai.sekiguchi.ox.minimax.MiniMax;
 import org.junit.Test;
 
@@ -21,82 +18,39 @@ import static org.junit.Assert.*;
  * Created by sekiguchikai on 2017/01/11.
  */
 public class OrderTest {
-    Order order = new Order();
-    Board board = new GomokuBoard(9, 9);
-    ScoreCalculator scoreCalculator = new GomokuScoreCalculator();
-    MiniMax miniMax = new MiniMax(scoreCalculator);
-    CommandLineIO commandLineIO = new GomokuCommandLineIO();
-
-
-    Player user = new User(board, miniMax, commandLineIO, "user");
-    Player cpu = new Cpu(board, miniMax, commandLineIO, "cpu");
-
-
-    /**
-     * setFirstPlayerメソッドをテストするためのメソッド
-     */
     @Test
-    public void setFirstPlayer() {
-        this.order.setFirstPlayer(user);
-        this.getFirstPlayer(user);
+    public void setSequentialRandomList() {
+        final int rowSize = 9;
+        final int columnSize = 9;
+        final int judgeCriteriaSequence = 5;
 
-        this.order.setFirstPlayer(cpu);
-        this.getFirstPlayer(cpu);
-    }
-
-    /**
-     * setSecondPlayerメソッドをテストするためのメソッド
-     */
-    @Test
-    public void setSecondPlayer() {
-        this.order.setSecondPlayer(user);
-        this.getSecondPlayer(user);
-
-        this.order.setSecondPlayer(cpu);
-        this.getSecondPlayer(cpu);
-
-    }
+        final int maxPoint = 50;
+        final int minPoint = -50;
 
 
-    @Test
-    public void setRandomOrder() {
-        List<Player> firstPlayerList = new ArrayList<>();
-        List<Player> secondPlayerList = new ArrayList<>();
+        Order order = new Order();
+        Board board = new Board(9, 9);
+        ScoreCalculator scoreCalculator = new ScoreCalculator(rowSize, columnSize, judgeCriteriaSequence, maxPoint, minPoint);
+        MiniMax miniMax = new MiniMax(scoreCalculator);
+        CommandLineIO commandLineIO = new CommandLineIO();
 
-        final int maxLength = 100;
-        IntStream.range(0, maxLength).forEach(i -> {
-            order.setRandomOrder(user, cpu);
-            Player firstPlayer = order.getFirstPlayer();
-            Player secondPlayer = order.getSecondPlayer();
-            firstPlayerList.add(firstPlayer);
-            secondPlayerList.add(secondPlayer);
+
+        Player user = new User(board, miniMax, commandLineIO, "user");
+        Player cpu = new Cpu(board, miniMax, commandLineIO, "cpu");
+
+        List<Player> nextPlayerList = new ArrayList<>();
+
+        final int moveMaxNumber = 83;
+
+        order.setSequentialRandomList(moveMaxNumber, user, cpu);
+
+
+        IntStream.range(0, 81).forEach(i -> {
+            Player nextPlayer = order.getNextPlayer();
+
+            nextPlayerList.add(nextPlayer);
         });
 
-        assertThat(firstPlayerList, hasItems(user, cpu));
-        assertThat(secondPlayerList, hasItems(user, cpu));
-
-
+        assertThat(nextPlayerList, hasItems(user, cpu));
     }
-
-    /**
-     * getFirstPlayerメソッドをテストし、 setFirstPlayerメソッドをテストするためのメソッドを補助する
-     *
-     * @param expected
-     */
-    private void getFirstPlayer(Player expected) {
-        Player actual = order.getFirstPlayer();
-        assertThat(actual, is(expected));
-    }
-
-
-    /**
-     * getSecondPlayerメソッドをテストし、 setSecondPlayerメソッドをテストするためのメソッドを補助する
-     *
-     * @param expected
-     */
-    private void getSecondPlayer(Player expected) {
-        Player actual = order.getSecondPlayer();
-        assertThat(actual, is(expected));
-    }
-
 }
