@@ -71,28 +71,28 @@ public class MiniMax {
             // CPUの点数であるαの方が、βよりも大きい場合、それ以上探索しなくても良い(その時のαが最大なので)ので、探索を打ち切る
             for (Cell cell : capableMove) {
 
-                int cellY = cell.getCellRow();
-                int cellX = cell.getCellColumn();
+                int cellRow = cell.getCellRow();
+                int cellColumn = cell.getCellColumn();
 
-                board.putMoves(cellY, cellX, playerMove);
+                board.putMoves(cellRow, cellColumn, playerMove);
 
                 if (playerMove == Moves.CROSS) {
                     score = calcMinMax(depth - 1, board, Moves.CIRCLE, alpha, beta).getBestScore();
                     if (score > alpha) {
                         alpha = score;
-                        column = cellX;
-                        row = cellY;
+                        column = cellColumn;
+                        row = cellRow;
                     }
                 } else if (playerMove == Moves.CIRCLE) {
                     score = calcMinMax(depth - 1, board, Moves.CROSS, alpha, beta).getBestScore();
                     if (score < beta) {
                         beta = score;
-                        column = cellX;
-                        row = cellY;
+                        column = cellColumn;
+                        row = cellRow;
                     }
                 }
 
-                board.putMoves(cellY, cellX, Moves.EMPTY);
+                board.putMoves(cellRow, cellColumn, Moves.EMPTY);
 
                 if (alpha >= beta) break;
             }

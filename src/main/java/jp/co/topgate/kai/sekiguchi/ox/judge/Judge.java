@@ -80,7 +80,7 @@ public class Judge {
     private boolean judgeWin(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CIRCLE)
                 || this.judgeColumn(gameBoard, Moves.CIRCLE)
-//                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
+                || this.judgeLeftSlanting(gameBoard, Moves.CIRCLE)
                 || this.judgeRightSlanting(gameBoard, Moves.CIRCLE);
     }
 
@@ -95,8 +95,7 @@ public class Judge {
     private boolean judgeLose(final Moves[][] gameBoard) {
         return this.judgeRow(gameBoard, Moves.CROSS)
                 || this.judgeColumn(gameBoard, Moves.CROSS)
-
-//                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
+                || this.judgeLeftSlanting(gameBoard, Moves.CROSS)
                 || this.judgeRightSlanting(gameBoard, Moves.CROSS);
 
 
@@ -198,6 +197,117 @@ public class Judge {
         return true;
     }
 
+
+    /**
+     * 左斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     打ち手
+     * @return 右斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     */
+    public boolean judgeLeftSlanting(final Moves[][] gameBoard, final Moves moves) {
+
+        // centerAxis
+        int column = 0;
+
+        for (int row = 0; row < rowMax; row++) {
+            // 1回あたりの5連
+            boolean oneTermCheck = this.checkOneTermLeftSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+            column++;
+        }
+
+
+        // rowシフト
+        for (int rowStart = 1; rowStart < this.judgeCriteriaSequence; rowStart++) {
+            boolean rowShiftCheck = this.leftSlantingRowShift(gameBoard, moves, rowStart);
+            if (rowShiftCheck) {
+                return true;
+            }
+        }
+
+        // columnシフト
+        for (int columnStart = 0; columnStart < this.columnMax; columnStart++) {
+            boolean columnShiftCheck = this.leftSlantingColumnShift(gameBoard, moves, columnStart);
+            if (columnShiftCheck) {
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
+
+    /**
+     * 左ラインのROWがスライドした時の審査を行うためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private boolean leftSlantingRowShift(final Moves[][] gameBoard, final Moves moves, final int rowStart) {
+        int column = 0;
+
+        // for文1回で、1つの連を表す
+        for (int row = rowStart; row < rowMax; row++) {
+            boolean oneTermCheck = checkOneTermLeftSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+
+            column++;
+        }
+        return false;
+    }
+
+
+    /**
+     * 左ラインのROWがスライドした時の審査を行うためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     検査対象のプレーヤーの打ち手
+     * @return 勝敗が決定したか真偽値
+     */
+    private boolean leftSlantingColumnShift(final Moves[][] gameBoard, final Moves moves, final int columnStart) {
+        int row = 0;
+
+        // for文1回で、1つの連を表す
+        for (int column = columnStart; column < columnMax; column++) {
+            boolean oneTermCheck = checkOneTermLeftSlanting(gameBoard, moves, row, column);
+            if (oneTermCheck) {
+                return true;
+            }
+
+            row++;
+        }
+        return false;
+    }
+
+
+    /**
+     * 左斜めのラインの1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     *
+     * @param gameBoard ゲーム盤
+     * @param moves     打ち手
+     * @param row       rowのインデックス
+     * @param column    columnのインデックス
+     * @return 1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値
+     */
+    public boolean checkOneTermLeftSlanting(final Moves[][] gameBoard, final Moves moves, final int row, final int column) {
+
+        for (int difference = 0; difference < this.judgeCriteriaSequence; difference++) {
+            if (gameBoard[row + difference][column + difference] != moves) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
     /**
      * 右斜めのラインにおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
      *
@@ -235,10 +345,7 @@ public class Judge {
             }
         }
 
-
         return false;
-
-
     }
 
     /**
@@ -250,7 +357,6 @@ public class Judge {
      * @return 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
      */
     private boolean rightSlantingRowShift(final Moves[][] gameBoard, final Moves moves, final int rowStart) {
-        // centerAxis
         int column = columnSize - 1;
 
         for (int row = rowStart; row < rowMax; row++) {
@@ -273,7 +379,6 @@ public class Judge {
      * @return 右斜めのラインがrowにおいてシフトする時(row1~row4)、引数で受け取った打ち手が5連揃っているかどうかの真偽値
      */
     private boolean rightSlantingColumnShift(final Moves[][] gameBoard, final Moves moves, final int columnStart) {
-        // centerAxis
         int row = 0;
 
         final int columnEnd = this.judgeCriteriaSequence - 2;
@@ -290,7 +395,7 @@ public class Judge {
 
 
     /**
-     * 1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
+     * 右斜めのライン1回あたりおいて、引数で受け取った打ち手が5連揃っているかどうかの真偽値を確認するためのメソッド
      *
      * @param gameBoard ゲーム盤
      * @param moves     打ち手

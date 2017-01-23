@@ -17,7 +17,9 @@ import java.util.stream.IntStream;
  */
 public class CommandLineIO {
 
-
+    /**
+     * Cellクラスのインスタンス
+     */
     private Cell cell;
 
     /**
