@@ -37,12 +37,4 @@ public enum InputState {
         this.caution = caution;
     }
 
-    /**
-     * 注意書きを取得するためのメソッド
-     *
-     * @return 注意書き
-     */
-    public String getCaution() {
-        return this.caution;
-    }
 }

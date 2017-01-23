@@ -11,17 +11,6 @@ import java.util.stream.IntStream;
  */
 public class Order {
 
-
-    /**
-     * 最初のプレーヤー
-     */
-    private Player firstPlayer;
-
-    /**
-     * 2番目のプレーヤー
-     */
-    private Player secondPlayer;
-
     /**
      * 開始の打ち手から、終了の打ち手までをランダムに決定してその順番を保持するためのリスト
      */

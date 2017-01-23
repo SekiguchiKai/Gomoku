@@ -142,18 +142,11 @@ public class JudgeTestForGomokuRightSlanting {
 
     /**
      * 右斜めの真ん中のrowに1個下にシフトさせたライン(1, 8)から右斜めに、同じの打ち手を5つ打つと勝敗が決定するかどうかを確認するためのメソッド
-     * (row:1 , column:8 -> row: 5, column)
      *
      * @param moves    打ち手
      * @param expected 期待する結果
      */
     public void puttingFiveSameMovesInARightSlantingRow1SlideDecideUserWinOrLose(Moves moves, Result expected) {
-
-        /**
-         *
-         * 以下で、開始値(1,8)から5連の調査を行い、開始値をrowに+1、columnに-1して行き、(5,4)まで開始値を進行させる
-         * こうすることで、(1,8)の右斜めのラインを5こずつ限界まで操作できる
-         */
 
         Result actual;
 
@@ -266,20 +259,6 @@ public class JudgeTestForGomokuRightSlanting {
         this.puttingFiveSameMovesInARightSlantingColumn1SlideDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
-    @Test
-    public void sampletset() {
-        board.putMoves(3, 4, Moves.CIRCLE);
-        board.putMoves(4, 3, Moves.CIRCLE);
-        board.putMoves(5, 2, Moves.CIRCLE);
-        board.putMoves(6, 1, Moves.CIRCLE);
-        board.putMoves(7, 0, Moves.CIRCLE);
-
-        Result actual = judge.judgeResult(board);
-        assertThat(actual, is(Result.WIN));
-
-        this.init();
-
-    }
 
 
     /**

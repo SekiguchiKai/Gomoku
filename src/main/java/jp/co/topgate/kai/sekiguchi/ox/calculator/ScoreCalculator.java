@@ -156,23 +156,18 @@ public class ScoreCalculator {
             score += this.calcLineScore(movesArray, maxPoint, minPoint);
         }
 
-
         score += calcLeftSlantingRowSlide(gameBoard, movesArray);
         score += calcLeftSlantingColumnSlide(gameBoard, movesArray);
 
-
         return score;
     }
-
-
-//
 
 
     /**
      * 左ラインのROWがスライドした時の審査を行うためのメソッド
      *
      * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
+     * @param movesArray     moves（打ち手）を格納するための配列
      * @return 勝敗が決定したか真偽値
      */
     private int calcLeftSlantingRowSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
@@ -191,7 +186,7 @@ public class ScoreCalculator {
      * 左ラインのROWがスライドした時の審査を行うためのメソッド
      *
      * @param gameBoard ゲーム盤
-     * @param moves     検査対象のプレーヤーの打ち手
+     * @param movesArray     moves（打ち手）を格納するための配列
      * @return 勝敗が決定したか真偽値
      */
     private int calcLeftSlantingColumnSlide(final Moves[][] gameBoard, final Moves[] movesArray) {
@@ -212,7 +207,7 @@ public class ScoreCalculator {
      * @param gameBoard ゲーム盤
      * @param row       rowのインデックス
      * @param column    columnのインデックス
-     * @param moves     打ち手
+     * @param movesArray     moves（打ち手）を格納するための配列
      * @return 指定された打ち手が、ゲーム盤上の指定された範囲内で勝敗を決定する数分連続しているかの真偽値
      */
     private int calcLeftSlantingSlideHelper(final Moves[][] gameBoard, final Moves[] movesArray, final int row, final int column) {
@@ -254,11 +249,9 @@ public class ScoreCalculator {
             column--;
         }
 
-
         score += this.calcRightSlantingRowSlide(gameBoard, movesArray);
 
         score += this.calcRightSlantingColumnSlide(gameBoard, movesArray);
-
 
         return score;
     }
