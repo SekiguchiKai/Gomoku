@@ -22,7 +22,7 @@ public class JudgeTestForGomokuRowColumn {
     private Judge judge;
 
     @Before
-    public void createInstances() {
+    public void setUp() {
         this.board = new Board(this.rowSize, this.columnSize);
         this.judge = new Judge(this.rowSize, this.columnSize, this.judgeCriteriaSequence);
     }
@@ -38,7 +38,7 @@ public class JudgeTestForGomokuRowColumn {
      * columnは、0~4、1~5、のように範囲をスライドし、全てを網羅している
      */
     @Test
-    public void puttingFiveCircleMovesInARowDecideCirCleUserWin() {
+    public void 同じrowにCIRCLEを5個並べるとUserの勝利が決定する() {
         int columnEndNum = 5;
 
         for (int columnStartNum = 0; columnStartNum < 4; columnStartNum++) {
@@ -53,7 +53,7 @@ public class JudgeTestForGomokuRowColumn {
      * columnは、0~4、1~5、のように範囲をスライドし、全てを網羅している
      */
     @Test
-    public void puttingFiveCrossMovesInARowDecideCirCleUserLose() {
+    public void 同じrowにCROSSを5個並べるとUserの敗北が決定する() {
         int columnEndNum = 5;
 
         for (int columnStartNum = 0; columnStartNum < 4; columnStartNum++) {
@@ -87,7 +87,7 @@ public class JudgeTestForGomokuRowColumn {
      * rowは、0~4、1~5、のように範囲をスライドし、全てを網羅している
      */
     @Test
-    public void puttingFiveCircleMovesInAColumnDecideCirCleUserWin() {
+    public void 同じcolumnにCIRCLEを5個並べるとUserの勝利が決定する() {
         int rowEndNum = 5;
 
         for (int rowStartNum = 0; rowStartNum < 4; rowStartNum++) {
@@ -102,7 +102,7 @@ public class JudgeTestForGomokuRowColumn {
      * rowは、0~4、1~5、のように範囲をスライドし、全てを網羅している
      */
     @Test
-    public void puttingFiveCrossMovesInAColumnDecideCirCleUserLose() {
+    public void 同じcolumnにCROSSを個並べるとUserの敗北が決定する() {
         int rowEndNum = 5;
 
         for (int rowStartNum = 0; rowStartNum < 4; rowStartNum++) {

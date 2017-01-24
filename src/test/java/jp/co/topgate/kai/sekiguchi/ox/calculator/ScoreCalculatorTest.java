@@ -36,7 +36,7 @@ public class ScoreCalculatorTest {
     private ScoreCalculator gomokuScoreCalculator;
 
     @Before
-    public void createGomokuScoreCalculator() {
+    public void setUp() {
         this.ticTacToeBoard = new Board(ticTacToeRowSize, ticTacToeColumnSize);
         this.gomokuBoard = new Board(gomokuRowSize, gomokuColumnSize);
 
@@ -58,8 +58,8 @@ public class ScoreCalculatorTest {
      * calcScoreメソッドをテストするためのメソッド
      */
     @Test
-    public void ticTacToeCalcScore() {
-        this.checkRow1(Moves.CROSS, 100050);
+    public void ゲーム盤上の得点を計算することが出来る() {
+        this.checkRow1(Moves.CROSS, 99950);
         this.checkRow1(Moves.CIRCLE, -100050);
 
         this.checkRow2(Moves.CROSS, 99950);
@@ -257,7 +257,7 @@ public class ScoreCalculatorTest {
     @Test
     public void gomokuCalcScore() {
 
-        this.gomokuRow1Checker(Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, 99620);
+        this.gomokuRow1Checker(Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, Moves.CROSS, 99720);
         this.gomokuRow1Checker(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, -99720);
         this.gomokuRow1Checker(Moves.EMPTY, Moves.EMPTY, Moves.EMPTY, Moves.EMPTY, Moves.EMPTY, 0);
         this.gomokuRow1Checker(Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CIRCLE, Moves.CROSS, -130);
