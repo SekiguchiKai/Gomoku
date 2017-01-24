@@ -32,7 +32,7 @@ public class MiniMaxTest {
      * calcMinMaxメソッドをテストするためのメソッド
      */
     @Test
-    public void calcMinMax() {
+    public void 現在の状況から適切な打ち手を決定する() {
         final int rowSize = 3;
         final int columnSize = 3;
         final int judgeCriteriaSequence = 3;

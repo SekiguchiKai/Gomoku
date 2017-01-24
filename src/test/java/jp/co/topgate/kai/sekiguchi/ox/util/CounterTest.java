@@ -17,7 +17,7 @@ public class CounterTest {
      * upCountメソッドをテストするためのメソッド
      */
     @Test
-    public void upCount() {
+    public void getCountメソッドを使用する度にcountが1増える() {
         Counter.resetCount();
         IntStream.range(0, 3).forEach(i -> Counter.upCount());
 
@@ -31,7 +31,7 @@ public class CounterTest {
      * getCountメソッドをテストするためのメソッド
      */
     @Test
-    public void getCount() {
+    public void countの値を取得することが出来る() {
         Counter.resetCount();
         IntStream.range(0, 5).forEach(i -> Counter.upCount());
 
@@ -46,7 +46,7 @@ public class CounterTest {
      * resetCountメソッドをテストするためのメソッド
      */
     @Test
-    public void resetCount() {
+    public void countの値を0にすることが出来る() {
         Counter.upCount();
         Counter.resetCount();
 

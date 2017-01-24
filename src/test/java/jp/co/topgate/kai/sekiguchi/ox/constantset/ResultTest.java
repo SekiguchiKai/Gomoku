@@ -14,7 +14,7 @@ public class ResultTest {
      * getResultメソッドをテストするためのメソッド
      */
     @Test
-    public void getResult() {
+    public void 列挙型のフィールドを元にそのフィールドに紐づけられた勝敗結果の文字列を取得することが出来る() {
         this.helper(Result.WIN, "君の勝ちだ");
         this.helper(Result.LOSE, "君の負けだ");
         this.helper(Result.DRAW, "引き分けだ");
