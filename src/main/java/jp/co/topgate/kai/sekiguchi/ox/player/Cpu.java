@@ -40,7 +40,7 @@ public class Cpu extends Player {
         final int column = cell.getCellColumn();
 
 
-        System.out.println("CPUの打ち手は、Y: " + row + "X:" + column);
+        System.out.println("CPUの打ち手は、row: " + row + " column:" + board.getColumnAlphabet(column));
         board.putMoves(row, column, Moves.CROSS);
 
         commandLineIO.drawUI(board);

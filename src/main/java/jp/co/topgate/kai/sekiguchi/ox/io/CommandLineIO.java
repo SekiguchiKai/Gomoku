@@ -56,7 +56,7 @@ public class CommandLineIO {
 
         System.out.println("\n");
 
-        System.out.println("自分の打ち手を入力するには、横の値をアルファベットで入力し、縦の値を数字で入力してEnterキーを押してください");
+        System.out.println("自分の打ち手を入力するには、横の値をアルファベットで入力しEnterキーを押し、縦の値を数字で入力してEnterキーを押してください");
     }
 
 
