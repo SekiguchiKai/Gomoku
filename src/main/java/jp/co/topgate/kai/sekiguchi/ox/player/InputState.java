@@ -9,12 +9,13 @@ public enum InputState {
     /**
      * 数字以外の文字が入力されたことを表す
      */
-    NOT_NUMBER("rowは半角数字で入力してください"),
+    ROW_NOT_NUMBER("rowは半角数字で入力してください"),
 
     /**
      *
+     *
      */
-    NOT_ALPHABET("columnは1文字の半角英字で入力してください"),
+    COLUMN_NOT_ALPHABET("columnは1文字の半角英字で入力してください"),
 
 
     /**

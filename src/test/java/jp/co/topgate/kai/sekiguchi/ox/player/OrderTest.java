@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class OrderTest {
     @Test
-    public void setSequentialRandomList() {
+    public void ランダムに打ち手順を81回作成するとuserとcpuの双方が含まれる() {
         final int rowSize = 9;
         final int columnSize = 9;
         final int judgeCriteriaSequence = 5;

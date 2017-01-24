@@ -25,7 +25,7 @@ public class JudgeTestForTicTacToe {
     private Judge judge;
 
     @Before
-    public void createInstances() {
+    public void setU() {
         this.board = new Board(this.rowSize, this.columnSize);
         this.judge = new Judge(this.rowSize, this.columnSize, this.judgeCriteriaSequence);
     }
@@ -36,7 +36,7 @@ public class JudgeTestForTicTacToe {
      * rowは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCircleMovesInARowDecideCirCleUserWin() {
+    public void 同じrowにCIRCLEを3個並べるとUserの勝利が決定する() {
         this.puttingThreeSameMovesInARowDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
@@ -45,7 +45,7 @@ public class JudgeTestForTicTacToe {
      * rowは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCrossMovesInARowDecideCirCleUserLose() {
+    public void 同じrowにCROSSを3個並べるとUserの敗北が決定する() {
         this.puttingThreeSameMovesInARowDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
@@ -73,7 +73,7 @@ public class JudgeTestForTicTacToe {
      * columnは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCircleMovesInAColumnDecideCirCleUserWin() {
+    public void 同じcolumnにCIRCLEを3個並べるとUserの勝利が決定する() {
         this.puttingThreeSameMovesInAColumnDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
@@ -82,7 +82,7 @@ public class JudgeTestForTicTacToe {
      * columnは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCrossMovesInAColumnDecideCirCleUserLose() {
+    public void 同じcolumnにCROSSを個並べるとUserの敗北が決定する() {
         this.puttingThreeSameMovesInAColumnDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
@@ -110,7 +110,7 @@ public class JudgeTestForTicTacToe {
      * 左斜めのラインは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCircleMovesInALeftSlantingDecideCirCleUserWin() {
+    public void 左斜めの対角線のラインに3個のCIRCLEを並べるとUserの勝利が決定する() {
         this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
@@ -119,7 +119,7 @@ public class JudgeTestForTicTacToe {
      * 左斜めのラインは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCrossMovesInALeftSlantingDecideCirCleUserLose() {
+    public void 左斜めの対角線のラインに3個のCROSSを並べるとUserの敗北が決定する() {
         this.puttingThreeSameMovesInALeftSlantingDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
@@ -144,7 +144,7 @@ public class JudgeTestForTicTacToe {
      * 右斜めのラインは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCircleMovesInARightSlantingDecideCirCleUserWin() {
+    public void 右斜めの対角線のラインに3個のCIRCLEを並べるとUserの勝利が決定する() {
         this.puttingThreeSameMovesInARightSlantingDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
@@ -153,7 +153,7 @@ public class JudgeTestForTicTacToe {
      * 右斜めのラインは、0~2行目まで全てを網羅している
      */
     @Test
-    public void puttingThreeCrossMovesInARightSlantingDecideCirCleUserLose() {
+    public void 右斜めの対角線のラインに3個のCROSSを並べるとUserの敗北が決定する() {
         this.puttingThreeSameMovesInARightSlantingDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 

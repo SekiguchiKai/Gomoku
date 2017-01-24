@@ -19,7 +19,7 @@ public class BoardTest {
     Board board;
 
     @Before
-    public void createGomokuBoard() {
+    public void setUp() {
         board = new Board(row, column);
     }
 
@@ -27,7 +27,7 @@ public class BoardTest {
      * putMovesメソッドをテストするためのメソッド
      */
     @Test
-    public void gomokuBoardPutMoves() {
+    public void putメソッドでrowとcolumnを指定してMovesを追加できるかどうかを確認する() {
         int rowSize = board.getRowSize();
         int columnSize = board.getColumnSize();
 
@@ -59,10 +59,10 @@ public class BoardTest {
      * getGameBoardStateメソッドをテストするためのメソッド
      */
     @Test
-    public void getGameBoardState() {
-        this.getGameBoardStateHelper(Moves.CROSS, Moves.CROSS);
-        this.getGameBoardStateHelper(Moves.CIRCLE, Moves.CIRCLE);
-        this.getGameBoardStateHelper(Moves.EMPTY, Moves.EMPTY);
+    public void 打ち手を加えるとその結果がgameBoard上に反映される() {
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CROSS, Moves.CROSS);
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CIRCLE, Moves.CIRCLE);
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.EMPTY, Moves.EMPTY);
     }
 
 
@@ -71,8 +71,9 @@ public class BoardTest {
      *
      * @param data     テストに用いるためのデータ
      * @param expected 期待する値
+     *
      */
-    private void getGameBoardStateHelper(Moves data, Moves expected) {
+    private void 打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves data, Moves expected) {
         IntStream.range(0, board.getRowSize()).forEach(row -> IntStream.range(0, board.getColumnSize()).forEach(column -> board.putMoves(row, column, data)));
 
         IntStream.range(0, board.getRowSize()).forEach(row -> IntStream.range(0, board.getColumnSize()).forEach(column -> assertThat(board.getGameBoardState()[row][column], is(expected))));
@@ -84,7 +85,7 @@ public class BoardTest {
      * getRowSizeメソッドをテストするためのメソッド
      */
     @Test
-    public void getRowSize() {
+    public void rowのサイズを取得できる() {
         int actual = this.board.getRowSize();
         assertThat(actual, is(row));
     }
@@ -93,7 +94,7 @@ public class BoardTest {
      * getColumnSizeメソッドをテストするためのメソッド
      */
     @Test
-    public void getColumnSize() {
+    public void columnのサイズを取得できる() {
         int actual = this.board.getColumnSize();
         assertThat(actual, is(column));
     }
