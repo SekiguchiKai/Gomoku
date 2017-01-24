@@ -59,10 +59,10 @@ public class BoardTest {
      * getGameBoardStateメソッドをテストするためのメソッド
      */
     @Test
-    public void 打ち手を加えたるとその結果がgameBoard上に反映される() {
-        this.打ち手を加えたるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CROSS, Moves.CROSS);
-        this.打ち手を加えたるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CIRCLE, Moves.CIRCLE);
-        this.打ち手を加えたるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.EMPTY, Moves.EMPTY);
+    public void 打ち手を加えるとその結果がgameBoard上に反映される() {
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CROSS, Moves.CROSS);
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.CIRCLE, Moves.CIRCLE);
+        this.打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves.EMPTY, Moves.EMPTY);
     }
 
 
@@ -73,7 +73,7 @@ public class BoardTest {
      * @param expected 期待する値
      *
      */
-    private void 打ち手を加えたるとその結果がgameBoard上に反映されるかどうかを検証する(Moves data, Moves expected) {
+    private void 打ち手を加えるとその結果がgameBoard上に反映されるかどうかを検証する(Moves data, Moves expected) {
         IntStream.range(0, board.getRowSize()).forEach(row -> IntStream.range(0, board.getColumnSize()).forEach(column -> board.putMoves(row, column, data)));
 
         IntStream.range(0, board.getRowSize()).forEach(row -> IntStream.range(0, board.getColumnSize()).forEach(column -> assertThat(board.getGameBoardState()[row][column], is(expected))));

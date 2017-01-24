@@ -40,7 +40,7 @@ public class JudgeTestForGomokuRightSlanting {
      * 右斜めのラインは、操作開始値(0, 8)から操作終了値(4, 4)までの5連を操作し、操作開始値を1つずつ左下のセルに限界値までシフトさせていく
      */
     @Test
-    public void 右斜めの対角線のラインに5つのCIRCLEを並べるとUserの勝利が決定する() {
+    public void 右斜めの対角線のラインに5個のCIRCLEを並べるとUserの勝利が決定する() {
         this.puttingFiveSameMovesInARightSlantingCenterSlideDecideUserWinOrLose(Moves.CIRCLE, Result.WIN);
     }
 
@@ -49,7 +49,7 @@ public class JudgeTestForGomokuRightSlanting {
      * 右斜めのラインは、操作開始値(0, 8)から操作終了値(4, 4)までの5連を操作し、操作開始値を1つずつ左下のセルに限界値までシフトさせていく
      */
     @Test
-    public void 右斜めのラインに5つのCROSSを並べるとUserの敗北が決定する() {
+    public void 右斜めのラインに5個のCROSSを並べるとUserの敗北が決定する() {
         this.puttingFiveSameMovesInARightSlantingCenterSlideDecideUserWinOrLose(Moves.CROSS, Result.LOSE);
     }
 
